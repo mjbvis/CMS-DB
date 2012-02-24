@@ -1048,9 +1048,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('25f00cfa448e8b367203d4e1a9b6339c','24.20.133.12','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1',1329950615,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:8:\"cms-team\";s:5:\"email\";s:25:\"cms-team@googlegroups.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"0000-00-00 00:00:00\";s:12:\"CreationDTTM\";s:19:\"2012-02-05 00:00:00\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('5da3e983c3bacd0c734a98cc4a32caf7','156.12.148.60','Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1329955275,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:8:\"cms-team\";s:5:\"email\";s:25:\"cms-team@googlegroups.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"0000-00-00 00:00:00\";s:12:\"CreationDTTM\";s:19:\"2012-02-05 00:00:00\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('6395a64b60b939eac09d520dea45865d','24.20.133.12','Opera/9.80 (Windows NT 6.1; U; IBM EVV/3.0/EAK01AG9/LE; en) Presto/2.10.229 Version/11.61',1329950292,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:8:\"cms-team\";s:5:\"email\";s:25:\"cms-team@googlegroups.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"0000-00-00 00:00:00\";s:12:\"CreationDTTM\";s:19:\"2012-02-05 00:00:00\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('bf805cc4c736e192e189d1ba5e6fa185','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330076181,'');
+INSERT INTO `ci_sessions` VALUES ('dd5da72ada82e0f404d54a532e72d339','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330079314,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1123,4 +1122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-23  3:14:01
+-- Dump completed on 2012-02-24  3:14:01

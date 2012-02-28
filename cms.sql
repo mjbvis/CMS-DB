@@ -66,12 +66,12 @@ CREATE TABLE `Accident` (
   `AckParentID` int(11) DEFAULT NULL,
   `AckAdminID` int(11) DEFAULT NULL,
   PRIMARY KEY (`AccidentID`),
-  KEY `FK_Accident_Student` (`StudentID`),
   KEY `FK_Accident_Parent1` (`AckParentID`),
   KEY `FK_Accident_Staff1` (`AckAdminID`),
+  KEY `Accident_FKIndex1` (`StudentID`),
+  CONSTRAINT `fk_{18D73471-63C3-48BD-AB52-0F655F641394}` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Accident_Parent1` FOREIGN KEY (`AckParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Accident_Staff1` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Accident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Accident_Staff1` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -105,7 +105,7 @@ CREATE TABLE `Alerts` (
 
 LOCK TABLES `Alerts` WRITE;
 /*!40000 ALTER TABLE `Alerts` DISABLE KEYS */;
-INSERT INTO `Alerts` VALUES (1,'Change password','2012-02-05 18:12:48');
+INSERT INTO `Alerts` VALUES (1,'Must change password','2012-02-05 18:12:48');
 INSERT INTO `Alerts` VALUES (2,'Must fill out yearly','2012-02-05 18:12:48');
 /*!40000 ALTER TABLE `Alerts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -141,8 +141,8 @@ CREATE TABLE `Alumni` (
   PRIMARY KEY (`StudentID`),
   KEY `FK_Alumni_Student1` (`StudentID`),
   KEY `FK_Alumni_AcademicLevel1` (`AcademicLevelID`),
-  CONSTRAINT `FK_Alumni_AcademicLevel1` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Alumni_Student1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Alumni_Student1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Alumni_AcademicLevel1` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -172,6 +172,7 @@ CREATE TABLE `Classroom` (
   `SecondaryStaffTypeID` int(11) DEFAULT NULL,
   `UDTTM` datetime NOT NULL,
   `CreationDTTM` datetime NOT NULL,
+  `Enabled` bit(1) NOT NULL,
   PRIMARY KEY (`ClassID`),
   KEY `FK_Classroom_Staff1` (`PrimaryStaffID`,`PrimaryStaffTypeID`),
   KEY `FK_Classroom_Staff2` (`SecondaryStaffID`,`SecondaryStaffTypeID`),
@@ -191,6 +192,35 @@ CREATE TABLE `Classroom` (
 LOCK TABLES `Classroom` WRITE;
 /*!40000 ALTER TABLE `Classroom` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Classroom` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ClassroomObservation`
+--
+
+DROP TABLE IF EXISTS `ClassroomObservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ClassroomObservation` (
+  `ProspectID` int(11) NOT NULL,
+  `ObservationDTTM` datetime NOT NULL,
+  `ClassID` int(11) NOT NULL,
+  `Attended` bit(1) NOT NULL,
+  `OnTime` bit(1) NOT NULL,
+  PRIMARY KEY (`ProspectID`),
+  KEY `FK_ClassroomObservation_Classroom1` (`ClassID`),
+  CONSTRAINT `FK_ClassroomObservation_Prospect1` FOREIGN KEY (`ProspectID`) REFERENCES `ProspectiveParent` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ClassroomObservation_Classroom1` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ClassroomObservation`
+--
+
+LOCK TABLES `ClassroomObservation` WRITE;
+/*!40000 ALTER TABLE `ClassroomObservation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ClassroomObservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -300,7 +330,7 @@ CREATE TABLE `EmergencyContact` (
   `ContactID` int(11) NOT NULL AUTO_INCREMENT,
   `ECName` varchar(255) NOT NULL,
   `ECPhone` varchar(255) NOT NULL,
-  `ECRelationship` varchar(255) NOT NULL,
+  `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -374,6 +404,33 @@ LOCK TABLES `Incident` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `MenuItem`
+--
+
+DROP TABLE IF EXISTS `MenuItem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MenuItem` (
+  `MenuItemID` int(11) NOT NULL,
+  `Label` varchar(255) NOT NULL,
+  `URL` varchar(255) NOT NULL,
+  `GroupID` int(11) NOT NULL,
+  PRIMARY KEY (`MenuItemID`),
+  KEY `FK_MenuItem_groups1` (`GroupID`),
+  CONSTRAINT `FK_MenuItem_groups1` FOREIGN KEY (`GroupID`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MenuItem`
+--
+
+LOCK TABLES `MenuItem` WRITE;
+/*!40000 ALTER TABLE `MenuItem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Parent`
 --
 
@@ -382,36 +439,22 @@ DROP TABLE IF EXISTS `Parent`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Parent` (
   `ParentID` int(11) NOT NULL AUTO_INCREMENT,
-  `SpouseID` int(11) DEFAULT NULL,
   `ProspectID` int(11) NOT NULL,
-  `UserID` int(11) DEFAULT NULL,
+  `UserID` int(11) NOT NULL,
   `FirstName` varchar(255) NOT NULL,
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) NOT NULL,
-  `Gender` char(1) NOT NULL,
-  `Address1` varchar(255) NOT NULL,
-  `Address2` varchar(255) DEFAULT NULL,
-  `City` varchar(255) DEFAULT NULL,
-  `State` char(2) NOT NULL,
-  `Zip` int(11) NOT NULL,
-  `HomePhone` varchar(255) DEFAULT NULL,
-  `CellPhone` varchar(255) DEFAULT NULL,
-  `WorkPhone` varchar(255) DEFAULT NULL,
   `Email` varchar(255) NOT NULL,
-  `Employer` varchar(255) NOT NULL,
-  `Occupation` varchar(255) NOT NULL,
-  `DepositPaid` bit(1) NOT NULL,
-  `ParentStatusID` int(11) NOT NULL,
+  `Employer` varchar(255) DEFAULT NULL,
+  `Occupation` varchar(255) DEFAULT NULL,
+  `DepositPaid` bit(1) NOT NULL DEFAULT b'0',
+  `IsProspect` bit(1) NOT NULL DEFAULT b'1',
   `UDDTM` datetime NOT NULL,
   PRIMARY KEY (`ParentID`),
-  KEY `FK_Parent_Prospect` (`ProspectID`),
-  KEY `Parent_ParentStatusLookup` (`ParentStatusID`),
-  KEY `FK_Parent_UserTable1` (`UserID`),
-  KEY `FK_Parent_Parent1` (`SpouseID`),
-  CONSTRAINT `FK_Parent_Parent1` FOREIGN KEY (`SpouseID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Parent_ParentStatusLookup` FOREIGN KEY (`ParentStatusID`) REFERENCES `ParentStatusLookup` (`StatusID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Parent_Prospect` FOREIGN KEY (`ProspectID`) REFERENCES `Prospect` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Parent_UserTable1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Parent_users1` (`UserID`),
+  KEY `FK_Parent_ProspectiveParent1` (`ProspectID`),
+  CONSTRAINT `FK_Parent_users1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Parent_ProspectiveParent1` FOREIGN KEY (`ProspectID`) REFERENCES `ProspectiveParent` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -425,62 +468,62 @@ LOCK TABLES `Parent` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ParentStatusLookup`
+-- Table structure for table `ParentContactInfo`
 --
 
-DROP TABLE IF EXISTS `ParentStatusLookup`;
+DROP TABLE IF EXISTS `ParentContactInfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ParentStatusLookup` (
-  `StatusID` int(11) NOT NULL AUTO_INCREMENT,
-  `StatusDescription` varchar(255) NOT NULL,
-  PRIMARY KEY (`StatusID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
+CREATE TABLE `ParentContactInfo` (
+  `ParentID` int(11) NOT NULL,
+  `Address1` varchar(255) NOT NULL,
+  `Address2` varchar(255) DEFAULT NULL,
+  `City` varchar(255) NOT NULL,
+  `State` char(2) NOT NULL,
+  `Zip` int(11) NOT NULL,
+  `HomePhone` varchar(255) DEFAULT NULL,
+  `CellPhone` varchar(255) DEFAULT NULL,
+  `WorkPhone` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) NOT NULL,
+  PRIMARY KEY (`ParentID`),
+  CONSTRAINT `FK_ParentContactInfo_Parent1` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ParentStatusLookup`
+-- Dumping data for table `ParentContactInfo`
 --
 
-LOCK TABLES `ParentStatusLookup` WRITE;
-/*!40000 ALTER TABLE `ParentStatusLookup` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ParentStatusLookup` ENABLE KEYS */;
+LOCK TABLES `ParentContactInfo` WRITE;
+/*!40000 ALTER TABLE `ParentContactInfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ParentContactInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Prospect`
+-- Table structure for table `ProspectLearningType`
 --
 
-DROP TABLE IF EXISTS `Prospect`;
+DROP TABLE IF EXISTS `ProspectLearningType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Prospect` (
-  `ProspectID` int(11) NOT NULL AUTO_INCREMENT,
-  `FirstContactDTTM` datetime NOT NULL,
-  `ObservationDTTM` datetime NOT NULL,
-  `ReferredBy` varchar(255) DEFAULT NULL,
-  `IsMoving` bit(1) NOT NULL,
-  `Notes` varchar(255) DEFAULT NULL,
-  `LevelOfInterest` int(11) NOT NULL,
-  `LevelOfUnderstanding` int(11) NOT NULL,
-  `WillingnessToLearn` int(11) NOT NULL,
+CREATE TABLE `ProspectLearningType` (
+  `ProspectID` int(11) NOT NULL,
+  `IndepLearning` bit(1) NOT NULL,
+  `AtOwnPace` bit(1) NOT NULL,
+  `HandsOn` bit(1) NOT NULL,
+  `MixedAges` bit(1) NOT NULL,
   PRIMARY KEY (`ProspectID`),
-  KEY `FK_Prospect_LevelLookup1` (`LevelOfInterest`),
-  KEY `FK_Prospect_LevelLookup2` (`LevelOfUnderstanding`),
-  KEY `FK_Prospect_LevelLookup3` (`WillingnessToLearn`),
-  CONSTRAINT `FK_Prospect_LevelLookup1` FOREIGN KEY (`LevelOfInterest`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Prospect_LevelLookup2` FOREIGN KEY (`LevelOfUnderstanding`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Prospect_LevelLookup3` FOREIGN KEY (`WillingnessToLearn`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
+  CONSTRAINT `FK_ProspectLearningType_Prospect1` FOREIGN KEY (`ProspectID`) REFERENCES `ProspectiveParent` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Prospect`
+-- Dumping data for table `ProspectLearningType`
 --
 
-LOCK TABLES `Prospect` WRITE;
-/*!40000 ALTER TABLE `Prospect` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Prospect` ENABLE KEYS */;
+LOCK TABLES `ProspectLearningType` WRITE;
+/*!40000 ALTER TABLE `ProspectLearningType` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ProspectLearningType` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -505,6 +548,82 @@ CREATE TABLE `ProspectLevelLookup` (
 LOCK TABLES `ProspectLevelLookup` WRITE;
 /*!40000 ALTER TABLE `ProspectLevelLookup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ProspectLevelLookup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ProspectMovement`
+--
+
+DROP TABLE IF EXISTS `ProspectMovement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ProspectMovement` (
+  `ProspectID` int(11) NOT NULL,
+  `City` varchar(255) DEFAULT NULL,
+  `State` char(2) DEFAULT NULL,
+  `School` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ProspectID`),
+  CONSTRAINT `FK_ProspectMovement_Prospect1` FOREIGN KEY (`ProspectID`) REFERENCES `ProspectiveParent` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ProspectMovement`
+--
+
+LOCK TABLES `ProspectMovement` WRITE;
+/*!40000 ALTER TABLE `ProspectMovement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ProspectMovement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ProspectReference`
+--
+
+DROP TABLE IF EXISTS `ProspectReference`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ProspectReference` (
+  `ProspectID` int(11) NOT NULL,
+  `ReferenceName` varchar(255) NOT NULL,
+  `ReferenceNotes` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ProspectID`,`ReferenceName`),
+  KEY `FK_ProspectReference_Prospect1` (`ProspectID`),
+  KEY `FK_ProspectReference_ReferenceLookup1` (`ReferenceName`),
+  CONSTRAINT `FK_ProspectReference_Prospect1` FOREIGN KEY (`ProspectID`) REFERENCES `ProspectiveParent` (`ProspectID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ProspectReference_ReferenceLookup1` FOREIGN KEY (`ReferenceName`) REFERENCES `ReferenceLookup` (`ReferenceName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ProspectReference`
+--
+
+LOCK TABLES `ProspectReference` WRITE;
+/*!40000 ALTER TABLE `ProspectReference` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ProspectReference` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ReferenceLookup`
+--
+
+DROP TABLE IF EXISTS `ReferenceLookup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ReferenceLookup` (
+  `ReferenceName` varchar(255) NOT NULL,
+  PRIMARY KEY (`ReferenceName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ReferenceLookup`
+--
+
+LOCK TABLES `ReferenceLookup` WRITE;
+/*!40000 ALTER TABLE `ReferenceLookup` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ReferenceLookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -631,11 +750,9 @@ CREATE TABLE `Staff` (
   KEY `FK_Staff_EmergencyContact1` (`EmergencyContactID1`),
   KEY `FK_Staff_EmergencyContact2` (`EmergencyContactID2`),
   KEY `FK_Staff_EmergencyContact3` (`EmergencyContactID3`),
-  CONSTRAINT `FK_StaffTypeLookUp` FOREIGN KEY (`StaffTypeID`) REFERENCES `StaffTypeLookUp` (`StaffTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_UserTable` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Staff_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -663,8 +780,8 @@ CREATE TABLE `StaffEduBackground` (
   `Degree` varchar(255) DEFAULT NULL,
   `GraduationDate` date DEFAULT NULL,
   PRIMARY KEY (`BackgroundID`),
-  KEY `FK_StaffEduBackground_Staff` (`StaffID`),
-  CONSTRAINT `FK_StaffEduBackground_Staff` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `StaffEduBackground_FKIndex1` (`StaffID`),
+  CONSTRAINT `fk_{FE7FCF27-CDA8-4008-B676-2A29A9D66041}` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -717,7 +834,6 @@ CREATE TABLE `Student` (
   `Nickname` varchar(255) DEFAULT NULL,
   `Age` int(11) NOT NULL,
   `Gender` char(1) NOT NULL,
-  `StudentStatus` int(11) NOT NULL,
   `DayType` char(1) DEFAULT NULL,
   `DOB` date NOT NULL,
   `EnrollmentDTTM` datetime NOT NULL,
@@ -727,13 +843,14 @@ CREATE TABLE `Student` (
   `FoodAllergies` varchar(2047) DEFAULT NULL,
   `MedicineAllergies` varchar(2047) DEFAULT NULL,
   `OtherAllergies` varchar(2047) DEFAULT NULL,
+  `IsEnrolled` bit(1) NOT NULL DEFAULT b'0',
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`StudentID`),
-  KEY `FK_Student_Classroom` (`ClassID`),
   KEY `FK_Student_EmergencyContact1` (`EmergencyContactID1`),
   KEY `FK_Student_EmergencyContact2` (`EmergencyContactID2`),
   KEY `FK_Student_EmergencyContact3` (`EmergencyContactID3`),
-  CONSTRAINT `FK_Student_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `Student_FKIndex1` (`ClassID`),
+  CONSTRAINT `fk_{44BCBC28-F9AA-44B6-B59C-7CF957C77F23}` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -766,8 +883,8 @@ CREATE TABLE `StudentEduBackground` (
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   PRIMARY KEY (`BackgroundID`),
-  KEY `FK_StudentEduBackground_Student` (`StudentID`),
-  CONSTRAINT `FK_StudentEduBackground_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `StudentEduBackground_FKIndex1` (`StudentID`),
+  CONSTRAINT `fk_{7E872D72-E077-4E2E-AD01-EF1CA10B9BB2}` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -791,10 +908,10 @@ CREATE TABLE `StudentIncident` (
   `StudentID` int(11) NOT NULL,
   `IncidentID` int(11) NOT NULL,
   PRIMARY KEY (`IncidentID`,`StudentID`),
-  KEY `FK_StudentIncident_Incident` (`IncidentID`),
-  KEY `FK_StudentIncident_Student` (`StudentID`),
-  CONSTRAINT `FK_StudentIncident_Incident` FOREIGN KEY (`IncidentID`) REFERENCES `Incident` (`IncidentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_StudentIncident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `Student_Incident_FKIndex1` (`IncidentID`),
+  KEY `Student_Incident_FKIndex2` (`StudentID`),
+  CONSTRAINT `fk_{22AF1A3B-6C32-45DB-8745-C22356A774E8}` FOREIGN KEY (`IncidentID`) REFERENCES `Incident` (`IncidentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_{1A15EEF0-A2B4-4BD5-81ED-22EE9CAB1394}` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -820,12 +937,12 @@ CREATE TABLE `StudentParent` (
   `RelationshipID` int(11) NOT NULL,
   `PrimaryContact` bit(1) NOT NULL,
   PRIMARY KEY (`ParentID`,`StudentID`),
-  KEY `FK_StudentParent_Student` (`StudentID`),
-  KEY `FK_StudentParent_Parent` (`ParentID`),
   KEY `FK_StudentParent_RelationshipLookup1` (`RelationshipID`),
-  CONSTRAINT `FK_StudentParent_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_StudentParent_RelationshipLookup1` FOREIGN KEY (`RelationshipID`) REFERENCES `RelationshipLookup` (`RelationshipID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_StudentParent_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `Student_Parent_FKIndex1` (`StudentID`),
+  KEY `Student_Parent_FKIndex2` (`ParentID`),
+  CONSTRAINT `fk_{8FA36AE4-5209-4DD8-8780-4B15D58E805E}` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_{90732934-84FD-4646-8CA3-C1BDC060B35F}` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_StudentParent_RelationshipLookup1` FOREIGN KEY (`RelationshipID`) REFERENCES `RelationshipLookup` (`RelationshipID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -836,6 +953,33 @@ CREATE TABLE `StudentParent` (
 LOCK TABLES `StudentParent` WRITE;
 /*!40000 ALTER TABLE `StudentParent` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StudentParent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SubItem`
+--
+
+DROP TABLE IF EXISTS `SubItem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SubItem` (
+  `SubItemID` int(11) NOT NULL,
+  `MenuItemID` int(11) NOT NULL,
+  `Label` varchar(255) DEFAULT NULL,
+  `URL` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`SubItemID`),
+  KEY `FK_SubItem_MenuItem1` (`MenuItemID`),
+  CONSTRAINT `FK_SubItem_MenuItem1` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SubItem`
+--
+
+LOCK TABLES `SubItem` WRITE;
+/*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -886,6 +1030,10 @@ CREATE TABLE `UserAlerts` (
 
 LOCK TABLES `UserAlerts` WRITE;
 /*!40000 ALTER TABLE `UserAlerts` DISABLE KEYS */;
+INSERT INTO `UserAlerts` VALUES (34,1);
+INSERT INTO `UserAlerts` VALUES (37,1);
+INSERT INTO `UserAlerts` VALUES (34,2);
+INSERT INTO `UserAlerts` VALUES (37,2);
 /*!40000 ALTER TABLE `UserAlerts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -930,8 +1078,8 @@ CREATE TABLE `VolunteerLogEntry` (
   KEY `FK_VolunteerLogEntry_VolunteerTasks1` (`VolunteerTaskID`),
   KEY `FK_VolunteerLogEntry_VolunteerEvent1` (`VolunteerEventID`),
   KEY `FK_VolunteerLogEntry_Vonunteer1` (`ParentID`),
-  CONSTRAINT `FK_VolunteerLogEntry_VolunteerEvent1` FOREIGN KEY (`VolunteerEventID`) REFERENCES `Event` (`EventID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_VolunteerLogEntry_VolunteerTasks1` FOREIGN KEY (`VolunteerTaskID`) REFERENCES `VolunteerTasks` (`VolunteerTaskID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_VolunteerLogEntry_VolunteerEvent1` FOREIGN KEY (`VolunteerEventID`) REFERENCES `Event` (`EventID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_VolunteerLogEntry_Vonunteer1` FOREIGN KEY (`ParentID`) REFERENCES `Vonunteer` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1023,6 +1171,52 @@ LOCK TABLES `Vonunteer` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `WaitlistQuestionaire`
+--
+
+DROP TABLE IF EXISTS `WaitlistQuestionaire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `WaitlistQuestionaire` (
+  `QuestionaireID` int(11) NOT NULL,
+  `FirstName` varchar(255) NOT NULL,
+  `MiddleName` varchar(255) DEFAULT NULL,
+  `LastName` varchar(45) NOT NULL,
+  `ParentID` int(11) NOT NULL,
+  `Question1` varchar(255) NOT NULL,
+  `Question2` varchar(255) NOT NULL,
+  `Question3` varchar(255) NOT NULL,
+  `Question4` varchar(255) NOT NULL,
+  `Question5` varchar(255) NOT NULL,
+  `Question6` varchar(255) NOT NULL,
+  `Question7` varchar(255) NOT NULL,
+  `Question8` varchar(255) NOT NULL,
+  `Question9` varchar(255) NOT NULL,
+  `Question10` varchar(255) NOT NULL,
+  `Question11` varchar(255) NOT NULL,
+  `Question12` varchar(255) NOT NULL,
+  `Question13` varchar(255) NOT NULL,
+  `Question14` varchar(255) NOT NULL,
+  `Question15` varchar(255) NOT NULL,
+  `Question16` varchar(255) NOT NULL,
+  `Question17` varchar(255) NOT NULL,
+  `Agreement` tinyint(1) NOT NULL,
+  PRIMARY KEY (`QuestionaireID`),
+  KEY `FK_WaitlistQuestionaire_Parent1` (`ParentID`),
+  CONSTRAINT `FK_WaitlistQuestionaire_Parent1` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `WaitlistQuestionaire`
+--
+
+LOCK TABLES `WaitlistQuestionaire` WRITE;
+/*!40000 ALTER TABLE `WaitlistQuestionaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `WaitlistQuestionaire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ci_sessions`
 --
 
@@ -1045,11 +1239,12 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('1c8391212d531e257ad78ecfe3539a1d','74.125.92.88','Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/525.13 (KHTML, like Gecko; Google Page Speed) Chrom',1330325685,'');
-INSERT INTO `ci_sessions` VALUES ('7779f16f9b6b7a331409a770cd140212','74.125.92.101','Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/525.13 (KHTML, like Gecko; Google Page Speed) Chrom',1330325696,'');
-INSERT INTO `ci_sessions` VALUES ('95f51c79f1e5129b7caef5f52ab1350d','74.125.90.83','Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/525.13 (KHTML, like Gecko; Google Page Speed) Chrom',1330325691,'');
-INSERT INTO `ci_sessions` VALUES ('b66cfca724a9519972eb055f27a75b36','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330329840,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"\0\";s:15:\"ChangedPassword\";s:1:\"\0\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('b6a934a7b0ce14d40fb59478efb8daa3','24.20.210.119','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330324404,'a:11:{s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"\0\";s:15:\"ChangedPassword\";s:1:\"\0\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('200cfd9dc8fcbe14c88adc1828dd71b9','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330427226,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('61c8fa9eb3111fece9520b077e4493f9','67.170.132.170','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330413702,'');
+INSERT INTO `ci_sessions` VALUES ('7560ddd2840ca8d04a970e97ea3c13c8','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330420842,'');
+INSERT INTO `ci_sessions` VALUES ('b96b99b7dba0a4c21023b24fc1fd5da5','192.168.0.100','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330416301,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('c242c0bea1f6b7cdf6bfdd5810bb4c5e','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330419411,'a:11:{s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('f3434d48d2cc014c26dda64739671a5a','113.239.133.62','Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.27) Gecko/20120216 Firefox/3.6.27',1330414802,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1096,8 +1291,9 @@ CREATE TABLE `users` (
   `CreationDTTM` datetime NOT NULL,
   `Enabled` bit(1) NOT NULL,
   `ChangedPassword` bit(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1106,22 +1302,11 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (3,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (4,'parent','parent@parent.com','0e04f84669bdcf3c97bc19cbba4e0ce4a5b6d8e889cfe58c9d64d1d107245df8','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (20,'a.a','asdf@asdf.com','6eab00597a8fd40e1cbf66c52e888419fdfe44bc8ca198fc5f6f1db439b229d7','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (21,'a.a.2','asfdf@asdf.com','93b3438c5a03ccf6b9c68a05ff9b80df687f0a7fadecec0a745861e8a94af947','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (22,'a.a.3','asfdf@asgdf.com','0d3c0b17d54edfa97c7ef4e7ad55b4ec5d6d1debca2de6ef800daf6bfdabb6f0','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (23,'a.a.4','asfdf@asgdf.cfom','dfeaff0c9d6f69b5329f5f8095f675da1d97cdf89e45feef0ba9c404c14cb3a3','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (24,'a.a.5','asfdf@asgdf.cfomf','20f793ff78071cca8f19c86b4b81eb66deef8defca44ba804afa48514bd1b531','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (25,'a.a.6','asfdf@asgdf.cfohmf','a33a6a49e3d141f44b1317fd4aa580a8f4c3d054a385b91cd81578f2cdf58e37','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (26,'a.a.7','asfdf@asgdf.cfohm','8487173eb1cd39c31c7f31a355f1f43d37599aaff85017f664f64fb1b1a581f3','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (27,'a.a.8','asfrdf@asgdf.cfohm','c72d1649e1405b6cbfa79dbd57768e12048490d2a3f7df404c744d891eb86734','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (28,'a.a.9','ahsfrdf@asgdf.cfohm','f9ff11b89965b678269b786b39863b7e7a04512a86ada093c171b91992a63491','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (29,'a.a.10','ahhsfrdf@asgdf.cfohm','e18d2b77d5d459f3df1b70a235e81d8d69493aaf2481933f4c64e88768a07252','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (30,'a.a.11','ahhfsfrdf@asgdf.cfohm','b6367582b50e99c1d9d21e73c250620660566a700b789f7f7523cf624e266c57','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (31,'Justin.Field','fieldju@gmail.com','4f6ee7191186f1482ef5ca98dee35567bdc3b7f1d50df5a109171d8ae93e528d','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (32,'Justin.Field.2','fieldju3@gmail.com','23d4b4095e7ecee76c6660add48dabe14e46735568b361b545bed4c37ceab464','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
-INSERT INTO `users` VALUES (33,'justin.field.3','fieldju1@gmail.com','aeb7c064a69fdbb60475cd6efd3d89b581baada97f3b1c22cb516615f41b4491','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (3,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','',NULL,'2012-02-02 01:01:01','','');
+INSERT INTO `users` VALUES (34,'Mark.Bowser','markbowser9@gmail.com','2944a295022c39d6d06e44c97cbff0e84b1bc0212dc71a680ac02e5592707e33','200','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (35,'sadf.asdf','asdf@asdf.com','72871d5842f24af83b041df6e49247693eae53d584559e676798ddfb25556818','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (36,'Mark.Bowser.2','markbowser9@gm111ail.com','05f73d99a78a6c953e8fc8bf7fc62e94d37c8d0e5c487df5590054d0addd4afd','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (37,'Justin.Field','fieldju@gmail.com','46d114ca184f10d3d10bdd7ad95b586c3a87b80f6faad35f7b7532bab834537c','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1134,4 +1319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-27  3:14:01
+-- Dump completed on 2012-02-28  3:14:02

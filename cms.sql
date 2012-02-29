@@ -1240,9 +1240,16 @@ CREATE TABLE `ci_sessions` (
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
 INSERT INTO `ci_sessions` VALUES ('200cfd9dc8fcbe14c88adc1828dd71b9','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330427226,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('3fb14d57ed67b1b381328e99e99c603f','141.48.157.35','Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100105 Firefox/3.6',1330457150,'');
+INSERT INTO `ci_sessions` VALUES ('5b1d31363d6c7a4fa80c57bffcddaa81','69.162.69.14','Browsershots',1330455568,'');
 INSERT INTO `ci_sessions` VALUES ('61c8fa9eb3111fece9520b077e4493f9','67.170.132.170','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330413702,'');
+INSERT INTO `ci_sessions` VALUES ('669845187534d47f71b4a1d1edfee5a7','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330498512,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('6a3ed46450983b98faa7cb46dc15090d','24.20.18.164','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330455455,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
 INSERT INTO `ci_sessions` VALUES ('7560ddd2840ca8d04a970e97ea3c13c8','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330420842,'');
+INSERT INTO `ci_sessions` VALUES ('a8fe9387db37a02ce6d311fc57bb74c8','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330454945,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('ac36f4a9c6d3be0c7609147a12736f0f','67.189.58.92','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330448219,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"38\";s:8:\"username\";s:13:\"A_Test.B_Test\";s:5:\"email\";s:19:\"gneatgeek@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"\0\";s:15:\"ChangedPassword\";s:1:\"\0\";s:9:\"logged_in\";b:1;}');
 INSERT INTO `ci_sessions` VALUES ('b96b99b7dba0a4c21023b24fc1fd5da5','192.168.0.100','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330416301,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('bfdb379c5f3a5f46e6bd0135034ca521','24.35.239.99','Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2',1330447986,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
 INSERT INTO `ci_sessions` VALUES ('c242c0bea1f6b7cdf6bfdd5810bb4c5e','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',1330419411,'a:11:{s:2:\"id\";s:1:\"3\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:15:\"ChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
 INSERT INTO `ci_sessions` VALUES ('f3434d48d2cc014c26dda64739671a5a','113.239.133.62','Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.27) Gecko/20120216 Firefox/3.6.27',1330414802,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
@@ -1293,7 +1300,7 @@ CREATE TABLE `users` (
   `ChangedPassword` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1307,6 +1314,7 @@ INSERT INTO `users` VALUES (34,'Mark.Bowser','markbowser9@gmail.com','2944a29502
 INSERT INTO `users` VALUES (35,'sadf.asdf','asdf@asdf.com','72871d5842f24af83b041df6e49247693eae53d584559e676798ddfb25556818','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 INSERT INTO `users` VALUES (36,'Mark.Bowser.2','markbowser9@gm111ail.com','05f73d99a78a6c953e8fc8bf7fc62e94d37c8d0e5c487df5590054d0addd4afd','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 INSERT INTO `users` VALUES (37,'Justin.Field','fieldju@gmail.com','46d114ca184f10d3d10bdd7ad95b586c3a87b80f6faad35f7b7532bab834537c','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (38,'A_Test.B_Test','gneatgeek@gmail.com','c3f7ebf3bceab3efea174bba755c5c8c594a2d885dacb908f29856b85cedcbe3','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1319,4 +1327,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-28  3:14:02
+-- Dump completed on 2012-02-29  3:14:01

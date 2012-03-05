@@ -428,7 +428,7 @@ CREATE TABLE `MenuItem` (
 LOCK TABLES `MenuItem` WRITE;
 /*!40000 ALTER TABLE `MenuItem` DISABLE KEYS */;
 INSERT INTO `MenuItem` VALUES (1,'Logout','stuff',1);
-INSERT INTO `MenuItem` VALUES (2,'Logout','more stuff',1);
+INSERT INTO `MenuItem` VALUES (2,'Home','more stuff',1);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1320,4 +1320,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-04  3:14:01
+-- Dump completed on 2012-03-05  3:14:03

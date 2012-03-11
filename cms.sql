@@ -94,9 +94,9 @@ CREATE TABLE `Accident` (
   KEY `FK_Accident_Student` (`StudentID`),
   KEY `FK_Accident_Parent` (`AckParentID`),
   KEY `FK_Accident_Staff` (`AckAdminID`),
-  CONSTRAINT `FK_Accident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Accident_Parent` FOREIGN KEY (`AckParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Accident_Staff` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Accident_Staff` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Accident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -200,8 +200,8 @@ CREATE TABLE `Alumni` (
   PRIMARY KEY (`StudentID`),
   KEY `FK_Alumni_Student` (`StudentID`),
   KEY `FK_Alumni_AcademicLevel` (`AcademicLevelID`),
-  CONSTRAINT `FK_Alumni_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Alumni_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Alumni_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Alumni_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -541,7 +541,7 @@ CREATE TABLE `MenuItem` (
   `Label` varchar(255) NOT NULL,
   `URL` varchar(255) NOT NULL,
   PRIMARY KEY (`MenuItemID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -608,7 +608,7 @@ CREATE TABLE `Parent` (
   PRIMARY KEY (`ParentID`),
   KEY `FK_Parent_users` (`UserID`),
   CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -617,6 +617,7 @@ CREATE TABLE `Parent` (
 
 LOCK TABLES `Parent` WRITE;
 /*!40000 ALTER TABLE `Parent` DISABLE KEYS */;
+INSERT INTO `Parent` VALUES (1,1,'Little','Bobby','Tables','markbowser9@gmail.com',NULL,NULL,'\0','',NULL,NULL,'2012-03-10 16:06:01');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -787,8 +788,8 @@ CREATE TABLE `ProspectReference` (
   PRIMARY KEY (`ParentID`,`ReferenceName`),
   KEY `FK_ProspectReference_ReferenceLookup` (`ReferenceName`),
   KEY `FK_ProspectReference_ProspectInterview` (`ParentID`),
-  CONSTRAINT `FK_ProspectReference_ReferenceLookup` FOREIGN KEY (`ReferenceName`) REFERENCES `ReferenceLookup` (`ReferenceName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ProspectReference_ProspectInterview` FOREIGN KEY (`ParentID`) REFERENCES `ProspectInterview` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_ProspectReference_ProspectInterview` FOREIGN KEY (`ParentID`) REFERENCES `ProspectInterview` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ProspectReference_ReferenceLookup` FOREIGN KEY (`ReferenceName`) REFERENCES `ReferenceLookup` (`ReferenceName`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -912,11 +913,11 @@ CREATE TABLE `Staff` (
   KEY `FK_Staff_EmergencyContact1` (`EmergencyContactID1`),
   KEY `FK_Staff_EmergencyContact2` (`EmergencyContactID2`),
   KEY `FK_Staff_EmergencyContact3` (`EmergencyContactID3`),
-  CONSTRAINT `FK_Staff_StaffTypeLookup` FOREIGN KEY (`StaffTypeID`) REFERENCES `StaffTypeLookup` (`StaffTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_UserTable` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Staff_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Staff_StaffTypeLookup` FOREIGN KEY (`StaffTypeID`) REFERENCES `StaffTypeLookup` (`StaffTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Staff_UserTable` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1020,8 +1021,8 @@ CREATE TABLE `Student` (
   CONSTRAINT `FK_Student_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1139,9 +1140,9 @@ CREATE TABLE `StudentParent` (
   KEY `FK_StudentParent_Student` (`StudentID`),
   KEY `FK_StudentParent_Parent` (`ParentID`),
   KEY `FK_StudentParent_RelationshipLookup` (`RelationshipID`),
-  CONSTRAINT `FK_StudentParent_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_StudentParent_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_StudentParent_RelationshipLookup` FOREIGN KEY (`RelationshipID`) REFERENCES `RelationshipLookup` (`RelationshipID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_StudentParent_RelationshipLookup` FOREIGN KEY (`RelationshipID`) REFERENCES `RelationshipLookup` (`RelationshipID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_StudentParent_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1198,9 +1199,9 @@ CREATE TABLE `Tuition` (
   KEY `FK_SchoolInformation_Tuition_SchoolInformation` (`AcademicYear`),
   KEY `FK_SchoolInformation_Tuition_AcademicLevel` (`AcademicLevelID`),
   KEY `FK_SchoolInformation_Tuition_Program` (`ProgramID`),
-  CONSTRAINT `fk_SchoolInformation_Tuition_SchoolInformation` FOREIGN KEY (`AcademicYear`) REFERENCES `SchoolInformation` (`AcademicYear`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SchoolInformation_Tuition_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_SchoolInformation_Tuition_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_SchoolInformation_Tuition_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_SchoolInformation_Tuition_SchoolInformation` FOREIGN KEY (`AcademicYear`) REFERENCES `SchoolInformation` (`AcademicYear`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1282,8 +1283,8 @@ CREATE TABLE `VolunteerLogEntry` (
   KEY `FK_VolunteerLogEntry_VolunteerTasks` (`VolunteerTaskID`),
   KEY `FK_VolunteerLogEntry_VolunteerEvent` (`VolunteerEventID`),
   KEY `FK_VolunteerLogEntry_Vonunteer` (`ParentID`),
-  CONSTRAINT `FK_VolunteerLogEntry_VolunteerTasks` FOREIGN KEY (`VolunteerTaskID`) REFERENCES `VolunteerTasks` (`VolunteerTaskID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_VolunteerLogEntry_VolunteerEvent` FOREIGN KEY (`VolunteerEventID`) REFERENCES `Event` (`EventID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_VolunteerLogEntry_VolunteerTasks` FOREIGN KEY (`VolunteerTaskID`) REFERENCES `VolunteerTasks` (`VolunteerTaskID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_VolunteerLogEntry_Vonunteer` FOREIGN KEY (`ParentID`) REFERENCES `Vonunteer` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1388,10 +1389,11 @@ CREATE TABLE `WaitlistForm` (
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(45) NOT NULL,
   `Agreement` int(11) NOT NULL,
+  `SubmissionDTTM` datetime NOT NULL,
   PRIMARY KEY (`FormID`),
   KEY `FK_WaitlistQuestionaire_Parent` (`ParentID`),
   CONSTRAINT `FK_WaitlistQuestionaire_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1400,6 +1402,7 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
+INSERT INTO `WaitlistForm` VALUES (2,1,'a','','a',1,'2012-03-10 17:36:55');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1417,8 +1420,8 @@ CREATE TABLE `WaitlistFormQuestion` (
   PRIMARY KEY (`FormID`,`QuestionID`),
   KEY `FK_WaitlistFormQuestion_WaitlistForm` (`FormID`),
   KEY `FK_WaitlistFormQuestion_WaitlistQuestion` (`QuestionID`),
-  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistQuestion` FOREIGN KEY (`QuestionID`) REFERENCES `WaitlistQuestion` (`QuestionID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistForm` FOREIGN KEY (`FormID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistForm` FOREIGN KEY (`FormID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistQuestion` FOREIGN KEY (`QuestionID`) REFERENCES `WaitlistQuestion` (`QuestionID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1495,7 +1498,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('cf6d5111ce2318d2bfeee0090b3d7793','76.115.124.152','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.78 Safari/535.11',1331365904,'');
+INSERT INTO `ci_sessions` VALUES ('8648e1f6c2334b82f5c805461d2a9ec9','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.78 Safari/535.11',1331429902,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1574,4 +1577,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-10  3:14:02
+-- Dump completed on 2012-03-11  3:14:01

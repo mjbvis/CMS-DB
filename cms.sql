@@ -465,7 +465,13 @@ CREATE TABLE `GroupMenuItem` (
 LOCK TABLES `GroupMenuItem` WRITE;
 /*!40000 ALTER TABLE `GroupMenuItem` DISABLE KEYS */;
 INSERT INTO `GroupMenuItem` VALUES (1,1);
+INSERT INTO `GroupMenuItem` VALUES (100,1);
+INSERT INTO `GroupMenuItem` VALUES (200,1);
 INSERT INTO `GroupMenuItem` VALUES (1,2);
+INSERT INTO `GroupMenuItem` VALUES (100,2);
+INSERT INTO `GroupMenuItem` VALUES (200,2);
+INSERT INTO `GroupMenuItem` VALUES (1,3);
+INSERT INTO `GroupMenuItem` VALUES (100,3);
 /*!40000 ALTER TABLE `GroupMenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -540,8 +546,9 @@ CREATE TABLE `MenuItem` (
   `MenuItemID` int(11) NOT NULL AUTO_INCREMENT,
   `Label` varchar(255) NOT NULL,
   `URL` varchar(255) NOT NULL,
+  `RankOrder` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MenuItemID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -550,8 +557,9 @@ CREATE TABLE `MenuItem` (
 
 LOCK TABLES `MenuItem` WRITE;
 /*!40000 ALTER TABLE `MenuItem` DISABLE KEYS */;
-INSERT INTO `MenuItem` VALUES (1,'Logout','stuff');
-INSERT INTO `MenuItem` VALUES (2,'Home','more stuff');
+INSERT INTO `MenuItem` VALUES (1,'Home','login',1);
+INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
+INSERT INTO `MenuItem` VALUES (3,'Admissions','admissions',2);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1167,10 +1175,11 @@ CREATE TABLE `SubItem` (
   `MenuItemID` int(11) NOT NULL,
   `Label` varchar(255) DEFAULT NULL,
   `URL` varchar(255) DEFAULT NULL,
+  `RankOrder` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1179,6 +1188,10 @@ CREATE TABLE `SubItem` (
 
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
+INSERT INTO `SubItem` VALUES (1,3,'Create New Parent Account','admin/register',1);
+INSERT INTO `SubItem` VALUES (2,3,'Interview & Observation','admin/test',2);
+INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlist_questionaire',3);
+INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/register_page1',4);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1393,7 +1406,7 @@ CREATE TABLE `WaitlistForm` (
   PRIMARY KEY (`FormID`),
   KEY `FK_WaitlistQuestionaire_Parent` (`ParentID`),
   CONSTRAINT `FK_WaitlistQuestionaire_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1402,7 +1415,8 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
-INSERT INTO `WaitlistForm` VALUES (2,1,'a','','a',1,'2012-03-10 17:36:55');
+INSERT INTO `WaitlistForm` VALUES (10,1,'mark','','bowser',1,'2012-03-12 18:53:14');
+INSERT INTO `WaitlistForm` VALUES (11,1,'asf','asdf','asdf',1,'2012-03-12 19:27:47');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1431,6 +1445,38 @@ CREATE TABLE `WaitlistFormQuestion` (
 
 LOCK TABLES `WaitlistFormQuestion` WRITE;
 /*!40000 ALTER TABLE `WaitlistFormQuestion` DISABLE KEYS */;
+INSERT INTO `WaitlistFormQuestion` VALUES (10,1,'yes. he can');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,2,'no he cant');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,3,'crawling around');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,4,'he&#39;s a gamer');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,5,'we speak not a word');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,6,'i just told you');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,7,'only if he decides to talk');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,8,'yes he can');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,9,'sedentary');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,10,'we filter feed from the air');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,11,'we are filter feeders');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,12,'we are filter feeders');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,13,'This answer has an apostrophe right here &#39;');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,14,'Can i use your bathroom independently?');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,15,'he cries a lot');
+INSERT INTO `WaitlistFormQuestion` VALUES (10,16,'i stare at him');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,1,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,2,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,3,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,4,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,5,'adsf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,6,'sdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,7,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,8,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,9,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,10,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,11,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,12,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,13,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,14,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,15,'jkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (11,16,'jkl');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1498,7 +1544,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('8648e1f6c2334b82f5c805461d2a9ec9','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.78 Safari/535.11',1331429902,'');
+INSERT INTO `ci_sessions` VALUES ('8a46624a457174e1d451bedb48468b7f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331626231,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1577,4 +1623,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-12  3:14:01
+-- Dump completed on 2012-03-13  3:14:01

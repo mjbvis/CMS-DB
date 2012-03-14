@@ -1544,7 +1544,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('8a46624a457174e1d451bedb48468b7f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331626231,'');
+INSERT INTO `ci_sessions` VALUES ('8a2516b2edb879d1cc883037f92c2f48','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331709766,'');
+INSERT INTO `ci_sessions` VALUES ('dd1888a5c2cddb3a35590f1de4705335','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331709751,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1596,7 +1597,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1611,6 +1612,7 @@ INSERT INTO `users` VALUES (3,'sadf.asdf','asdf@asdf.com','72871d5842f24af83b041
 INSERT INTO `users` VALUES (4,'Mark.Bowser.2','markbowser9@gm111ail.com','05f73d99a78a6c953e8fc8bf7fc62e94d37c8d0e5c487df5590054d0addd4afd','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 INSERT INTO `users` VALUES (5,'Justin.Field','fieldju@gmail.com','46d114ca184f10d3d10bdd7ad95b586c3a87b80f6faad35f7b7532bab834537c','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 INSERT INTO `users` VALUES (6,'A_Test.B_Test','gneatgeek@gmail.com','c3f7ebf3bceab3efea174bba755c5c8c594a2d885dacb908f29856b85cedcbe3','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
+INSERT INTO `users` VALUES (7,'Mark.Bowser.3','markbowser9@hotmail.com','7fe2154bb750a4cf89ac318e163232b6931d0672e4560a6b6949ca21d01295bd','100','','',NULL,'0000-00-00 00:00:00','\0','\0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1623,4 +1625,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-13  3:14:01
+-- Dump completed on 2012-03-14  3:14:01

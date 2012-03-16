@@ -559,7 +559,7 @@ LOCK TABLES `MenuItem` WRITE;
 /*!40000 ALTER TABLE `MenuItem` DISABLE KEYS */;
 INSERT INTO `MenuItem` VALUES (1,'Home','login',1);
 INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
-INSERT INTO `MenuItem` VALUES (3,'Admissions','admissions',2);
+INSERT INTO `MenuItem` VALUES (3,'Admissions','',2);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1544,9 +1544,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('7ff5b2af1c2e8782d2ea268186b4778a','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331766000,'');
-INSERT INTO `ci_sessions` VALUES ('ccc0f51bec5dd6e1d6853dceb8ec5493','128.193.37.178','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0.2) Gecko/20100101 Firefox/10.0.2',1331759512,'');
-INSERT INTO `ci_sessions` VALUES ('e99803e8c928cbf3ea35c6c74015665f','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331758197,'');
+INSERT INTO `ci_sessions` VALUES ('049a0fd665a0429161067c70d8027fb3','24.21.104.139','Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)',1331877634,'');
+INSERT INTO `ci_sessions` VALUES ('0accff75c40dcf4c58522f06ff0a0372','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.79 Safari/535.11',1331876905,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1626,4 +1625,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-15  3:14:01
+-- Dump completed on 2012-03-16  3:14:01

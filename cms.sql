@@ -472,6 +472,10 @@ INSERT INTO `GroupMenuItem` VALUES (100,2);
 INSERT INTO `GroupMenuItem` VALUES (200,2);
 INSERT INTO `GroupMenuItem` VALUES (1,3);
 INSERT INTO `GroupMenuItem` VALUES (100,3);
+INSERT INTO `GroupMenuItem` VALUES (1,4);
+INSERT INTO `GroupMenuItem` VALUES (100,4);
+INSERT INTO `GroupMenuItem` VALUES (200,4);
+INSERT INTO `GroupMenuItem` VALUES (1,5);
 /*!40000 ALTER TABLE `GroupMenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -548,7 +552,7 @@ CREATE TABLE `MenuItem` (
   `URL` varchar(255) NOT NULL,
   `RankOrder` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MenuItemID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -560,6 +564,8 @@ LOCK TABLES `MenuItem` WRITE;
 INSERT INTO `MenuItem` VALUES (1,'Home','login',1);
 INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
 INSERT INTO `MenuItem` VALUES (3,'Admissions','',2);
+INSERT INTO `MenuItem` VALUES (4,'Personal Information','login',4);
+INSERT INTO `MenuItem` VALUES (5,'Administration','',5);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -865,11 +871,10 @@ DROP TABLE IF EXISTS `SchoolInformation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SchoolInformation` (
   `AcademicYear` int(11) NOT NULL,
-  `ContractRenewalDeadline` datetime DEFAULT NULL,
-  `VolunteerInformationID` int(11) NOT NULL,
-  PRIMARY KEY (`AcademicYear`),
-  KEY `FK_SchoolInformation_VolunteerInformation` (`VolunteerInformationID`),
-  CONSTRAINT `FK_SchoolInformation_VolunteerInformation` FOREIGN KEY (`VolunteerInformationID`) REFERENCES `VolunteerInformation` (`VolunteerInformationID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `ContractRenewalDeadline` datetime NOT NULL,
+  `RequiredHours` int(11) NOT NULL,
+  `FeePerHour` double NOT NULL,
+  PRIMARY KEY (`AcademicYear`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1188,7 +1193,7 @@ CREATE TABLE `SubItem` (
 
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
-INSERT INTO `SubItem` VALUES (1,3,'Create New Parent Account','admin/register',1);
+INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/register',1);
 INSERT INTO `SubItem` VALUES (2,3,'Interview & Observation','admin/test',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlist_questionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/register_page1',4);
@@ -1252,31 +1257,6 @@ CREATE TABLE `UserAlerts` (
 LOCK TABLES `UserAlerts` WRITE;
 /*!40000 ALTER TABLE `UserAlerts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `UserAlerts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `VolunteerInformation`
---
-
-DROP TABLE IF EXISTS `VolunteerInformation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `VolunteerInformation` (
-  `VolunteerInformationID` int(11) NOT NULL AUTO_INCREMENT,
-  `RequiredHours` int(11) DEFAULT NULL,
-  `FeePerHour` int(11) DEFAULT NULL,
-  `IsDefault` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`VolunteerInformationID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `VolunteerInformation`
---
-
-LOCK TABLES `VolunteerInformation` WRITE;
-/*!40000 ALTER TABLE `VolunteerInformation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `VolunteerInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1578,11 +1558,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('13438d794e3d2d025a0fd0251ad1a527','156.12.148.60','Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.151 Safari/535.19',1334024285,'a:11:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('1d99b59e8abab88732f5433cea1002ae','24.20.133.12','Opera/9.80 (Windows NT 6.1; WOW64; U; IBM EVV/3.0/EAK01AG9/LE; en) Presto/2.10.229 Version/11.62',1334035316,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('5e2416d8b2136bf387c98f3528f71ba7','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.151 Safari/535.19',1334035272,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('8f9f07309414722af6b2e552bf4924fe','24.20.133.12','Opera/9.80 (Windows NT 6.1; WOW64; U; IBM EVV/3.0/EAK01AG9/LE; en) Presto/2.10.229 Version/11.62',1334023087,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('f98fcf9bf8cf6ae5e3773aafeca0d457','24.20.18.164','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.151 Safari/535.19',1334020770,'a:11:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('59c2c151e51ff91bfb5ad48408de9023','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.152 Safari/535.19',1334125217,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1662,4 +1638,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-10  3:14:02
+-- Dump completed on 2012-04-11  3:14:01

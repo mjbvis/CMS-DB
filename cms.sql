@@ -1194,9 +1194,9 @@ CREATE TABLE `SubItem` (
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
 INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/register',1);
-INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/test',2);
+INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interview_observation_form',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlist_questionaire',3);
-INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/register_page1',4);
+INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/register_student_selector',4);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1386,7 +1386,7 @@ CREATE TABLE `WaitlistForm` (
   PRIMARY KEY (`FormID`),
   KEY `FK_WaitlistQuestionaire_Parent` (`ParentID`),
   CONSTRAINT `FK_WaitlistQuestionaire_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1401,6 +1401,7 @@ INSERT INTO `WaitlistForm` VALUES (12,1,'Steven','Ray','Bowser',1,'2012-03-16 14
 INSERT INTO `WaitlistForm` VALUES (13,1,'eric','lee','bowser',1,'2012-03-16 14:47:36');
 INSERT INTO `WaitlistForm` VALUES (14,1,'Mark','asdfa','asdkhfasklf',1,'2012-04-12 19:20:42');
 INSERT INTO `WaitlistForm` VALUES (15,1,'Steve','Ray','Bowser',1,'2012-04-14 23:19:26');
+INSERT INTO `WaitlistForm` VALUES (16,1,'b','b','b',2,'2012-04-15 18:33:22');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1525,6 +1526,22 @@ INSERT INTO `WaitlistFormQuestion` VALUES (15,13,'yes');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,14,'which');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,15,'microwave');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,16,'BRING THE HAMMER DOWN!');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,1,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,2,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,3,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,4,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,5,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,6,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,7,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,8,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,9,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,10,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,11,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,12,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,13,'bb');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,14,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,15,'b');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,16,'b');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1552,7 +1569,7 @@ LOCK TABLES `WaitlistQuestion` WRITE;
 /*!40000 ALTER TABLE `WaitlistQuestion` DISABLE KEYS */;
 INSERT INTO `WaitlistQuestion` VALUES (1,'Can your child dress and undress himself?','','2012-03-09 22:26:50');
 INSERT INTO `WaitlistQuestion` VALUES (2,'Can your child take his socks and shoes off independently? Put them on without help?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (3,'What are your child\'s favorite pass-times? What activities does he enjoy?','','2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (3,'What are your child\'s favorite pastimes? What activities does he enjoy?','','2012-03-09 22:26:50');
 INSERT INTO `WaitlistQuestion` VALUES (4,'How much time does your child spend with tv/dvd\'s/computers/video games on a daily basis?','','2012-03-09 22:26:50');
 INSERT INTO `WaitlistQuestion` VALUES (5,'Does your family speak English at home? Any other languages?','','2012-03-09 22:26:50');
 INSERT INTO `WaitlistQuestion` VALUES (6,'Briefly describe your child\'s communication. Single words? Two-word phrases? Sentences?','','2012-03-09 22:26:50');
@@ -1592,7 +1609,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('21b193c09b2b87d3477f44d39dbdfa65','24.21.141.248','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1334476402,'');
+INSERT INTO `ci_sessions` VALUES ('aae0bd5127df580b7dcefe0842f64cd3','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1334569569,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1672,4 +1689,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-15  3:14:01
+-- Dump completed on 2012-04-16  3:14:01

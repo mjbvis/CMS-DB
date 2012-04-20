@@ -1668,6 +1668,7 @@ LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
 INSERT INTO `ci_sessions` VALUES ('6841f3d37a24896fa73148fd18eed47e','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1334813947,'');
 INSERT INTO `ci_sessions` VALUES ('cf4054166635651adf2f7b315afb63fa','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1334816823,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('e49dc02293282f03cbb310c8d835e318','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1334889489,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1744,4 +1745,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-19  3:14:01
+-- Dump completed on 2012-04-20  3:14:01

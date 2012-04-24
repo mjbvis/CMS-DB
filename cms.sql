@@ -127,7 +127,7 @@ CREATE TABLE `AdmissionsForm` (
   `Toilet` varchar(255) NOT NULL,
   `NapTime` varchar(255) NOT NULL,
   `OutdoorPlay` varchar(255) NOT NULL,
-  `Pets` varchar(255) NOT NULL,
+  `Pets` varchar(255) DEFAULT NULL,
   `Interests` varchar(255) NOT NULL,
   `SiblingNames` varchar(255) NOT NULL DEFAULT '',
   `SiblingAges` varchar(255) NOT NULL DEFAULT '',
@@ -1029,12 +1029,10 @@ CREATE TABLE `Student` (
   `FirstName` varchar(255) NOT NULL,
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) NOT NULL,
-  `Nickname` varchar(255) DEFAULT NULL,
-  `Age` int(11) NOT NULL,
   `Gender` char(1) NOT NULL,
   `PlaceOfBirth` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
-  `EnrollmentDTTM` datetime NOT NULL,
+  `EnrollmentDTTM` datetime DEFAULT NULL,
   `PhoneNumber` varchar(255) DEFAULT NULL,
   `EmergencyContactID1` int(11) NOT NULL,
   `EmergencyContactID2` int(11) NOT NULL,
@@ -1174,7 +1172,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1187,6 +1185,7 @@ INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/register',1
 INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/registerStudentSelector',4);
+INSERT INTO `SubItem` VALUES (5,5,'View Students','admin/viewStudents',5);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1380,7 +1379,7 @@ CREATE TABLE `WaitlistForm` (
   KEY `FK_WaitlistForm_users` (`UserID`),
   CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_WaitlistForm_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1393,6 +1392,8 @@ INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,0,'2012-04
 INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,'2012-04-21 21:07:39');
 INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,1,'2012-04-22 12:25:38');
 INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,'2012-04-22 12:37:51');
+INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,'2012-04-23 18:17:24');
+INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,'2012-04-23 18:17:53');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1485,6 +1486,38 @@ INSERT INTO `WaitlistFormQuestion` VALUES (55,13,'kjl');
 INSERT INTO `WaitlistFormQuestion` VALUES (55,14,'klj');
 INSERT INTO `WaitlistFormQuestion` VALUES (55,15,'klj');
 INSERT INTO `WaitlistFormQuestion` VALUES (55,16,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,1,'jh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,2,'gkhj');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,3,'g');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,4,'jkhg');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,5,'jkh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,6,'gjkh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,7,'g');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,8,'jkhg');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,9,'kjh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,10,'g');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,11,'jkh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,12,'gkjh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,13,'g');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,14,'jkhg');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,15,'kjh');
+INSERT INTO `WaitlistFormQuestion` VALUES (56,16,'g');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,1,'a');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,2,'hkjhkjlhkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,3,'h');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,4,'kjlh');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,5,'kjl');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,6,'hkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,7,'lh');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,8,'hjk');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,9,'kjhkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,10,'hkjh');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,11,'ljkh');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,12,'hjk');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,13,'jkhl');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,14,'hjkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,15,'hjk');
+INSERT INTO `WaitlistFormQuestion` VALUES (57,16,'hjkl');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1552,13 +1585,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('4e08b4dd6bc4a7920b4855f4805c4b9c','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335123345,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('55e1c51ba432242d49f536f6316223c1','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335123258,'');
-INSERT INTO `ci_sessions` VALUES ('57a6bcfb4f125c53331457b01acc3ad9','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335123242,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"25\";s:8:\"username\";s:11:\"Mark.Bowser\";s:5:\"email\";s:21:\"markbowser9@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"\0\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('68e5a7412ea3d10925d9f56d25ba52ba','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335124621,'');
-INSERT INTO `ci_sessions` VALUES ('7c2ecac69a0d442b1c620f03ae2aa880','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335123245,'');
-INSERT INTO `ci_sessions` VALUES ('7c712c881cee622cf4b8350a2b1c535e','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335121737,'');
-INSERT INTO `ci_sessions` VALUES ('bec1a7272b4a642c97d24a3371b4372d','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335123250,'');
+INSERT INTO `ci_sessions` VALUES ('01fe1f318fc82c978cc5bd81b1d855c7','128.193.15.53','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335223180,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('0ba43145562feb73711f30f8e4885770','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335230285,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1634,4 +1662,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-23  3:14:02
+-- Dump completed on 2012-04-24  3:14:01

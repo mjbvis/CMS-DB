@@ -51,7 +51,7 @@ CREATE TABLE `AcademicLevel` (
   `AcademicLevelID` int(11) NOT NULL AUTO_INCREMENT,
   `AcademicLevelName` varchar(255) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `Enabled` bit(1) NOT NULL,
+  `Enabled` int(1) NOT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`AcademicLevelID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -63,9 +63,9 @@ CREATE TABLE `AcademicLevel` (
 
 LOCK TABLES `AcademicLevel` WRITE;
 /*!40000 ALTER TABLE `AcademicLevel` DISABLE KEYS */;
-INSERT INTO `AcademicLevel` VALUES (1,'Toddler House','children 18 months to 3 years','','2012-04-18 11:14:56');
-INSERT INTO `AcademicLevel` VALUES (2,'Primary','children 3 years to 6 years','','2012-04-18 11:14:56');
-INSERT INTO `AcademicLevel` VALUES (3,'Elementary','children 6 years to 12 years','','2012-04-18 11:14:56');
+INSERT INTO `AcademicLevel` VALUES (1,'Toddler House','children 18 months to 3 years',1,'2012-04-18 11:14:56');
+INSERT INTO `AcademicLevel` VALUES (2,'Primary','children 3 years to 6 years',1,'2012-04-18 11:14:56');
+INSERT INTO `AcademicLevel` VALUES (3,'Elementary','children 6 years to 12 years',1,'2012-04-18 11:14:56');
 /*!40000 ALTER TABLE `AcademicLevel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,6 +131,8 @@ CREATE TABLE `AdmissionsForm` (
   `Interests` varchar(255) NOT NULL,
   `SiblingNames` varchar(255) NOT NULL DEFAULT '',
   `SiblingAges` varchar(255) NOT NULL DEFAULT '',
+  `ReferrerType` varchar(255) NOT NULL,
+  `ReferredBy` varchar(255) NOT NULL,
   `notes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
   CONSTRAINT `FK_AdmissionsQuestionaire_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -143,6 +145,7 @@ CREATE TABLE `AdmissionsForm` (
 
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
+INSERT INTO `AdmissionsForm` VALUES (14,'yes',';l;lh','lh','lhk','k','ya',NULL,'drawing','Me','22','Internet','','not really');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +201,7 @@ CREATE TABLE `Alumni` (
   `RecentSchool` varchar(255) DEFAULT NULL,
   `Occupation` varchar(255) DEFAULT NULL,
   `Comments` varchar(2047) DEFAULT NULL,
-  `IsDonor` bit(1) DEFAULT NULL,
+  `IsDonor` int(1) DEFAULT NULL,
   `DonorID` int(11) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `FK_Alumni_Student` (`StudentID`),
@@ -228,7 +231,7 @@ CREATE TABLE `Classroom` (
   `ClassID` int(11) NOT NULL AUTO_INCREMENT,
   `ClassName` varchar(255) NOT NULL,
   `AcademicLevelID` int(11) NOT NULL,
-  `Enabled` bit(1) NOT NULL,
+  `Enabled` int(1) NOT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`ClassID`),
   KEY `FK_Classroom_AcademicLevel` (`AcademicLevelID`),
@@ -242,10 +245,10 @@ CREATE TABLE `Classroom` (
 
 LOCK TABLES `Classroom` WRITE;
 /*!40000 ALTER TABLE `Classroom` DISABLE KEYS */;
-INSERT INTO `Classroom` VALUES (1,'Test Class Toddler',2,'','2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (2,'Test Class Primary',3,'','2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (3,'Test Class Elementary',3,'','2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (4,'Test Class Disabled',1,'\0','2012-04-21 16:20:07');
+INSERT INTO `Classroom` VALUES (1,'Test Class Toddler',2,1,'2012-04-21 16:20:07');
+INSERT INTO `Classroom` VALUES (2,'Test Class Primary',3,1,'2012-04-21 16:20:07');
+INSERT INTO `Classroom` VALUES (3,'Test Class Elementary',3,1,'2012-04-21 16:20:07');
+INSERT INTO `Classroom` VALUES (4,'Test Class Disabled',1,0,'2012-04-21 16:20:07');
 /*!40000 ALTER TABLE `Classroom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +413,7 @@ CREATE TABLE `EmergencyContact` (
   `ECPhone` varchar(255) NOT NULL,
   `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,6 +422,9 @@ CREATE TABLE `EmergencyContact` (
 
 LOCK TABLES `EmergencyContact` WRITE;
 /*!40000 ALTER TABLE `EmergencyContact` DISABLE KEYS */;
+INSERT INTO `EmergencyContact` VALUES (58,'Jack Bowser','5555555555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (59,'Janelle Witrig','5558675309','Aunt');
+INSERT INTO `EmergencyContact` VALUES (60,'Cindy Arevalo','5555555556','Family friend');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -587,8 +593,8 @@ CREATE TABLE `Observation` (
   `ParentID` int(11) NOT NULL,
   `ClassID` int(11) NOT NULL,
   `ObservationDTTM` datetime NOT NULL,
-  `Attended` bit(1) NOT NULL,
-  `OnTime` bit(1) NOT NULL,
+  `Attended` int(1) NOT NULL,
+  `OnTime` int(1) NOT NULL,
   PRIMARY KEY (`ParentID`),
   KEY `FK_ClassroomObservation_Classroom` (`ClassID`),
   CONSTRAINT `FK_ClassroomObservation_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -685,7 +691,7 @@ CREATE TABLE `Program` (
   `Days` varchar(255) NOT NULL,
   `StartTime` varchar(255) NOT NULL,
   `EndTime` varchar(255) NOT NULL,
-  `Enabled` bit(1) NOT NULL DEFAULT b'1',
+  `Enabled` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ProgramID`),
   KEY `FK_Program_ProgramGroup` (`ProgramGroupID`),
   CONSTRAINT `FK_Program_ProgramGroup` FOREIGN KEY (`ProgramGroupID`) REFERENCES `ProgramGroup` (`ProgramGroupID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -698,10 +704,10 @@ CREATE TABLE `Program` (
 
 LOCK TABLES `Program` WRITE;
 /*!40000 ALTER TABLE `Program` DISABLE KEYS */;
-INSERT INTO `Program` VALUES (1,1,'3 day (Monday - Wednesday)','8:30 AM','11:30 AM','\0');
-INSERT INTO `Program` VALUES (2,1,'5 day (Monday - Friday)','8:30 AM','11:30 AM','');
-INSERT INTO `Program` VALUES (3,2,'3 day (Monday - Wednesday)','8:30 AM','2:30 PM','\0');
-INSERT INTO `Program` VALUES (4,2,'5 day (Monday - Friday)','8:30 AM','3:00 PM','');
+INSERT INTO `Program` VALUES (1,1,'3 day (Monday - Wednesday)','8:30 AM','11:30 AM',0);
+INSERT INTO `Program` VALUES (2,1,'5 day (Monday - Friday)','8:30 AM','11:30 AM',1);
+INSERT INTO `Program` VALUES (3,2,'3 day (Monday - Wednesday)','8:30 AM','2:30 PM',0);
+INSERT INTO `Program` VALUES (4,2,'5 day (Monday - Friday)','8:30 AM','3:00 PM',1);
 /*!40000 ALTER TABLE `Program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -715,7 +721,7 @@ DROP TABLE IF EXISTS `ProgramGroup`;
 CREATE TABLE `ProgramGroup` (
   `ProgramGroupID` int(11) NOT NULL AUTO_INCREMENT,
   `GroupTitle` varchar(255) NOT NULL,
-  `Enabled` bit(1) NOT NULL,
+  `Enabled` int(1) NOT NULL,
   `RankOrder` int(11) NOT NULL,
   PRIMARY KEY (`ProgramGroupID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -727,10 +733,10 @@ CREATE TABLE `ProgramGroup` (
 
 LOCK TABLES `ProgramGroup` WRITE;
 /*!40000 ALTER TABLE `ProgramGroup` DISABLE KEYS */;
-INSERT INTO `ProgramGroup` VALUES (1,'Primary Mornings','',1);
-INSERT INTO `ProgramGroup` VALUES (2,'Full-Day Primary','',5);
-INSERT INTO `ProgramGroup` VALUES (3,'Extended Day','\0',15);
-INSERT INTO `ProgramGroup` VALUES (4,'Elementary','',10);
+INSERT INTO `ProgramGroup` VALUES (1,'Primary Mornings',1,1);
+INSERT INTO `ProgramGroup` VALUES (2,'Full-Day Primary',1,5);
+INSERT INTO `ProgramGroup` VALUES (3,'Extended Day',0,15);
+INSERT INTO `ProgramGroup` VALUES (4,'Elementary',1,10);
 /*!40000 ALTER TABLE `ProgramGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -755,10 +761,10 @@ CREATE TABLE `ProspectInterview` (
   `LevelOfInterest` int(11) NOT NULL,
   `LevelOfUnderstanding` int(11) NOT NULL,
   `WillingnessToLearn` int(11) NOT NULL,
-  `IsLearningIndipendently` bit(1) NOT NULL,
-  `IsLearningAtOwnPace` bit(1) NOT NULL,
-  `IsHandsOnLearner` bit(1) NOT NULL,
-  `IsMixedAges` bit(1) NOT NULL,
+  `IsLearningIndipendently` int(1) NOT NULL,
+  `IsLearningAtOwnPace` int(1) NOT NULL,
+  `IsHandsOnLearner` int(1) NOT NULL,
+  `IsMixedAges` int(1) NOT NULL,
   PRIMARY KEY (`ParentID`),
   KEY `FK_ProspectInterview_ProspectLevelLookup1` (`LevelOfInterest`),
   KEY `FK_ProspectInterview_ProspectLevelLookup2` (`LevelOfUnderstanding`),
@@ -936,7 +942,7 @@ CREATE TABLE `Staff` (
   `UserID` int(11) DEFAULT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date DEFAULT NULL,
-  `Enabled` bit(1) NOT NULL,
+  `Enabled` int(1) NOT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`StaffID`),
   KEY `FK_Staff_StaffTypeLookup` (`StaffTypeID`),
@@ -1030,6 +1036,7 @@ CREATE TABLE `Student` (
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) NOT NULL,
   `Gender` char(1) NOT NULL,
+  `Address` varchar(255) NOT NULL,
   `PlaceOfBirth` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
   `EnrollmentDTTM` datetime DEFAULT NULL,
@@ -1037,7 +1044,7 @@ CREATE TABLE `Student` (
   `EmergencyContactID1` int(11) NOT NULL,
   `EmergencyContactID2` int(11) NOT NULL,
   `EmergencyContactID3` int(11) NOT NULL,
-  `IsEnrolled` bit(1) NOT NULL DEFAULT b'0',
+  `IsEnrolled` int(1) NOT NULL DEFAULT '0',
   `QuestionaireID` int(11) NOT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`StudentID`),
@@ -1055,7 +1062,7 @@ CREATE TABLE `Student` (
   CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1064,6 +1071,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
+INSERT INTO `Student` VALUES (14,25,NULL,4,'Steven','Ray','Bowser','M','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2002-03-02',NULL,'541-259-4620',58,59,60,1,55,'2012-04-24 23:30:12');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1172,7 +1180,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1186,6 +1194,8 @@ INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObse
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/registerStudentSelector',4);
 INSERT INTO `SubItem` VALUES (5,5,'View Students','admin/viewStudents',5);
+INSERT INTO `SubItem` VALUES (6,5,'datagrid','admin/datagrid',1);
+INSERT INTO `SubItem` VALUES (18,5,'Add Menu Item','admin/addMenuItem',5);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1338,10 +1348,9 @@ DROP TABLE IF EXISTS `Vonunteer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Vonunteer` (
   `ParentID` int(11) NOT NULL,
-  `VolunteeringOptOut` bit(1) DEFAULT NULL,
+  `VolunteeringOptOut` int(1) DEFAULT NULL,
   `VolunteerSkillID` int(11) NOT NULL,
   PRIMARY KEY (`ParentID`),
-  KEY `FK_Parent_Volunteer` (`ParentID`),
   KEY `FK_Vonunteer_VolunteerSkillSheet` (`VolunteerSkillID`),
   CONSTRAINT `FK_Parent_Volunteer` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Vonunteer_VolunteerSkillSheet` FOREIGN KEY (`VolunteerSkillID`) REFERENCES `VolunteerSkillSheet` (`VolunteerSkillID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1372,7 +1381,8 @@ CREATE TABLE `WaitlistForm` (
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(45) NOT NULL,
   `Agreement` int(11) NOT NULL,
-  `IsPreEnrolled` int(11) NOT NULL DEFAULT '0',
+  `IsPreEnrolled` int(11) NOT NULL,
+  `IsWaitlisted` int(1) NOT NULL,
   `SubmissionDTTM` datetime NOT NULL,
   PRIMARY KEY (`FormID`),
   KEY `FK_WaitlistForm_Program` (`ExpectedProgramID`),
@@ -1388,12 +1398,12 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
-INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,0,'2012-04-21 21:06:40');
-INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,'2012-04-21 21:07:39');
-INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,1,'2012-04-22 12:25:38');
-INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,'2012-04-22 12:37:51');
-INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,'2012-04-23 18:17:24');
-INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,'2012-04-23 18:17:53');
+INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,0,1,'2012-04-21 21:06:40');
+INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,1,'2012-04-21 21:07:39');
+INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,0,1,'2012-04-22 12:25:38');
+INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,0,'2012-04-22 12:37:51');
+INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,1,'2012-04-23 18:17:24');
+INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,1,'2012-04-23 18:17:53');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1531,7 +1541,7 @@ DROP TABLE IF EXISTS `WaitlistQuestion`;
 CREATE TABLE `WaitlistQuestion` (
   `QuestionID` int(11) NOT NULL AUTO_INCREMENT,
   `QuestionText` varchar(255) NOT NULL,
-  `Enabled` bit(1) NOT NULL,
+  `Enabled` int(1) NOT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`QuestionID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
@@ -1543,22 +1553,22 @@ CREATE TABLE `WaitlistQuestion` (
 
 LOCK TABLES `WaitlistQuestion` WRITE;
 /*!40000 ALTER TABLE `WaitlistQuestion` DISABLE KEYS */;
-INSERT INTO `WaitlistQuestion` VALUES (1,'Can your child dress and undress himself?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (2,'Can your child take his socks and shoes off independently? Put them on without help?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (3,'What are your child\'s favorite pastimes? What activities does he enjoy?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (4,'How much time does your child spend with tv/dvd\'s/computers/video games on a daily basis?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (5,'Does your family speak English at home? Any other languages?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (6,'Briefly describe your child\'s communication. Single words? Two-word phrases? Sentences?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (7,'Can people outside your family understand your child?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (8,'Can your child respond to verbal direction? (For example, Go and put your coat on.)','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (9,'Briefly describe your child\'s movement. Does he primarily walk or run? Can he go up and down stairs without adult support or assistance?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (10,'In an average week, how many meals does your family eat together?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (11,'Does your child eat with utensils?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (12,'Does your child drink from a bottle, sippy-cup or an open cup/glass? Please list which.','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (13,'Does your child make eye-contact when you talk with him? With people outside your family?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (14,'Is your child using the bathroom independently? Does he wear cloth underwear, pull-ups or diapers at home? Please list which.','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (15,'Specifically, what does your child do to help himself?','','2012-03-09 22:26:50');
-INSERT INTO `WaitlistQuestion` VALUES (16,'How do you respond when your child refuses to comply to direction from you?','','2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (1,'Can your child dress and undress himself?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (2,'Can your child take his socks and shoes off independently? Put them on without help?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (3,'What are your child\'s favorite pastimes? What activities does he enjoy?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (4,'How much time does your child spend with tv/dvd\'s/computers/video games on a daily basis?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (5,'Does your family speak English at home? Any other languages?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (6,'Briefly describe your child\'s communication. Single words? Two-word phrases? Sentences?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (7,'Can people outside your family understand your child?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (8,'Can your child respond to verbal direction? (For example, Go and put your coat on.)',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (9,'Briefly describe your child\'s movement. Does he primarily walk or run? Can he go up and down stairs without adult support or assistance?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (10,'In an average week, how many meals does your family eat together?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (11,'Does your child eat with utensils?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (12,'Does your child drink from a bottle, sippy-cup or an open cup/glass? Please list which.',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (13,'Does your child make eye-contact when you talk with him? With people outside your family?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (14,'Is your child using the bathroom independently? Does he wear cloth underwear, pull-ups or diapers at home? Please list which.',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (15,'Specifically, what does your child do to help himself?',1,'2012-03-09 22:26:50');
+INSERT INTO `WaitlistQuestion` VALUES (16,'How do you respond when your child refuses to comply to direction from you?',1,'2012-03-09 22:26:50');
 /*!40000 ALTER TABLE `WaitlistQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1585,8 +1595,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('01fe1f318fc82c978cc5bd81b1d855c7','128.193.15.53','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335223180,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('0ba43145562feb73711f30f8e4885770','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335230285,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('3a7a97c366bacb2db934e409f69d245b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335340694,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('e20eaa7ec584a195d155d352646edbdb','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335344632,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1638,7 +1648,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1650,6 +1660,7 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','',NULL,'2012-02-02 01:01:01','',1);
 INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','',NULL,'0000-00-00 00:00:00','\0',1);
 INSERT INTO `users` VALUES (25,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','',NULL,'0000-00-00 00:00:00','\0',1);
+INSERT INTO `users` VALUES (26,'t','t4','','3','','',NULL,'0000-00-00 00:00:00','\0',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1662,4 +1673,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-24  3:14:01
+-- Dump completed on 2012-04-25  3:14:01

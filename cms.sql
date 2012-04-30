@@ -1403,8 +1403,8 @@ LOCK TABLES `WaitlistForm` WRITE;
 INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,1,0,'2012-04-21 21:06:40');
 INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,1,'2012-04-21 21:07:39');
 INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,0,1,'2012-04-22 12:25:38');
-INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,1,'2012-04-22 12:37:51');
-INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,1,0,'2012-04-23 18:17:24');
+INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,1,0,'2012-04-22 12:37:51');
+INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,1,'2012-04-23 18:17:24');
 INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,1,0,'2012-04-23 18:17:53');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1597,7 +1597,11 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('976af7f64d48eecbed0649b5d0dcff23','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335597682,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('85b9334d2ebdf134a332c363280180d3','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335766601,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('8a0dc1fd19f4e935d2d5da7d33efc956','180.76.5.151','Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',1335765882,'');
+INSERT INTO `ci_sessions` VALUES ('97166e7d5347c7b45b7c7ea62ba7d6a5','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335642347,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('ae4b6ad768c45717436cb5f483a1c1f7','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335628639,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('bbf8d19f71ec48be5f15b5719edde509','128.193.161.161','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1335737683,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1673,4 +1677,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-28  3:14:01
+-- Dump completed on 2012-04-30  3:14:01

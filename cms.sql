@@ -145,7 +145,6 @@ CREATE TABLE `AdmissionsForm` (
 
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
-INSERT INTO `AdmissionsForm` VALUES (14,'yes',';l;lh','lh','lhk','k','ya',NULL,'drawing','Me','22','Internet','','not really');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -631,7 +630,7 @@ CREATE TABLE `Parent` (
   PRIMARY KEY (`ParentID`),
   KEY `FK_Parent_users` (`UserID`),
   CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,13 +1055,13 @@ CREATE TABLE `Student` (
   KEY `FK_Student_WaitlistQuestionaire` (`QuestionaireID`),
   KEY `FK_Student_Program` (`ProgramID`),
   KEY `FK_Student_users` (`UserID`),
+  CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `Student_ibfk_2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1072,7 +1071,6 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (14,25,NULL,4,'Steven','Ray','Bowser','M','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2002-03-02',NULL,'541-259-4620',58,59,60,1,55,'2012-04-24 23:30:12');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1190,7 +1188,7 @@ CREATE TABLE `SubItem` (
 
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
-INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/register',1);
+INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/addParentUserAccount',1);
 INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/registerStudentSelector',4);
@@ -1383,7 +1381,7 @@ CREATE TABLE `WaitlistForm` (
   `MiddleName` varchar(255) DEFAULT NULL,
   `LastName` varchar(45) NOT NULL,
   `Agreement` int(11) NOT NULL,
-  `IsPreEnrolled` int(11) NOT NULL,
+  `IsPreEnrolled` int(1) NOT NULL,
   `IsWaitlisted` int(1) NOT NULL,
   `SubmissionDTTM` datetime NOT NULL,
   PRIMARY KEY (`FormID`),
@@ -1391,7 +1389,7 @@ CREATE TABLE `WaitlistForm` (
   KEY `FK_WaitlistForm_users` (`UserID`),
   CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_WaitlistForm_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1402,10 +1400,14 @@ LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
 INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,1,0,'2012-04-21 21:06:40');
 INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,1,'2012-04-21 21:07:39');
-INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,0,1,'2012-04-22 12:25:38');
-INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,0,'2012-04-22 12:37:51');
-INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,1,0,'2012-04-23 18:17:24');
+INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,1,0,'2012-04-22 12:25:38');
+INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,1,0,'2012-04-22 12:37:51');
+INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,1,'2012-04-23 18:17:24');
 INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,1,'2012-04-23 18:17:53');
+INSERT INTO `WaitlistForm` VALUES (58,4,1,'leanne','','bowser',1,0,1,'2012-05-03 23:43:45');
+INSERT INTO `WaitlistForm` VALUES (59,2,1,'jeff','allen','bowser',3,0,1,'2012-05-03 23:46:55');
+INSERT INTO `WaitlistForm` VALUES (60,2,1,'2','2','2',3,1,0,'2012-05-04 02:33:34');
+INSERT INTO `WaitlistForm` VALUES (61,2,1,'3','3','3',1,0,1,'2012-05-04 02:37:09');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1530,6 +1532,70 @@ INSERT INTO `WaitlistFormQuestion` VALUES (57,13,'jkhl');
 INSERT INTO `WaitlistFormQuestion` VALUES (57,14,'hjkl');
 INSERT INTO `WaitlistFormQuestion` VALUES (57,15,'hjk');
 INSERT INTO `WaitlistFormQuestion` VALUES (57,16,'hjkl');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,1,'h;k');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,2,'kl');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,3,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,4,'k');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,5,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,6,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,7,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,8,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,9,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,10,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,11,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,12,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,13,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,14,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,15,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (58,16,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,1,'klk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,2,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,3,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,4,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,5,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,6,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,7,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,8,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,9,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,10,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,11,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,12,'kljklj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,13,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,14,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,15,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (59,16,'klkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,1,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,2,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,3,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,4,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,5,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,6,'22');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,7,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,8,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,9,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,10,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,11,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,12,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,13,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,14,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,15,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (60,16,'2');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,1,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,2,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,3,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,4,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,5,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,6,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,7,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,8,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,9,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,10,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,11,'33');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,12,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,13,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,14,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,15,'3');
+INSERT INTO `WaitlistFormQuestion` VALUES (61,16,'3');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1597,7 +1663,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('2e20ab4bebdcc889e96929a6064a23b2','128.193.15.52','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1335989579,'a:11:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('d7e0e4444bf9015b03defe3c3ed9aab2','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19',1336126322,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1649,7 +1715,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1673,4 +1739,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-03  3:14:01
+-- Dump completed on 2012-05-04  3:14:01

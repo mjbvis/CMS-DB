@@ -146,6 +146,8 @@ CREATE TABLE `AdmissionsForm` (
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
 INSERT INTO `AdmissionsForm` VALUES (1,'31','32','13','21','32','13',NULL,'21','321','32','Parent','','13');
+INSERT INTO `AdmissionsForm` VALUES (2,'kj','lkh',';kj','h;kg','gkjl','kjh','asd : dfdf','sasa','sdfsd','sdfdsf','Friend','bob','sdfdsfsd');
+INSERT INTO `AdmissionsForm` VALUES (3,'fhg','f','ghf','hg','fhg','f',NULL,'hg','f','hgfhg','Parent','','f');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,7 +415,7 @@ CREATE TABLE `EmergencyContact` (
   `ECPhone` varchar(255) NOT NULL,
   `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,6 +430,12 @@ INSERT INTO `EmergencyContact` VALUES (60,'Cindy Arevalo','5555555556','Family f
 INSERT INTO `EmergencyContact` VALUES (61,'1','2','132');
 INSERT INTO `EmergencyContact` VALUES (62,'1','321','32');
 INSERT INTO `EmergencyContact` VALUES (63,'132','1','321');
+INSERT INTO `EmergencyContact` VALUES (64,'asdf','asdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (65,'asdf','asdf','kj');
+INSERT INTO `EmergencyContact` VALUES (66,'kj','kj','kj');
+INSERT INTO `EmergencyContact` VALUES (67,'fgh','fhg','f');
+INSERT INTO `EmergencyContact` VALUES (68,'hgf','hg','fhg');
+INSERT INTO `EmergencyContact` VALUES (69,'f','hgf','hg');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1072,7 +1080,7 @@ CREATE TABLE `Student` (
   CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1082,6 +1090,8 @@ CREATE TABLE `Student` (
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
 INSERT INTO `Student` VALUES (1,24,NULL,2,'Bobby','sd','asdf','M','132','13','1969-12-31',NULL,'132',61,62,63,0,57,'2012-05-11 01:37:36');
+INSERT INTO `Student` VALUES (2,25,NULL,4,'Eric','Lee','Bowser','M','sdf','asdf','2001-01-01',NULL,'555-555-5555',64,65,66,0,53,'2012-05-11 03:16:53');
+INSERT INTO `Student` VALUES (3,25,NULL,2,'Jason','Dee','Bowser','F','hjgf','ghf','8698-05-11',NULL,'hgf',67,68,69,0,54,'2012-05-11 11:40:44');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1289,7 +1299,7 @@ CREATE TABLE `VolunteerLogEntry` (
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
   CONSTRAINT `VolunteerLogEntry_ibfk_3` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
   CONSTRAINT `VolunteerLogEntry_ibfk_2` FOREIGN KEY (`EventID`) REFERENCES `Event` (`EventID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1305,6 +1315,7 @@ INSERT INTO `VolunteerLogEntry` VALUES (6,25,3,'adfadf',1,'2012-05-23 00:00:00')
 INSERT INTO `VolunteerLogEntry` VALUES (7,24,2,'Worked the lemon aid stand',1,'2012-05-10 00:00:00');
 INSERT INTO `VolunteerLogEntry` VALUES (8,25,3,'adfadf',1,'2012-05-23 00:00:00');
 INSERT INTO `VolunteerLogEntry` VALUES (9,1,4,'asdadf',1,'2012-05-11 02:05:00');
+INSERT INTO `VolunteerLogEntry` VALUES (10,25,5,'did stuff',1,'2012-05-11 11:42:00');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1363,13 +1374,13 @@ CREATE TABLE `WaitlistForm` (
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
 INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,0,1,'2012-04-21 21:06:40');
-INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,1,0,'2012-04-21 21:07:39');
-INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,1,0,'2012-04-22 12:25:38');
-INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,1,0,'2012-04-22 12:37:51');
-INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,0,1,'2012-04-23 18:17:24');
+INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,0,'2012-04-21 21:07:39');
+INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,0,0,'2012-04-22 12:25:38');
+INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,0,1,'2012-04-22 12:37:51');
+INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,1,0,'2012-04-23 18:17:24');
 INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,0,'2012-04-23 18:17:53');
-INSERT INTO `WaitlistForm` VALUES (58,4,1,'leanne','','bowser',1,0,1,'2012-05-03 23:43:45');
-INSERT INTO `WaitlistForm` VALUES (59,2,1,'jeff','allen','bowser',3,0,1,'2012-05-03 23:46:55');
+INSERT INTO `WaitlistForm` VALUES (58,4,1,'leanne','','bowser',1,1,0,'2012-05-03 23:43:45');
+INSERT INTO `WaitlistForm` VALUES (59,2,1,'jeff','allen','bowser',3,1,0,'2012-05-03 23:46:55');
 INSERT INTO `WaitlistForm` VALUES (60,2,1,'2','2','2',3,0,1,'2012-05-04 02:33:34');
 INSERT INTO `WaitlistForm` VALUES (61,2,1,'3','3','3',1,0,1,'2012-05-04 02:37:09');
 INSERT INTO `WaitlistForm` VALUES (62,2,25,'Leroy','','Jenkins',1,1,0,'2012-05-10 18:03:19');
@@ -1644,8 +1655,13 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('94e43d2346539566f2c3743ce4131131','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336725544,'');
-INSERT INTO `ci_sessions` VALUES ('c6bb7dd6eed3cea5ac3eb6e476d1fd0b','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336728909,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('02ae02bf761b5cfcc33271a43bc6877e','67.189.58.92','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336762103,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"25\";s:8:\"username\";s:11:\"Mark.Bowser\";s:5:\"email\";s:21:\"markbowser9@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('791ca55e9097571dadbec5a7baca139b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336793554,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('7c9e460f7e9c33777318e51f24b2336b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336779561,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('8a2abd2000d126beb66b6be00b745d7f','67.189.58.92','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336762395,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('d2572fa7ed98fc8e12a18f989323cf55','128.193.15.53','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336768368,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('ea43780cad5d77c849a7567df3312fa2','128.193.37.101','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2',1336768691,'');
+INSERT INTO `ci_sessions` VALUES ('fbaf8e0b2cdd827d8d66c1424c97227c','67.189.58.92','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1336762105,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1722,4 +1738,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-11  3:14:01
+-- Dump completed on 2012-05-12  3:14:01

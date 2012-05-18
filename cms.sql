@@ -145,9 +145,9 @@ CREATE TABLE `AdmissionsForm` (
 
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
-INSERT INTO `AdmissionsForm` VALUES (1,'31','32','13','21','32','13',NULL,'21','321','32','Parent','','13');
-INSERT INTO `AdmissionsForm` VALUES (2,'kj','lkh',';kj','h;kg','gkjl','kjh','asd : dfdf','sasa','sdfsd','sdfdsf','Friend','bob','sdfdsfsd');
-INSERT INTO `AdmissionsForm` VALUES (3,'fhg','f','ghf','hg','fhg','f',NULL,'hg','f','hgfhg','Parent','','f');
+INSERT INTO `AdmissionsForm` VALUES (9,'yes','yes','yes','yes','yes','yes','yes : yes','yes','yes','yes','Newspaper','yes','yes');
+INSERT INTO `AdmissionsForm` VALUES (10,'hkgjkhg','jkhdasf','gkj','hg','kjhg','kjhg',NULL,'g','gsdfg','sdfg','Parent','adf','sfdg');
+INSERT INTO `AdmissionsForm` VALUES (11,'lkj','h','lkj','hlk','jh','lkjh',NULL,'h','lkjh','lkj','Friend','sdfsdf','kj');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,7 +412,7 @@ CREATE TABLE `EmergencyContact` (
   `ECPhone` varchar(255) NOT NULL,
   `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,46 +421,37 @@ CREATE TABLE `EmergencyContact` (
 
 LOCK TABLES `EmergencyContact` WRITE;
 /*!40000 ALTER TABLE `EmergencyContact` DISABLE KEYS */;
-INSERT INTO `EmergencyContact` VALUES (58,'Jack Bowser','5555555555','Uncle');
-INSERT INTO `EmergencyContact` VALUES (59,'Janelle Witrig','5558675309','Aunt');
-INSERT INTO `EmergencyContact` VALUES (60,'Cindy Arevalo','5555555556','Family friend');
-INSERT INTO `EmergencyContact` VALUES (61,'1','2','132');
-INSERT INTO `EmergencyContact` VALUES (62,'1','321','32');
-INSERT INTO `EmergencyContact` VALUES (63,'132','1','321');
 INSERT INTO `EmergencyContact` VALUES (64,'asdf','asdf','asdf');
 INSERT INTO `EmergencyContact` VALUES (65,'asdf','asdf','kj');
 INSERT INTO `EmergencyContact` VALUES (66,'kj','kj','kj');
 INSERT INTO `EmergencyContact` VALUES (67,'fgh','fhg','f');
 INSERT INTO `EmergencyContact` VALUES (68,'hgf','hg','fhg');
 INSERT INTO `EmergencyContact` VALUES (69,'f','hgf','hg');
+INSERT INTO `EmergencyContact` VALUES (70,'Justin L Field','541-829-0052','seld');
+INSERT INTO `EmergencyContact` VALUES (71,'Justin L Field','541-829-0052','seld');
+INSERT INTO `EmergencyContact` VALUES (72,'Justin L Field','541-829-0052','seld');
+INSERT INTO `EmergencyContact` VALUES (73,'Jack Bowser','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (74,'Jerry','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (75,'Janelle','555-555-5555','Aunt');
+INSERT INTO `EmergencyContact` VALUES (76,'asdf','234523452342','sdfafd');
+INSERT INTO `EmergencyContact` VALUES (77,'sadfa','234-234-5353','asdsaf');
+INSERT INTO `EmergencyContact` VALUES (78,'asdfadf','234-234-2345','asdfds');
+INSERT INTO `EmergencyContact` VALUES (79,'asdf','sdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (80,'asdf','asdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (81,'asfd','asdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (82,'asdfasd','asd','fds');
+INSERT INTO `EmergencyContact` VALUES (83,'sadf','sadf','asdf');
+INSERT INTO `EmergencyContact` VALUES (84,'asdf','asfd','asd');
+INSERT INTO `EmergencyContact` VALUES (85,'Justin L Field','541-829-0052','Father');
+INSERT INTO `EmergencyContact` VALUES (86,'Justin L 1','541-829-0052','Father');
+INSERT INTO `EmergencyContact` VALUES (87,'Justin L 2','541-829-0052','Father');
+INSERT INTO `EmergencyContact` VALUES (88,'sdfadsf','asdfasdfhg','jh');
+INSERT INTO `EmergencyContact` VALUES (89,'gkj','hg','jkhg');
+INSERT INTO `EmergencyContact` VALUES (90,'jhkg','jkh','gj');
+INSERT INTO `EmergencyContact` VALUES (91,'jk','hklj','h');
+INSERT INTO `EmergencyContact` VALUES (92,'kljh','lkj','h');
+INSERT INTO `EmergencyContact` VALUES (93,'lkjh','klj','h');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Event`
---
-
-DROP TABLE IF EXISTS `Event`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Event` (
-  `EventID` int(11) NOT NULL AUTO_INCREMENT,
-  `EventName` varchar(255) NOT NULL,
-  `Description` varchar(5000) DEFAULT NULL,
-  `StartDTTM` datetime NOT NULL,
-  `EndDTTM` datetime NOT NULL,
-  PRIMARY KEY (`EventID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Event`
---
-
-LOCK TABLES `Event` WRITE;
-/*!40000 ALTER TABLE `Event` DISABLE KEYS */;
-INSERT INTO `Event` VALUES (1,'Mother\'s Day Celebration','just celebrating mother\'s day cause its coming up','2012-05-12 00:00:00','2012-05-13 00:00:00');
-/*!40000 ALTER TABLE `Event` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -576,7 +567,7 @@ CREATE TABLE `Notifications` (
   `Description` varchar(255) NOT NULL,
   `URL` varchar(45) NOT NULL,
   PRIMARY KEY (`NotificationID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -585,9 +576,10 @@ CREATE TABLE `Notifications` (
 
 LOCK TABLES `Notifications` WRITE;
 /*!40000 ALTER TABLE `Notifications` DISABLE KEYS */;
-INSERT INTO `Notifications` VALUES (1,'Waitlist a child','admissions/waitlistQuestionaire');
-INSERT INTO `Notifications` VALUES (6,'Register a child','admissions/registerStudent');
-INSERT INTO `Notifications` VALUES (7,'Fill out medical release form','admissions/forms/studentMedical');
+INSERT INTO `Notifications` VALUES (1,'Waitlist a child','admissions/waitlistQuestionaire/');
+INSERT INTO `Notifications` VALUES (6,'Register student : ','admissions/registerStudent/');
+INSERT INTO `Notifications` VALUES (7,'Fill out medical release form : ','admissions/studentMedical/');
+INSERT INTO `Notifications` VALUES (8,'Parent has completed registration for : ','admin/manageStudents');
 /*!40000 ALTER TABLE `Notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -644,7 +636,7 @@ CREATE TABLE `Parent` (
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
   CONSTRAINT `FK_Parent_VolunteerSkillSheet` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -653,29 +645,7 @@ CREATE TABLE `Parent` (
 
 LOCK TABLES `Parent` WRITE;
 /*!40000 ALTER TABLE `Parent` DISABLE KEYS */;
-INSERT INTO `Parent` VALUES (1,1,'Little','Bobby','Tables','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-03-10 16:06:01');
-INSERT INTO `Parent` VALUES (8,24,'Justin','Lee','Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-04-21 19:29:58');
-INSERT INTO `Parent` VALUES (9,25,'Mark','Alan','Bowser','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-04-21 19:32:40');
-INSERT INTO `Parent` VALUES (10,1,'Mr','User','Duplicate','asdf@asdfsf.com','some guy','idk',0,NULL,'2012-04-25 19:36:18');
-INSERT INTO `Parent` VALUES (14,29,'mark','alan','bowser','markbowser9@hotmail.com',NULL,NULL,0,NULL,'2012-05-04 03:32:53');
-INSERT INTO `Parent` VALUES (15,35,'bob','dole','ginger','gi@gi.com',NULL,NULL,0,NULL,'2012-05-16 20:30:44');
-INSERT INTO `Parent` VALUES (16,36,'bob','dole','ginger','gasdi@gi.com',NULL,NULL,0,NULL,'2012-05-16 20:31:17');
-INSERT INTO `Parent` VALUES (17,37,'kjhkljh','lkjh','lkh','kjlh@akldsjfh.com',NULL,NULL,0,NULL,'2012-05-16 20:43:39');
-INSERT INTO `Parent` VALUES (18,38,'testf','test','sta','bob@aol.com',NULL,NULL,0,NULL,'2012-05-16 20:49:00');
-INSERT INTO `Parent` VALUES (19,39,'testf','test','sta','bosb@aol.com',NULL,NULL,0,NULL,'2012-05-16 20:49:24');
-INSERT INTO `Parent` VALUES (20,40,'testf','test','sta','bosdb@aol.com',NULL,NULL,0,NULL,'2012-05-16 20:53:44');
-INSERT INTO `Parent` VALUES (21,41,'testf','test','sta','bosdfdb@aol.com',NULL,NULL,0,NULL,'2012-05-16 20:59:50');
-INSERT INTO `Parent` VALUES (22,42,'132321123','321321','132132','bosdffdb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:00:58');
-INSERT INTO `Parent` VALUES (23,43,'199999','321321','132132','bosdffddb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:02:19');
-INSERT INTO `Parent` VALUES (24,44,'19999fgh9','321321','132132','bosdfhhfddb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:03:47');
-INSERT INTO `Parent` VALUES (25,45,'ppppp','321321','132132','bosddfhhfddb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:05:09');
-INSERT INTO `Parent` VALUES (26,46,'ppppp','321321','132132','bosdfgdfhhfddb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:06:04');
-INSERT INTO `Parent` VALUES (27,47,'ppppp','321321','132132','bosdfdfgdfhhfddb@aol.com',NULL,NULL,0,NULL,'2012-05-16 21:07:08');
-INSERT INTO `Parent` VALUES (28,48,'unicorn','thunder','lighting','lit@lit.com',NULL,NULL,0,NULL,'2012-05-16 21:08:37');
-INSERT INTO `Parent` VALUES (29,49,'Justi','in','asd','fi@lf.com',NULL,NULL,0,NULL,'2012-05-17 00:13:20');
-INSERT INTO `Parent` VALUES (30,50,'Justi','in','asd','fdfi@lf.com',NULL,NULL,0,NULL,'2012-05-17 00:15:32');
-INSERT INTO `Parent` VALUES (31,51,'a','a','a','a@a.com',NULL,NULL,0,NULL,'2012-05-17 01:25:11');
-INSERT INTO `Parent` VALUES (32,52,'a','a','a','aa@a.com',NULL,NULL,0,NULL,'2012-05-17 01:25:36');
+INSERT INTO `Parent` VALUES (36,57,'parent',NULL,'1','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-17 20:18:26');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1095,7 +1065,7 @@ CREATE TABLE `Student` (
   CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1104,9 +1074,9 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (1,24,NULL,2,'Bobby','sd','asdf','M','132','13','1969-12-31',NULL,'132',61,62,63,0,57,'2012-05-11 01:37:36');
-INSERT INTO `Student` VALUES (2,25,NULL,4,'Eric','Lee','Bowser','M','sdf','asdf','2001-01-01',NULL,'555-555-5555',64,65,66,0,53,'2012-05-11 03:16:53');
-INSERT INTO `Student` VALUES (3,25,NULL,2,'Jason','Dee','Bowser','F','hjgf','ghf','8698-05-11',NULL,'hgf',67,68,69,0,54,'2012-05-11 11:40:44');
+INSERT INTO `Student` VALUES (9,57,NULL,2,'Joel','Nathen','Bones','M','837 SW 1th ST#104','05/26/1986','1969-12-31',NULL,'541-829-0052',85,86,87,0,1,'2012-05-17 20:46:32');
+INSERT INTO `Student` VALUES (10,57,NULL,2,'Joel','Nathen','Bones','M','jhg','05/268','1969-12-31',NULL,'jh',88,89,90,0,1,'2012-05-17 20:52:54');
+INSERT INTO `Student` VALUES (11,57,NULL,2,'bob','dole','asdf','M','123','321','1969-12-31',NULL,'1',91,92,93,0,4,'2012-05-17 21:21:32');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1199,7 +1169,6 @@ CREATE TABLE `StudentMedicalInformation` (
 
 LOCK TABLES `StudentMedicalInformation` WRITE;
 /*!40000 ALTER TABLE `StudentMedicalInformation` DISABLE KEYS */;
-INSERT INTO `StudentMedicalInformation` VALUES (2,'corvalls','555-555-5555','asdfa','555-555-5555','bob','555-555-5555','asdfadsf','','asdfassfd','fdsf','frank');
 /*!40000 ALTER TABLE `StudentMedicalInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1229,7 +1198,7 @@ CREATE TABLE `SubItem` (
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
 INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/addParentUserAccount',1);
-INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
+INSERT INTO `SubItem` VALUES (2,3,'Interview & Observation','admissions/interviewObservationForm',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register New Student','admissions/registerStudentSelector',4);
 INSERT INTO `SubItem` VALUES (18,5,'Add Sub-Menu Item','admin/addSubItem',5);
@@ -1309,8 +1278,9 @@ DROP TABLE IF EXISTS `UserNotifications`;
 CREATE TABLE `UserNotifications` (
   `NotificationID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `AdditionalInfo` varchar(255) NOT NULL DEFAULT 'NONE',
-  PRIMARY KEY (`UserID`,`NotificationID`,`AdditionalInfo`),
+  `AdditionalInfo` varchar(255) DEFAULT '',
+  `UrlParam` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`UserID`,`NotificationID`,`UrlParam`),
   KEY `FK_UserNotifications_Notifications` (`NotificationID`),
   CONSTRAINT `FK_UserNotifications_Notifications` FOREIGN KEY (`NotificationID`) REFERENCES `Notifications` (`NotificationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_UserNotifications_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1323,21 +1293,10 @@ CREATE TABLE `UserNotifications` (
 
 LOCK TABLES `UserNotifications` WRITE;
 /*!40000 ALTER TABLE `UserNotifications` DISABLE KEYS */;
-INSERT INTO `UserNotifications` VALUES (1,37,'');
-INSERT INTO `UserNotifications` VALUES (1,38,'');
-INSERT INTO `UserNotifications` VALUES (1,39,'');
-INSERT INTO `UserNotifications` VALUES (1,47,'');
-INSERT INTO `UserNotifications` VALUES (1,48,'');
-INSERT INTO `UserNotifications` VALUES (1,49,'');
-INSERT INTO `UserNotifications` VALUES (1,50,'');
-INSERT INTO `UserNotifications` VALUES (1,51,'');
-INSERT INTO `UserNotifications` VALUES (1,52,'');
-INSERT INTO `UserNotifications` VALUES (6,24,'');
-INSERT INTO `UserNotifications` VALUES (6,25,'Array');
-INSERT INTO `UserNotifications` VALUES (6,49,'');
-INSERT INTO `UserNotifications` VALUES (6,50,'');
-INSERT INTO `UserNotifications` VALUES (6,51,'');
-INSERT INTO `UserNotifications` VALUES (6,52,'');
+INSERT INTO `UserNotifications` VALUES (6,57,'Joel Bones','1');
+INSERT INTO `UserNotifications` VALUES (7,57,'Joel Bones','10');
+INSERT INTO `UserNotifications` VALUES (7,57,'bob asdf','11');
+INSERT INTO `UserNotifications` VALUES (7,57,'Joel Bones','9');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1366,29 +1325,6 @@ CREATE TABLE `VolunteerLogEntry` (
 
 LOCK TABLES `VolunteerLogEntry` WRITE;
 /*!40000 ALTER TABLE `VolunteerLogEntry` DISABLE KEYS */;
-INSERT INTO `VolunteerLogEntry` VALUES (3,25,2,'hello','2012-05-11 01:09:00');
-INSERT INTO `VolunteerLogEntry` VALUES (4,25,2,'hello','2012-05-11 01:09:00');
-INSERT INTO `VolunteerLogEntry` VALUES (5,25,4,'hi again','2012-05-11 01:33:00');
-INSERT INTO `VolunteerLogEntry` VALUES (6,25,3,'adfadf','2012-05-23 00:00:00');
-INSERT INTO `VolunteerLogEntry` VALUES (7,24,2,'Worked the lemon aid stand','2012-05-10 00:00:00');
-INSERT INTO `VolunteerLogEntry` VALUES (8,25,3,'adfadf','2012-05-23 00:00:00');
-INSERT INTO `VolunteerLogEntry` VALUES (9,1,4,'asdadf','2012-05-11 02:05:00');
-INSERT INTO `VolunteerLogEntry` VALUES (10,25,5,'did stuff','2012-05-11 11:42:00');
-INSERT INTO `VolunteerLogEntry` VALUES (16,25,0,'asas','2012-05-15 19:39:36');
-INSERT INTO `VolunteerLogEntry` VALUES (21,25,50,'asdadsf','2012-05-15 20:51:01');
-INSERT INTO `VolunteerLogEntry` VALUES (22,25,454,'asdfsad','2012-05-15 20:54:54');
-INSERT INTO `VolunteerLogEntry` VALUES (23,25,4,'asdfa','2012-05-15 21:04:26');
-INSERT INTO `VolunteerLogEntry` VALUES (24,25,7.99,'asdf','2012-05-15 21:06:58');
-INSERT INTO `VolunteerLogEntry` VALUES (25,25,5,'THIS ONE SHOULD SHOW UP','2012-05-15 21:07:50');
-INSERT INTO `VolunteerLogEntry` VALUES (28,24,2,'g','2012-05-16 09:16:58');
-INSERT INTO `VolunteerLogEntry` VALUES (43,1,3,'more stuff today','2012-05-16 11:55:10');
-INSERT INTO `VolunteerLogEntry` VALUES (44,1,7.99,'close to the limit','2012-05-16 11:55:10');
-INSERT INTO `VolunteerLogEntry` VALUES (45,1,4.4,'aaaaaa','2012-05-16 12:22:13');
-INSERT INTO `VolunteerLogEntry` VALUES (46,1,5.5,'ffffffff','2012-05-16 12:23:06');
-INSERT INTO `VolunteerLogEntry` VALUES (47,1,3.3,'ffffffdsdf','2012-05-16 12:23:27');
-INSERT INTO `VolunteerLogEntry` VALUES (48,1,5,'ggrgrg','2012-05-16 12:38:00');
-INSERT INTO `VolunteerLogEntry` VALUES (49,1,3,'d3','2012-05-16 12:39:09');
-INSERT INTO `VolunteerLogEntry` VALUES (50,1,3,'cdrfc','2012-05-16 12:41:29');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1437,7 +1373,7 @@ CREATE TABLE `WaitlistForm` (
   KEY `FK_WaitlistForm_users` (`UserID`),
   CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_WaitlistForm_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1446,27 +1382,10 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
-INSERT INTO `WaitlistForm` VALUES (52,2,1,'little','bobby','tables',1,0,1,'2012-04-21 21:06:40');
-INSERT INTO `WaitlistForm` VALUES (53,4,25,'Eric','Lee','Bowser',3,0,0,'2012-04-21 21:07:39');
-INSERT INTO `WaitlistForm` VALUES (54,2,25,'Jason','Dee','Bowser',1,0,0,'2012-04-22 12:25:38');
-INSERT INTO `WaitlistForm` VALUES (55,4,25,'Steven','Ray','Bowser',2,1,0,'2012-04-22 12:37:51');
-INSERT INTO `WaitlistForm` VALUES (56,4,24,'Justin','L','Field',1,1,0,'2012-04-23 18:17:24');
-INSERT INTO `WaitlistForm` VALUES (57,1,24,'Bobby','sd','asdf',3,0,0,'2012-04-23 18:17:53');
-INSERT INTO `WaitlistForm` VALUES (58,4,1,'leanne','','bowser',1,0,1,'2012-05-03 23:43:45');
-INSERT INTO `WaitlistForm` VALUES (59,2,1,'jeff','allen','bowser',3,0,1,'2012-05-03 23:46:55');
-INSERT INTO `WaitlistForm` VALUES (60,2,1,'2','2','2',3,0,1,'2012-05-04 02:33:34');
-INSERT INTO `WaitlistForm` VALUES (61,2,1,'3','3','3',1,0,1,'2012-05-04 02:37:09');
-INSERT INTO `WaitlistForm` VALUES (62,2,25,'Leroy','','Jenkins',1,1,0,'2012-05-10 18:03:19');
-INSERT INTO `WaitlistForm` VALUES (63,2,25,'Sean','','Bowser',1,0,1,'2012-05-16 21:36:17');
-INSERT INTO `WaitlistForm` VALUES (64,2,25,'asdfsdfsdf','kjl','lkj',3,0,1,'2012-05-16 21:37:30');
-INSERT INTO `WaitlistForm` VALUES (65,2,25,'asdlkj','lkj','l;kjhlhjh',1,0,1,'2012-05-16 21:38:10');
-INSERT INTO `WaitlistForm` VALUES (66,2,25,'dddd','ddd','ddddd',1,0,1,'2012-05-16 21:41:01');
-INSERT INTO `WaitlistForm` VALUES (67,2,25,'fffs','ssd','sdfdfd',1,0,1,'2012-05-16 21:42:49');
-INSERT INTO `WaitlistForm` VALUES (68,2,25,'erer','erer','rere',1,0,1,'2012-05-16 21:43:57');
-INSERT INTO `WaitlistForm` VALUES (69,2,25,'rtr','tert','erter',2,0,1,'2012-05-16 21:44:59');
-INSERT INTO `WaitlistForm` VALUES (70,2,25,'rtr','tert','erter',2,0,1,'2012-05-16 21:46:23');
-INSERT INTO `WaitlistForm` VALUES (71,4,25,'qwqw','qwqw','qwqw',1,0,1,'2012-05-16 21:48:44');
-INSERT INTO `WaitlistForm` VALUES (72,2,25,'asdfadsf','fdsafdsa','dsasdfdsa',1,0,1,'2012-05-16 21:52:01');
+INSERT INTO `WaitlistForm` VALUES (1,2,57,'Joel','Nathen','Bones',1,1,0,'2012-05-17 20:21:08');
+INSERT INTO `WaitlistForm` VALUES (2,2,57,'asdf','asdf','asdf',2,0,1,'2012-05-17 20:30:11');
+INSERT INTO `WaitlistForm` VALUES (3,2,57,'Billy','Low','Walters',1,0,1,'2012-05-17 20:44:03');
+INSERT INTO `WaitlistForm` VALUES (4,2,57,'bob','dole','asdf',1,0,0,'2012-05-17 21:17:34');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1495,342 +1414,70 @@ CREATE TABLE `WaitlistFormQuestion` (
 
 LOCK TABLES `WaitlistFormQuestion` WRITE;
 /*!40000 ALTER TABLE `WaitlistFormQuestion` DISABLE KEYS */;
-INSERT INTO `WaitlistFormQuestion` VALUES (52,1,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,2,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,3,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,4,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,5,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,6,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,7,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,8,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,9,'jkhjkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,10,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,11,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,12,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,13,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,14,'jkhjkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,15,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (52,16,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,1,'no');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,2,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,3,'l;kh');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,4,'l;h');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,5,'l;h');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,6,'l;jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,7,'klj;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,8,'ljk;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,9,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,10,'lk;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,11,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,12,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,13,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,14,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,15,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (53,16,'jkl;');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,1,';jk');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,2,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,3,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,4,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,5,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,6,'j');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,7,'jk');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,8,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,9,'k');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,10,'kh');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,11,'h');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,12,'hgjk');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,13,'lbkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,14,'bh');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,15,'bhj');
-INSERT INTO `WaitlistFormQuestion` VALUES (54,16,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,1,'jk');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,2,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,3,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,4,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,5,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,6,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,7,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,8,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,9,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,10,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,11,'kj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,12,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,13,'kjl');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,14,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,15,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (55,16,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,1,'jh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,2,'gkhj');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,3,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,4,'jkhg');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,5,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,6,'gjkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,7,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,8,'jkhg');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,9,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,10,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,11,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,12,'gkjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,13,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,14,'jkhg');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,15,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (56,16,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,1,'a');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,2,'hkjhkjlhkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,3,'h');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,4,'kjlh');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,5,'kjl');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,6,'hkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,7,'lh');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,8,'hjk');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,9,'kjhkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,10,'hkjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,11,'ljkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,12,'hjk');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,13,'jkhl');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,14,'hjkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,15,'hjk');
-INSERT INTO `WaitlistFormQuestion` VALUES (57,16,'hjkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,1,'h;k');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,2,'kl');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,3,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,4,'k');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,5,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,6,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,7,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,8,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,9,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,10,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,11,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,12,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,13,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,14,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,15,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (58,16,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,1,'klk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,2,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,3,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,4,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,5,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,6,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,7,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,8,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,9,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,10,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,11,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,12,'kljklj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,13,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,14,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,15,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (59,16,'klkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,1,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,2,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,3,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,4,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,5,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,6,'22');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,7,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,8,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,9,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,10,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,11,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,12,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,13,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,14,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,15,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (60,16,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,1,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,2,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,3,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,4,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,5,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,6,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,7,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,8,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,9,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,10,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,11,'33');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,12,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,13,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,14,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,15,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (61,16,'3');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,1,'asdf');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,2,'kl');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,3,'k');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,4,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,5,'jhk');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,6,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,7,'jhk');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,8,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,9,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,10,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,11,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,12,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,13,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,14,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,15,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (62,16,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,1,'as');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,2,'kl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,3,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,4,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,5,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,6,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,7,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,8,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,9,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,10,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,11,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,12,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,13,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,14,'jkl');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,15,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (63,16,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,1,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,2,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,3,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,4,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,5,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,6,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,7,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,8,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,9,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,10,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,11,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,12,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,13,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,14,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,15,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (64,16,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,1,'kljlk');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,2,'lkjlk');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,3,'jlkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,4,'kl');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,5,'kljj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,6,'lkjlkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,7,'klj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,8,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,9,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,10,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,11,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,12,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,13,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,14,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,15,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (65,16,'lkj');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,1,'asd');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,2,'l;k');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,3,'kl');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,4,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,5,'lk');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,6,'ll');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,7,'jh');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,8,'h');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,9,'b');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,10,'bv');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,11,'hv');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,12,'f');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,13,'uyt');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,14,'jjk');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,15,'b');
-INSERT INTO `WaitlistFormQuestion` VALUES (66,16,'hv');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,1,'aaaa');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,2,'f');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,3,'f');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,4,'f');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,5,'d');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,6,'d');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,7,'s');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,8,'e');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,9,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,10,'g');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,11,'v');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,12,'cd');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,13,'rd');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,14,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,15,'fx');
-INSERT INTO `WaitlistFormQuestion` VALUES (67,16,'gfx');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,1,'ererer');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,2,'er');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,3,'e');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,4,'re');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,5,'re');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,6,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,7,'er');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,8,'e');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,9,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,10,'e');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,11,'t');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,12,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,13,'y');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,14,'r');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,15,'t');
-INSERT INTO `WaitlistFormQuestion` VALUES (68,16,'xcv');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,1,'rwe');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,2,'rwe');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,3,'rw');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,4,'er');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,5,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,6,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,7,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,8,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,9,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,10,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,11,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,12,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,13,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,14,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,15,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (69,16,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,1,'rwe');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,2,'rwe');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,3,'rw');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,4,'er');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,5,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,6,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,7,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,8,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,9,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,10,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,11,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,12,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,13,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,14,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,15,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (70,16,'wer');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,1,'as');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,2,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,3,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,4,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,5,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,6,'jk');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,7,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,8,'jkh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,9,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,10,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,11,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,12,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,13,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,14,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,15,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (71,16,'kjh');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,1,'asdfadsfadsf');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,2,'asd');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,3,'fas');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,4,'da');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,5,'sdf');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,6,'fdsa');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,7,'sdf');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,8,'fd');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,9,'as');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,10,'fd');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,11,'fdsa');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,12,'sdf');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,13,'fda');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,14,'sdf');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,15,'fds');
-INSERT INTO `WaitlistFormQuestion` VALUES (72,16,'as');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,1,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,2,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,3,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,4,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,5,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,6,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,7,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,8,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,9,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,10,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,11,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,12,'yesyes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,13,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,14,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,15,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (1,16,'yesyesyesyes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,1,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,2,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,3,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,4,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,5,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,6,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,7,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,8,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,9,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,10,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,11,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,12,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,13,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,14,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,15,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (2,16,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,1,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,2,'yesyes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,3,'yesyes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,4,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,5,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,6,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,7,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,8,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,9,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,10,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,11,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,12,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,13,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,14,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,15,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (3,16,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,1,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,2,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,3,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,4,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,5,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,6,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,7,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,8,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,9,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,10,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,11,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,12,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,13,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,14,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,15,'yes');
+INSERT INTO `WaitlistFormQuestion` VALUES (4,16,'yes');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1898,8 +1545,11 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('8e25602db0ef108ba5bc0a7f87e77465','67.170.132.170','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337244375,'');
-INSERT INTO `ci_sessions` VALUES ('b7c791ec39953ac36744f279ea9ad0e9','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337247457,'');
+INSERT INTO `ci_sessions` VALUES ('3b13f822f72654c711880d63aeb28624','24.20.210.119','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337309593,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('414058e45a5597be7b1f93157d20a028','67.170.132.170','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337313621,'');
+INSERT INTO `ci_sessions` VALUES ('593b664f048df07cc967f1b9f9050f87','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337314550,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('5fbdf92d0378074f6c32cc6ed54dab6e','24.20.226.169','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19',1337309649,'');
+INSERT INTO `ci_sessions` VALUES ('8e3f468bd46d7079f24fbdafa2c57ec9','67.170.132.170','Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .N',1337314880,'a:11:{s:2:\"id\";s:2:\"57\";s:8:\"username\";s:8:\"parent.1\";s:5:\"email\";s:17:\"fieldju@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";N;s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"0\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1951,7 +1601,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1960,31 +1610,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','',NULL,'2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (25,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (29,'mark.bowser.2','markbowser9@hotmail.com','3503c71df253c3c255ec529a195c66c38592156989e8c73374f46e58a1ae11a1','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (31,'test','test@test.com','86c2982e3349c29255f99281593148a736386617f2cb53dec3aa851f8e86bfae','1','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (33,'parent','asdf','0e04f84669bdcf3c97bc19cbba4e0ce4a5b6d8e889cfe58c9d64d1d107245df8','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (34,'asdf','adsf','6b881a874e1a94245c11431b78e9569727385b2ca7d3d25b118e9835e801afa9','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (35,'bob.ginger','gi@gi.com','fcb7ea1b103fab50f302a762c7fa148c2813413f49ecac37a7e2c60c2953394a','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (36,'bob.ginger.2','gasdi@gi.com','f240c212b2c6b751f24154ac43a69d2b328dabca8df3eaa24726e450d25b7617','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (37,'kjhkljh.lkh','kjlh@akldsjfh.com','4dc82ca5d4ba04fca76b7957cda1610a3d382d4d82eaed81abf2459b0b54b082','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (38,'testf.sta','bob@aol.com','3b865d87f96be908ad0b5c5889c28d224e3fc83beeb70b6a512c121b9cd22909','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (39,'testf.sta.2','bosb@aol.com','1dce1636d9fc1935bcb8d0a8096bb585ab877cfa00a612c47598bddcaab88cf7','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (40,'testf.sta.3','bosdb@aol.com','adce48bc514c8f26b6a9ff0674f1cdfe320e28459d3993bbf66b7f93b382f5a9','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (41,'testf.sta.4','bosdfdb@aol.com','b2d25c7450ea7d424edbb227570a5cdf4a177d0bf51ffbe1146eda9b70bd3443','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (42,'132321123.132132','bosdffdb@aol.com','ad3c662b2d2ef1d5d6e27475b0d1eb8ee852f5c38008d5191869727f485e80d3','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (43,'199999.132132','bosdffddb@aol.com','8e0b38ba972134145531e942a35d36c6dde36d63e3ea14a40eaf756449fa3812','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (44,'19999fgh9.132132','bosdfhhfddb@aol.com','ecc4ec32d511f03be7e27a660e1fd49ff4bb269ef1a39d6236ccbd14bf4b6d76','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (45,'ppppp.132132','bosddfhhfddb@aol.com','aba973897cbd5583b0242362f48a5310d1dc796daaa7c411a06f01cfef68576e','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (46,'ppppp.132132.2','bosdfgdfhhfddb@aol.com','fe22892ea62b4b9f83434d231d2de6239c0516bd134719fe153f045d203d1684','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (47,'ppppp.132132.3','bosdfdfgdfhhfddb@aol.com','4ebb42b0d3fb3a041dca38cbaf44e8b873d66cefb9c591faae5ed3177b792ef2','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (48,'unicorn.lighting','lit@lit.com','905f2fb242cca68d07105cd163b0e7fd7319c820083c45e405c3127c97d926e6','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (49,'Justi.asd','fi@lf.com','5c0d90f64c343a4dbdc1a2066bd222105f9837327f9ac2a5d81c3e702596366f','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (50,'Justi.asd.2','fdfi@lf.com','91b17f61d607885add8ca035186e8aad81450529b19925ef867fd31477136c00','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (51,'a.a','a@a.com','5fce946ebc338cb7ffd9bfeee5eca44b56bb02afaa0d20f64116576c33efd64f','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (52,'a.a.2','aa@a.com','24cf6b38cd5e3140197ce6f1411e353d5e65a4060d699f9361d257b2402d099b','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-17 21:00:01','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','c68e63ba2197d48d6afbefa23205ed7707c8a2f616d02941092eb6e3ce5ff09e','100','','',NULL,'0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (25,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-17 20:59:22','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (57,'parent.1','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-17 20:20:35','0000-00-00 00:00:00',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1997,4 +1626,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-17  3:14:01
+-- Dump completed on 2012-05-17 21:48:20

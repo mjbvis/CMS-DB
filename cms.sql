@@ -1221,7 +1221,6 @@ INSERT INTO `UserNotifications` VALUES (6,62,'Roy Trueman','12');
 INSERT INTO `UserNotifications` VALUES (8,62,' ','');
 INSERT INTO `UserNotifications` VALUES (6,63,'George Graham-Cracker','14');
 INSERT INTO `UserNotifications` VALUES (7,63,'Gary Graham-Cracker','16');
-INSERT INTO `UserNotifications` VALUES (6,64,'Sean Stalley','15');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1320,7 +1319,7 @@ INSERT INTO `WaitlistForm` VALUES (11,2,62,'Jill','','Trueman',2,0,1,'2012-05-18
 INSERT INTO `WaitlistForm` VALUES (12,4,62,'Roy','Lee','Trueman',2,1,0,'2012-05-18 09:01:26');
 INSERT INTO `WaitlistForm` VALUES (13,2,63,'Gary','','Graham-Cracker',1,0,0,'2012-05-18 09:16:43');
 INSERT INTO `WaitlistForm` VALUES (14,4,63,'George','','Graham-Cracker',3,1,0,'2012-05-18 09:19:57');
-INSERT INTO `WaitlistForm` VALUES (15,4,64,'Sean','Onifer','Stalley',1,1,0,'2012-05-18 10:27:02');
+INSERT INTO `WaitlistForm` VALUES (15,4,64,'Sean','Onifer','Stalley',1,0,1,'2012-05-18 10:27:02');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1512,13 +1511,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('601fd98ce9469f805838163cdf2a4c40','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337379663,'');
-INSERT INTO `ci_sessions` VALUES ('61050581b158917252d746a0d0b79f82','24.20.210.119','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337385883,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-18 15:27:41\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('859932250de5e545b9f241be79d54bff','128.193.8.98','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337380124,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"62\";s:8:\"username\";s:11:\"Mark.Bowser\";s:5:\"email\";s:21:\"markbowser9@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-18 14:09:37\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('91bda5700aefd2b5a4abd809e37ca5b2','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337379663,'');
-INSERT INTO `ci_sessions` VALUES ('abbb63e90279c62048a1995f728847ec','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337391967,'');
-INSERT INTO `ci_sessions` VALUES ('d53b2b5b0f8f602d97684cd0df3e94c4','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',1337379666,'');
-INSERT INTO `ci_sessions` VALUES ('f82ccea34998830f6b5ecc15ba079e01','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337391967,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-18 17:04:47\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('bdd4025515b1ccdc9d166b169a935c7e','24.21.104.139','Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',1337581773,'');
+INSERT INTO `ci_sessions` VALUES ('eb24f089e527ff78d9e9a084ccb59ace','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337584027,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1579,9 +1573,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-18 18:46:20','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-20 23:30:54','2012-02-02 01:01:01',1,1);
 INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','c68e63ba2197d48d6afbefa23205ed7707c8a2f616d02941092eb6e3ce5ff09e','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-18 15:28:51','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-20 23:48:27','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-18 13:34:04','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-18 13:31:09','0000-00-00 00:00:00',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -1596,4 +1590,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-20  3:14:02
+-- Dump completed on 2012-05-21  3:14:01

@@ -1512,6 +1512,7 @@ CREATE TABLE `ci_sessions` (
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
 INSERT INTO `ci_sessions` VALUES ('226e8de155561675ebe136f8c51d4e32','128.193.161.161','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1337635799,'');
+INSERT INTO `ci_sessions` VALUES ('403027b25e4a36d51a3371643ebde79b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1337844520,'');
 INSERT INTO `ci_sessions` VALUES ('50e8b236d7adbf65df224265924d61c0','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337740199,'');
 INSERT INTO `ci_sessions` VALUES ('5c2b954fed44b5f37ef12a93000a2f56','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337630023,'');
 INSERT INTO `ci_sessions` VALUES ('654e4680c53425a3d34f57bcab6dbb77','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337759277,'');
@@ -1599,4 +1600,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-23  3:14:01
+-- Dump completed on 2012-05-24  3:14:01

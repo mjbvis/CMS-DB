@@ -147,6 +147,9 @@ LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
 INSERT INTO `AdmissionsForm` VALUES (16,'nope. this would be like his kindergarten','just the neighbor kids','hugs','yep. he&#39;s ready for all that','sometimes if he&#39;s cranky','in the summer time','Tucan : Fred','bugs!','George','6','Other','aliens','nope. he&#39;s a good kid');
 INSERT INTO `AdmissionsForm` VALUES (17,'yes','some','hugs','yes','no','sure','Albatross : James','James the albatross','bob','3','Parent','Mark Bowser','not really');
+INSERT INTO `AdmissionsForm` VALUES (18,'yes','yes','yes','yes','yes','yes',NULL,'yes','bob','7','Parent','crazy!','no');
+INSERT INTO `AdmissionsForm` VALUES (19,'nope','hunting and gathering','cottage cheese','poopin','yes. nocturnal','not in the sunlight.','Tucan : Brutus','taxedermy','blah','400','Other','hi','He&#39;s a troglodyte');
+INSERT INTO `AdmissionsForm` VALUES (20,'lkj','lkj','lk','lk','lk','lkj',NULL,';lkj','lkj','2','Internet','','klj');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,7 +388,7 @@ CREATE TABLE `EmergencyContact` (
   `ECPhone` varchar(255) NOT NULL,
   `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,6 +403,15 @@ INSERT INTO `EmergencyContact` VALUES (108,'Nancy Thomas','555-555-5555','family
 INSERT INTO `EmergencyContact` VALUES (109,'Jack Bowser','555-555-5555','Uncle');
 INSERT INTO `EmergencyContact` VALUES (110,'Jerry','555-555-5555','Uncle');
 INSERT INTO `EmergencyContact` VALUES (111,'Janelle','555-555-5555','Aunt');
+INSERT INTO `EmergencyContact` VALUES (112,'bob','555-555-5555','no relationship');
+INSERT INTO `EmergencyContact` VALUES (113,'ray','555-555-5555','friend');
+INSERT INTO `EmergencyContact` VALUES (114,'sarah','555-555-5555','brother');
+INSERT INTO `EmergencyContact` VALUES (115,'mom','555-555-5555','mom');
+INSERT INTO `EmergencyContact` VALUES (116,'dad','555-555-5555','dad');
+INSERT INTO `EmergencyContact` VALUES (117,'other','555-555-5555','other');
+INSERT INTO `EmergencyContact` VALUES (118,'Abe Lincoln','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (119,'Ralph Nader','555-555-5555','Father');
+INSERT INTO `EmergencyContact` VALUES (120,'Yoda','555-555-5555','mentor');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1016,7 +1028,7 @@ CREATE TABLE `Student` (
   CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,6 +1039,9 @@ LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
 INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary','','Graham-Cracker','M','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-18 09:25:56');
 INSERT INTO `Student` VALUES (17,62,2,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,1,10,'2012-05-18 13:30:07');
+INSERT INTO `Student` VALUES (18,62,NULL,4,'Roy','Lee','Trueman','M','111 NW 26th St Apt 1','Corvallis, OR','1989-10-14',NULL,'541-979-0245',112,113,114,0,12,'2012-05-25 00:48:13');
+INSERT INTO `Student` VALUES (19,62,NULL,4,'Walter','','Troglodyte','M','cave','cave','2001-01-01',NULL,'555-555-5555',115,116,117,0,16,'2012-05-25 02:58:37');
+INSERT INTO `Student` VALUES (20,64,NULL,4,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-25 03:13:15');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1120,6 +1135,8 @@ CREATE TABLE `StudentMedicalInformation` (
 LOCK TABLES `StudentMedicalInformation` WRITE;
 /*!40000 ALTER TABLE `StudentMedicalInformation` DISABLE KEYS */;
 INSERT INTO `StudentMedicalInformation` VALUES (17,'Corvallis Hospital','555-555-5555','David','555-555-5555','Sally','555-555-5555','','','none','none','none');
+INSERT INTO `StudentMedicalInformation` VALUES (18,'Corvallis Hospital','555-555-5555','David','555-555-5555','Bob','555-555-5555','no!','no!','blah','234dfs','');
+INSERT INTO `StudentMedicalInformation` VALUES (19,'time','555-555-5555','mom','555-555-5555','dad','555-555-5555','mad cow desease','sunlight','none','none','none');
 /*!40000 ALTER TABLE `StudentMedicalInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1217,10 +1234,12 @@ CREATE TABLE `UserNotifications` (
 
 LOCK TABLES `UserNotifications` WRITE;
 /*!40000 ALTER TABLE `UserNotifications` DISABLE KEYS */;
-INSERT INTO `UserNotifications` VALUES (6,62,'Roy Trueman','12');
 INSERT INTO `UserNotifications` VALUES (8,62,' ','');
+INSERT INTO `UserNotifications` VALUES (8,62,'Roy Trueman','18');
+INSERT INTO `UserNotifications` VALUES (8,62,'Walter Troglodyte','19');
 INSERT INTO `UserNotifications` VALUES (6,63,'George Graham-Cracker','14');
 INSERT INTO `UserNotifications` VALUES (7,63,'Gary Graham-Cracker','16');
+INSERT INTO `UserNotifications` VALUES (7,64,'Sean Stalley','20');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1305,7 +1324,7 @@ CREATE TABLE `WaitlistForm` (
   KEY `FK_WaitlistForm_users` (`UserID`),
   CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_WaitlistForm_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1316,10 +1335,11 @@ LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
 INSERT INTO `WaitlistForm` VALUES (10,2,62,'Billy','','Banana',1,0,0,'2012-05-18 08:55:33');
 INSERT INTO `WaitlistForm` VALUES (11,2,62,'Jill','','Trueman',2,0,1,'2012-05-18 08:58:18');
-INSERT INTO `WaitlistForm` VALUES (12,4,62,'Roy','Lee','Trueman',2,1,0,'2012-05-18 09:01:26');
+INSERT INTO `WaitlistForm` VALUES (12,4,62,'Roy','Lee','Trueman',2,0,0,'2012-05-18 09:01:26');
 INSERT INTO `WaitlistForm` VALUES (13,2,63,'Gary','','Graham-Cracker',1,0,0,'2012-05-18 09:16:43');
 INSERT INTO `WaitlistForm` VALUES (14,4,63,'George','','Graham-Cracker',3,1,0,'2012-05-18 09:19:57');
-INSERT INTO `WaitlistForm` VALUES (15,4,64,'Sean','Onifer','Stalley',1,0,1,'2012-05-18 10:27:02');
+INSERT INTO `WaitlistForm` VALUES (15,4,64,'Sean','Onifer','Stalley',1,1,0,'2012-05-18 10:27:02');
+INSERT INTO `WaitlistForm` VALUES (16,4,62,'Walter','','Troglodyte',2,0,0,'2012-05-25 02:11:17');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,6 +1464,22 @@ INSERT INTO `WaitlistFormQuestion` VALUES (15,13,'l;kh');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,14,'lk;l');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,15,'k;lk;');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,16,'lj;k');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,1,'He chooses not to');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,2,'Can you take your socks and shoes off independently?');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,3,'categorize river creatures');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,4,'none');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,5,'no. grunts');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,6,'it all kinda mushes together');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,7,'nooo');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,8,'he understands gestures');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,9,'runs');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,10,'12+');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,11,'no!');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,12,'cupped fists');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,13,'always');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,14,'naked');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,15,'he wails');
+INSERT INTO `WaitlistFormQuestion` VALUES (16,16,'psycological warfare');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1511,18 +1547,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('226e8de155561675ebe136f8c51d4e32','128.193.161.161','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1337635799,'');
-INSERT INTO `ci_sessions` VALUES ('403027b25e4a36d51a3371643ebde79b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1337844520,'');
-INSERT INTO `ci_sessions` VALUES ('50e8b236d7adbf65df224265924d61c0','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337740199,'');
-INSERT INTO `ci_sessions` VALUES ('5c2b954fed44b5f37ef12a93000a2f56','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337630023,'');
-INSERT INTO `ci_sessions` VALUES ('654e4680c53425a3d34f57bcab6dbb77','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337759277,'');
-INSERT INTO `ci_sessions` VALUES ('75a5da1bc7492700ba5b181bf933cf57','128.193.78.30','Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',1337626996,'');
-INSERT INTO `ci_sessions` VALUES ('bdd4025515b1ccdc9d166b169a935c7e','24.21.104.139','Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',1337581773,'');
-INSERT INTO `ci_sessions` VALUES ('c277af191053583e1ff0247d1780613a','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337645979,'');
-INSERT INTO `ci_sessions` VALUES ('c412f6b9dd26e496419cd8a1c13eb46b','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337628888,'');
-INSERT INTO `ci_sessions` VALUES ('eb24f089e527ff78d9e9a084ccb59ace','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337584027,'');
-INSERT INTO `ci_sessions` VALUES ('f252fc151a174101aa4281a39a98c896','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337732981,'');
-INSERT INTO `ci_sessions` VALUES ('fce76e46b4147347626308cd6e672688','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337747015,'');
+INSERT INTO `ci_sessions` VALUES ('99f8dbb9abbae8845bfdf6fb144ff84c','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337940801,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-25 03:11:37\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1583,11 +1608,11 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-20 23:30:54','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-25 03:13:24','2012-02-02 01:01:01',1,1);
 INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','c68e63ba2197d48d6afbefa23205ed7707c8a2f616d02941092eb6e3ce5ff09e','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-21 12:02:03','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-18 13:34:04','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-18 13:31:09','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:00','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:14','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1600,4 +1625,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-24  3:14:01
+-- Dump completed on 2012-05-25  3:14:01

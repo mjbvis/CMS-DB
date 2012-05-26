@@ -210,7 +210,6 @@ CREATE TABLE `Classroom` (
   `ClassName` varchar(255) NOT NULL,
   `AcademicLevelID` int(11) NOT NULL,
   `Enabled` int(1) NOT NULL,
-  `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`ClassID`),
   KEY `FK_Classroom_AcademicLevel` (`AcademicLevelID`),
   CONSTRAINT `FK_Classroom_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -223,10 +222,10 @@ CREATE TABLE `Classroom` (
 
 LOCK TABLES `Classroom` WRITE;
 /*!40000 ALTER TABLE `Classroom` DISABLE KEYS */;
-INSERT INTO `Classroom` VALUES (1,'Toddler House',2,1,'2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (2,'Primary',3,1,'2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (3,'Elementary',3,1,'2012-04-21 16:20:07');
-INSERT INTO `Classroom` VALUES (4,'Test Class Disabled',1,0,'2012-04-21 16:20:07');
+INSERT INTO `Classroom` VALUES (1,'Toddler House',2,1);
+INSERT INTO `Classroom` VALUES (2,'Primary',3,1);
+INSERT INTO `Classroom` VALUES (3,'Elementary',3,1);
+INSERT INTO `Classroom` VALUES (4,'Test Class Disabled',1,0);
 /*!40000 ALTER TABLE `Classroom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,35 +544,6 @@ INSERT INTO `Notifications` VALUES (8,'Parent has completed registration for : '
 UNLOCK TABLES;
 
 --
--- Table structure for table `Observation`
---
-
-DROP TABLE IF EXISTS `Observation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Observation` (
-  `ParentID` int(11) NOT NULL,
-  `ClassID` int(11) NOT NULL,
-  `ObservationDTTM` datetime NOT NULL,
-  `Attended` int(1) NOT NULL,
-  `OnTime` int(1) NOT NULL,
-  PRIMARY KEY (`ParentID`),
-  KEY `FK_ClassroomObservation_Classroom` (`ClassID`),
-  CONSTRAINT `FK_ClassroomObservation_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Observation_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Observation`
---
-
-LOCK TABLES `Observation` WRITE;
-/*!40000 ALTER TABLE `Observation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Observation` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Parent`
 --
 
@@ -597,7 +567,7 @@ CREATE TABLE `Parent` (
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
   CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Parent_VolunteerSkillSheet` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -609,6 +579,11 @@ LOCK TABLES `Parent` WRITE;
 INSERT INTO `Parent` VALUES (41,62,'Mark',NULL,'Bowser','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-05-18 08:53:18');
 INSERT INTO `Parent` VALUES (42,63,'Mark',NULL,'Bowser','markbowser9@hotmail.com',NULL,NULL,0,NULL,'2012-05-18 09:14:11');
 INSERT INTO `Parent` VALUES (43,64,'Mark',NULL,'Bowser','adsfadafd@asdafdsafsfds.com',NULL,NULL,0,NULL,'2012-05-18 09:44:01');
+INSERT INTO `Parent` VALUES (44,66,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:27:20');
+INSERT INTO `Parent` VALUES (45,67,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:29:26');
+INSERT INTO `Parent` VALUES (46,68,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:31:18');
+INSERT INTO `Parent` VALUES (47,69,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:39:20');
+INSERT INTO `Parent` VALUES (48,71,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 16:45:37');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -714,32 +689,42 @@ DROP TABLE IF EXISTS `ProspectInterview`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ProspectInterview` (
-  `ParentID` int(11) NOT NULL,
+  `ProspectID` int(11) NOT NULL AUTO_INCREMENT,
   `ParentNames` varchar(255) NOT NULL,
   `ChildrenNamesAges` varchar(255) NOT NULL,
-  `DOB` datetime NOT NULL,
   `FirstContactedDTTM` datetime NOT NULL,
+  `visitDTTM` datetime NOT NULL,
   `InterviewDTTM` datetime NOT NULL,
   `PhoneNumber` varchar(255) NOT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `MontessoriImpressions` varchar(255) NOT NULL,
   `InterviewImpressions` varchar(255) NOT NULL,
-  `LevelOfInterest` int(11) NOT NULL,
-  `LevelOfUnderstanding` int(11) NOT NULL,
-  `WillingnessToLearn` int(11) NOT NULL,
-  `IsLearningIndipendently` int(1) NOT NULL,
+  `LevelOfInterest` varchar(255) NOT NULL,
+  `LevelOfUnderstanding` varchar(255) NOT NULL,
+  `WillingnessToLearn` varchar(255) NOT NULL,
+  `IsLearningIndependently` int(1) NOT NULL,
   `IsLearningAtOwnPace` int(1) NOT NULL,
   `IsHandsOnLearner` int(1) NOT NULL,
   `IsMixedAges` int(1) NOT NULL,
-  PRIMARY KEY (`ParentID`),
-  KEY `FK_ProspectInterview_ProspectLevelLookup1` (`LevelOfInterest`),
-  KEY `FK_ProspectInterview_ProspectLevelLookup2` (`LevelOfUnderstanding`),
-  KEY `FK_ProspectInterview_ProspectLevelLookup3` (`WillingnessToLearn`),
-  CONSTRAINT `FK_ProspectInterview_Parent1` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ProspectInterview_ProspectLevelLookup1` FOREIGN KEY (`LevelOfInterest`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ProspectInterview_ProspectLevelLookup2` FOREIGN KEY (`LevelOfUnderstanding`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ProspectInterview_ProspectLevelLookup3` FOREIGN KEY (`WillingnessToLearn`) REFERENCES `ProspectLevelLookup` (`LevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `WebSearchRef` int(1) NOT NULL,
+  `CMSFamilyRef` int(1) NOT NULL,
+  `FriendsRef` int(1) NOT NULL,
+  `AdRef` int(1) NOT NULL,
+  `AdRefNote` varchar(255) DEFAULT NULL,
+  `OtherRef` int(1) NOT NULL,
+  `OtherRefNote` varchar(255) DEFAULT NULL,
+  `NewCityState` varchar(255) DEFAULT NULL,
+  `NewSchool` varchar(255) DEFAULT NULL,
+  `ObservationDTTM` datetime DEFAULT NULL,
+  `ClassID` int(11) DEFAULT NULL,
+  `AttendedObservation` int(1) DEFAULT NULL,
+  `OnTimeToObservation` int(1) DEFAULT NULL,
+  `AppReceivedDTTM` datetime DEFAULT NULL,
+  `FeeReceivedDTTM` datetime DEFAULT NULL,
+  PRIMARY KEY (`ProspectID`),
+  KEY `FK_ProspectInterview_Classroom` (`ClassID`),
+  CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -749,105 +734,6 @@ CREATE TABLE `ProspectInterview` (
 LOCK TABLES `ProspectInterview` WRITE;
 /*!40000 ALTER TABLE `ProspectInterview` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ProspectInterview` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ProspectLevelLookup`
---
-
-DROP TABLE IF EXISTS `ProspectLevelLookup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ProspectLevelLookup` (
-  `LevelID` int(11) NOT NULL AUTO_INCREMENT,
-  `LevelDescription` varchar(255) NOT NULL,
-  PRIMARY KEY (`LevelID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ProspectLevelLookup`
---
-
-LOCK TABLES `ProspectLevelLookup` WRITE;
-/*!40000 ALTER TABLE `ProspectLevelLookup` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ProspectLevelLookup` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ProspectMovement`
---
-
-DROP TABLE IF EXISTS `ProspectMovement`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ProspectMovement` (
-  `ParentID` int(11) NOT NULL,
-  `City` varchar(255) DEFAULT NULL,
-  `State` char(2) DEFAULT NULL,
-  `School` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ParentID`),
-  CONSTRAINT `FK_ProspectMovement_ProspectInterview` FOREIGN KEY (`ParentID`) REFERENCES `ProspectInterview` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ProspectMovement`
---
-
-LOCK TABLES `ProspectMovement` WRITE;
-/*!40000 ALTER TABLE `ProspectMovement` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ProspectMovement` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ProspectReference`
---
-
-DROP TABLE IF EXISTS `ProspectReference`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ProspectReference` (
-  `ParentID` int(11) NOT NULL,
-  `ReferenceName` varchar(255) NOT NULL,
-  `ReferenceNotes` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ParentID`,`ReferenceName`),
-  KEY `FK_ProspectReference_ReferenceLookup` (`ReferenceName`),
-  KEY `FK_ProspectReference_ProspectInterview` (`ParentID`),
-  CONSTRAINT `FK_ProspectReference_ProspectInterview` FOREIGN KEY (`ParentID`) REFERENCES `ProspectInterview` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ProspectReference_ReferenceLookup` FOREIGN KEY (`ReferenceName`) REFERENCES `ReferenceLookup` (`ReferenceName`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ProspectReference`
---
-
-LOCK TABLES `ProspectReference` WRITE;
-/*!40000 ALTER TABLE `ProspectReference` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ProspectReference` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ReferenceLookup`
---
-
-DROP TABLE IF EXISTS `ReferenceLookup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ReferenceLookup` (
-  `ReferenceName` varchar(255) NOT NULL,
-  PRIMARY KEY (`ReferenceName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ReferenceLookup`
---
-
-LOCK TABLES `ReferenceLookup` WRITE;
-/*!40000 ALTER TABLE `ReferenceLookup` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ReferenceLookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1037,11 +923,11 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary','','Graham-Cracker','M','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-18 09:25:56');
+INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-26 00:07:12');
 INSERT INTO `Student` VALUES (17,62,2,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,1,10,'2012-05-18 13:30:07');
 INSERT INTO `Student` VALUES (18,62,NULL,4,'Roy','Lee','Trueman','M','111 NW 26th St Apt 1','Corvallis, OR','1989-10-14',NULL,'541-979-0245',112,113,114,0,12,'2012-05-25 00:48:13');
 INSERT INTO `Student` VALUES (19,62,NULL,4,'Walter','','Troglodyte','M','cave','cave','2001-01-01',NULL,'555-555-5555',115,116,117,0,16,'2012-05-25 02:58:37');
-INSERT INTO `Student` VALUES (20,64,NULL,4,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-25 03:13:15');
+INSERT INTO `Student` VALUES (20,64,NULL,1,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-26 00:09:41');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1120,8 +1006,8 @@ CREATE TABLE `StudentMedicalInformation` (
   `DentistPhone` varchar(255) NOT NULL,
   `MedicalConditions` varchar(255) DEFAULT NULL,
   `Allergies` varchar(255) DEFAULT NULL,
-  `InsuranceCompany` varchar(255) NOT NULL,
-  `CertificateNumber` varchar(255) NOT NULL,
+  `InsuranceCompany` varchar(255) DEFAULT NULL,
+  `CertificateNumber` varchar(255) DEFAULT NULL,
   `Employer` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
   CONSTRAINT `FK_MedicalInformation_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1166,7 +1052,7 @@ CREATE TABLE `SubItem` (
 LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
 INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/addParentUserAccount',1);
-INSERT INTO `SubItem` VALUES (2,3,'Interview & Observation','admin/interviewObservationForm',2);
+INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register Student','admissions/registerStudentSelector',4);
 INSERT INTO `SubItem` VALUES (18,5,'Add Sub-Menu Item','admin/addSubItem',5);
@@ -1240,6 +1126,11 @@ INSERT INTO `UserNotifications` VALUES (8,62,'Walter Troglodyte','19');
 INSERT INTO `UserNotifications` VALUES (6,63,'George Graham-Cracker','14');
 INSERT INTO `UserNotifications` VALUES (7,63,'Gary Graham-Cracker','16');
 INSERT INTO `UserNotifications` VALUES (7,64,'Sean Stalley','20');
+INSERT INTO `UserNotifications` VALUES (1,66,'','');
+INSERT INTO `UserNotifications` VALUES (1,67,'','');
+INSERT INTO `UserNotifications` VALUES (1,68,'','');
+INSERT INTO `UserNotifications` VALUES (1,69,'','');
+INSERT INTO `UserNotifications` VALUES (1,71,'','');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1547,7 +1438,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('99f8dbb9abbae8845bfdf6fb144ff84c','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5',1337940801,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-25 03:11:37\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('d901717659c5b337972eb85423ab4593','76.115.26.229','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338018604,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-25 23:39:57\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1599,7 +1490,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1608,11 +1499,17 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-25 03:13:24','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','c68e63ba2197d48d6afbefa23205ed7707c8a2f616d02941092eb6e3ce5ff09e','100','','',NULL,'0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:00','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:14','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-25 23:41:14','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-25 23:40:29','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (66,'Justin.Field.3','fasdfieldju@gmail.com','537149dc5846e0bf7e33dd720a6982ab8ee83aae1d106bda335d25682a8076d0','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (67,'Justin.Field.2','fiel234234234dju@gmail.com','ff20f1c7a942955094a611487bcb26a4fc867b6b8e7583bf3ff69825c58bb335','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (68,'Justin.Field.4','fielasddju@gmail.com','97bd697f724abe2d58a49ce94c653c32956fd9acaa04cf7052eab07c3d2b6cac','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (69,'Justin.Field.5','fielsdafasdfdju@gmail.com','e14e484e5627b17561aa89cc0d3452602d50be50e7f35404276556fd8362588b','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (70,'Justin.Field.6','field,mhnju@gmail.com','b17aa0352fb489cb0a068453e75a9790db6b02f5b45d0d86241067155938b87d','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (71,'Justin.Field.7','fieldju@gmail.com','14e1fa097ef5b88220aff83a345f311744bbe929b9ee407c1279d127e27280a5','100','','',NULL,'0000-00-00 00:00:00',1,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1625,4 +1522,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-25  3:14:01
+-- Dump completed on 2012-05-26  3:14:01

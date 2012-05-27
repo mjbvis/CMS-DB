@@ -567,7 +567,7 @@ CREATE TABLE `Parent` (
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
   CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Parent_VolunteerSkillSheet` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -584,6 +584,7 @@ INSERT INTO `Parent` VALUES (45,67,'Justin',NULL,'Field','fieldju@gmail.com',NUL
 INSERT INTO `Parent` VALUES (46,68,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:31:18');
 INSERT INTO `Parent` VALUES (47,69,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:39:20');
 INSERT INTO `Parent` VALUES (48,71,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 16:45:37');
+INSERT INTO `Parent` VALUES (49,72,'BoB',NULL,'DoLe','DoLe@DoLe.com',NULL,NULL,0,NULL,'2012-05-26 10:14:08');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -724,7 +725,7 @@ CREATE TABLE `ProspectInterview` (
   PRIMARY KEY (`ProspectID`),
   KEY `FK_ProspectInterview_Classroom` (`ClassID`),
   CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1131,6 +1132,7 @@ INSERT INTO `UserNotifications` VALUES (1,67,'','');
 INSERT INTO `UserNotifications` VALUES (1,68,'','');
 INSERT INTO `UserNotifications` VALUES (1,69,'','');
 INSERT INTO `UserNotifications` VALUES (1,71,'','');
+INSERT INTO `UserNotifications` VALUES (1,72,'','');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1438,7 +1440,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('d901717659c5b337972eb85423ab4593','76.115.26.229','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338018604,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-25 23:39:57\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('5faf94001617cc5611d08b9c84f5687d','76.115.26.229','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338053489,'a:11:{s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-26 10:18:22\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('efadba3c2fd6bf5545d1edc600f24234','24.21.105.29','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338073545,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1490,7 +1493,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1499,9 +1502,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-25 23:41:14','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'Justin.Field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-25 23:40:29','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (62,'Mark.Bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-26 15:20:05','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-26 10:32:27','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (66,'Justin.Field.3','fasdfieldju@gmail.com','537149dc5846e0bf7e33dd720a6982ab8ee83aae1d106bda335d25682a8076d0','100','','',NULL,'0000-00-00 00:00:00',1,0);
@@ -1510,6 +1513,7 @@ INSERT INTO `users` VALUES (68,'Justin.Field.4','fielasddju@gmail.com','97bd697f
 INSERT INTO `users` VALUES (69,'Justin.Field.5','fielsdafasdfdju@gmail.com','e14e484e5627b17561aa89cc0d3452602d50be50e7f35404276556fd8362588b','100','','',NULL,'0000-00-00 00:00:00',1,0);
 INSERT INTO `users` VALUES (70,'Justin.Field.6','field,mhnju@gmail.com','b17aa0352fb489cb0a068453e75a9790db6b02f5b45d0d86241067155938b87d','100','','',NULL,'0000-00-00 00:00:00',1,0);
 INSERT INTO `users` VALUES (71,'Justin.Field.7','fieldju@gmail.com','14e1fa097ef5b88220aff83a345f311744bbe929b9ee407c1279d127e27280a5','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (72,'bob.dole','DoLe@DoLe.com','72b77bbcdcbdc8097cf5bdac9df38f59fd3206e7a49fc1117c3c8fd7e6c4b9a8','100','','',NULL,'0000-00-00 00:00:00',1,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1522,4 +1526,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-26  3:14:01
+-- Dump completed on 2012-05-27  3:14:01

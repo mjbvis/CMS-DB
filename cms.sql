@@ -510,7 +510,7 @@ LOCK TABLES `MenuItem` WRITE;
 INSERT INTO `MenuItem` VALUES (1,'Home','login',1);
 INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
 INSERT INTO `MenuItem` VALUES (3,'Admissions','',2);
-INSERT INTO `MenuItem` VALUES (4,'Personal Information','login',4);
+INSERT INTO `MenuItem` VALUES (4,'My Records','login',4);
 INSERT INTO `MenuItem` VALUES (5,'Admissions','',5);
 INSERT INTO `MenuItem` VALUES (6,'Record Managment','admin',6);
 INSERT INTO `MenuItem` VALUES (7,'Dev Tools','',7);
@@ -1047,7 +1047,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1068,9 +1068,10 @@ INSERT INTO `SubItem` VALUES (23,6,'Students','admin/manageStudents',1);
 INSERT INTO `SubItem` VALUES (24,6,'Tuition','admin/manageTuition',1);
 INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','admin/manageVolunteerLogs',1);
 INSERT INTO `SubItem` VALUES (26,6,'Prospects','admin/prospectManagement',1);
-INSERT INTO `SubItem` VALUES (27,4,'Manage My Students','parents/ManageMyStudents',1);
+INSERT INTO `SubItem` VALUES (27,4,'My Students','parents/manageMyStudents',1);
 INSERT INTO `SubItem` VALUES (28,3,'Step 4: Medical Forms','admissions/studentMedicalSelector',4);
 INSERT INTO `SubItem` VALUES (29,3,'Step 5: Admin Approval','admissions/adminApproval',6);
+INSERT INTO `SubItem` VALUES (30,4,'Volunteer Activity','parents/manageMyVolunteerActivity',2);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1446,7 +1447,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('a187dec8e64df94f15ad5540bd465823','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338234324,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 12:37:43\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('2e703c6803f6a155550dde17c8c3c770','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338235118,'');
+INSERT INTO `ci_sessions` VALUES ('e6f2f1ca364099000e27aadbaf7887a1','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338241958,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 14:51:34\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1507,10 +1509,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 12:40:14','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 12:40:22','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 14:52:44','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 14:51:50','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-28 12:58:02','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (66,'Justin.Field.3','fasdfieldju@gmail.com','537149dc5846e0bf7e33dd720a6982ab8ee83aae1d106bda335d25682a8076d0','100','','',NULL,'0000-00-00 00:00:00',1,0);
 INSERT INTO `users` VALUES (67,'Justin.Field.2','fiel234234234dju@gmail.com','ff20f1c7a942955094a611487bcb26a4fc867b6b8e7583bf3ff69825c58bb335','100','','',NULL,'0000-00-00 00:00:00',1,0);
@@ -1531,4 +1533,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-28 12:48:09
+-- Dump completed on 2012-05-28 14:54:14

@@ -1047,7 +1047,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1058,17 +1058,19 @@ LOCK TABLES `SubItem` WRITE;
 /*!40000 ALTER TABLE `SubItem` DISABLE KEYS */;
 INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/addParentUserAccount',1);
 INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
-INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
-INSERT INTO `SubItem` VALUES (4,3,'Register Student','admissions/registerStudentSelector',4);
+INSERT INTO `SubItem` VALUES (3,3,'Step 1: Waitlist Student','admissions/waitlistQuestionaire',1);
+INSERT INTO `SubItem` VALUES (4,3,'Step 2: Wait for Available Spot','admissions/stepTwoInfo',2);
 INSERT INTO `SubItem` VALUES (18,7,'Add Sub-Menu Item','admin/addSubItem',5);
 INSERT INTO `SubItem` VALUES (19,5,'Waitlist Managment','admin/waitlist',1);
-INSERT INTO `SubItem` VALUES (20,3,'Pending Medical Records','admissions/studentMedicalSelector',1);
+INSERT INTO `SubItem` VALUES (20,3,'Step 3: Registration Forms','admissions/registerStudentSelector',3);
 INSERT INTO `SubItem` VALUES (22,6,'User Accounts','admin/manageAccounts',1);
 INSERT INTO `SubItem` VALUES (23,6,'Students','admin/manageStudents',1);
 INSERT INTO `SubItem` VALUES (24,6,'Tuition','admin/manageTuition',1);
 INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','admin/manageVolunteerLogs',1);
 INSERT INTO `SubItem` VALUES (26,6,'Prospects','admin/prospectManagement',1);
 INSERT INTO `SubItem` VALUES (27,4,'Manage My Students','parents/ManageMyStudents',1);
+INSERT INTO `SubItem` VALUES (28,3,'Step 4: Medical Forms','admissions/studentMedicalSelector',4);
+INSERT INTO `SubItem` VALUES (29,3,'Step 5: Admin Approval','admissions/adminApproval',6);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,7 +1446,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('6c43ec8a4074bb3cfc325c9f270bffcd','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338231543,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 11:31:30\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('a187dec8e64df94f15ad5540bd465823','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338234324,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 12:37:43\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1505,8 +1507,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 11:32:23','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 11:37:21','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 12:40:14','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 12:40:22','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
@@ -1529,4 +1531,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-28 12:04:35
+-- Dump completed on 2012-05-28 12:48:09

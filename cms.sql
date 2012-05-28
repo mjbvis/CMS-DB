@@ -443,12 +443,12 @@ INSERT INTO `GroupMenuItem` VALUES (200,1);
 INSERT INTO `GroupMenuItem` VALUES (1,2);
 INSERT INTO `GroupMenuItem` VALUES (100,2);
 INSERT INTO `GroupMenuItem` VALUES (200,2);
-INSERT INTO `GroupMenuItem` VALUES (1,3);
 INSERT INTO `GroupMenuItem` VALUES (100,3);
-INSERT INTO `GroupMenuItem` VALUES (1,4);
 INSERT INTO `GroupMenuItem` VALUES (100,4);
 INSERT INTO `GroupMenuItem` VALUES (200,4);
 INSERT INTO `GroupMenuItem` VALUES (1,5);
+INSERT INTO `GroupMenuItem` VALUES (1,6);
+INSERT INTO `GroupMenuItem` VALUES (1,7);
 /*!40000 ALTER TABLE `GroupMenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -498,7 +498,7 @@ CREATE TABLE `MenuItem` (
   `URL` varchar(255) NOT NULL,
   `RankOrder` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MenuItemID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,6 +512,8 @@ INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
 INSERT INTO `MenuItem` VALUES (3,'Admissions','',2);
 INSERT INTO `MenuItem` VALUES (4,'Personal Information','login',4);
 INSERT INTO `MenuItem` VALUES (5,'Administration','',5);
+INSERT INTO `MenuItem` VALUES (6,'Record Managment','admin',6);
+INSERT INTO `MenuItem` VALUES (7,'Dev Tools','',7);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -725,7 +727,7 @@ CREATE TABLE `ProspectInterview` (
   PRIMARY KEY (`ProspectID`),
   KEY `FK_ProspectInterview_Classroom` (`ClassID`),
   CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -734,6 +736,7 @@ CREATE TABLE `ProspectInterview` (
 
 LOCK TABLES `ProspectInterview` WRITE;
 /*!40000 ALTER TABLE `ProspectInterview` DISABLE KEYS */;
+INSERT INTO `ProspectInterview` VALUES (8,'Justin Field, Tamara Larsen','Billy Field, 5','2012-05-25 00:00:00','2012-05-25 00:00:00','2012-05-25 00:00:00','541-829-zxcv','tammeglarsen@gmail.com','yes','yes','medium','average','medium',1,0,0,0,0,1,0,0,'',0,'','Corvallis, Oregon','Corvallis','2012-05-25 00:00:00',2,1,1,'2012-05-25 00:00:00','2012-05-25 00:00:00');
 /*!40000 ALTER TABLE `ProspectInterview` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -924,8 +927,8 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-26 00:07:12');
-INSERT INTO `Student` VALUES (17,62,2,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,1,10,'2012-05-18 13:30:07');
+INSERT INTO `Student` VALUES (16,63,1,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-28 00:37:15');
+INSERT INTO `Student` VALUES (17,62,3,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,1,10,'2012-05-27 10:10:07');
 INSERT INTO `Student` VALUES (18,62,NULL,4,'Roy','Lee','Trueman','M','111 NW 26th St Apt 1','Corvallis, OR','1989-10-14',NULL,'541-979-0245',112,113,114,0,12,'2012-05-25 00:48:13');
 INSERT INTO `Student` VALUES (19,62,NULL,4,'Walter','','Troglodyte','M','cave','cave','2001-01-01',NULL,'555-555-5555',115,116,117,0,16,'2012-05-25 02:58:37');
 INSERT INTO `Student` VALUES (20,64,NULL,1,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-26 00:09:41');
@@ -1043,7 +1046,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,11 +1059,13 @@ INSERT INTO `SubItem` VALUES (1,5,'Create New Parent Account','admin/addParentUs
 INSERT INTO `SubItem` VALUES (2,5,'Interview & Observation','admin/interviewObservationForm',2);
 INSERT INTO `SubItem` VALUES (3,3,'Waitlist Student','admissions/waitlistQuestionaire',3);
 INSERT INTO `SubItem` VALUES (4,3,'Register Student','admissions/registerStudentSelector',4);
-INSERT INTO `SubItem` VALUES (18,5,'Add Sub-Menu Item','admin/addSubItem',5);
+INSERT INTO `SubItem` VALUES (18,7,'Add Sub-Menu Item','admin/addSubItem',5);
 INSERT INTO `SubItem` VALUES (19,5,'Waitlist Managment','admin/waitlist',1);
 INSERT INTO `SubItem` VALUES (20,3,'Pending Medical Records','admissions/studentMedicalSelector',1);
-INSERT INTO `SubItem` VALUES (22,5,'Manage User Accounts','admin/manageAccounts',1);
-INSERT INTO `SubItem` VALUES (23,5,'Manage Students','admin/manageStudents',1);
+INSERT INTO `SubItem` VALUES (22,6,'User Accounts','admin/manageAccounts',1);
+INSERT INTO `SubItem` VALUES (23,6,'Students','admin/manageStudents',1);
+INSERT INTO `SubItem` VALUES (24,6,'Tuition','admin/manageTuition',1);
+INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','admin/manageVolunteerLogs',1);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1149,10 +1154,11 @@ CREATE TABLE `VolunteerLogEntry` (
   `Hours` double NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
   `SubmissionDTTM` datetime DEFAULT NULL,
+  `VolunteeredDTTM` date DEFAULT NULL,
   PRIMARY KEY (`EntryID`),
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
   CONSTRAINT `VolunteerLogEntry_ibfk_3` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1161,14 +1167,8 @@ CREATE TABLE `VolunteerLogEntry` (
 
 LOCK TABLES `VolunteerLogEntry` WRITE;
 /*!40000 ALTER TABLE `VolunteerLogEntry` DISABLE KEYS */;
-INSERT INTO `VolunteerLogEntry` VALUES (52,62,6,'substitute teaching','2012-05-18 09:05:04');
-INSERT INTO `VolunteerLogEntry` VALUES (53,62,2.5,'Janitorial work after school','2012-05-18 09:10:02');
-INSERT INTO `VolunteerLogEntry` VALUES (54,63,1,'website maintanence','2012-05-18 09:20:44');
-INSERT INTO `VolunteerLogEntry` VALUES (55,63,1.2,'more website maintanence','2012-05-18 09:21:00');
-INSERT INTO `VolunteerLogEntry` VALUES (56,63,6,'Teacher\'s assistant for the day','2012-05-18 09:21:16');
-INSERT INTO `VolunteerLogEntry` VALUES (57,62,0.5,'drove the bus','2012-05-18 10:11:53');
-INSERT INTO `VolunteerLogEntry` VALUES (58,63,4,'janitorial','2012-05-18 11:09:55');
-INSERT INTO `VolunteerLogEntry` VALUES (59,63,4.2,'substitute teaching','2012-05-18 13:33:00');
+INSERT INTO `VolunteerLogEntry` VALUES (60,24,7,'swimming','2012-05-28 01:05:06','2012-05-02');
+INSERT INTO `VolunteerLogEntry` VALUES (61,24,7,'played with puppies','2012-05-28 01:07:12','2012-05-17');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1440,8 +1440,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('5faf94001617cc5611d08b9c84f5687d','76.115.26.229','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338053489,'a:11:{s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-26 10:18:22\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('efadba3c2fd6bf5545d1edc600f24234','24.21.105.29','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338073545,'');
+INSERT INTO `ci_sessions` VALUES ('25d8cb51cb6b2a8df2c95033c66edc59','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338193174,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1502,8 +1501,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-26 15:20:05','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-26 10:32:27','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 01:09:11','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 01:18:57','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
@@ -1526,4 +1525,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-27  3:14:01
+-- Dump completed on 2012-05-28  3:14:01

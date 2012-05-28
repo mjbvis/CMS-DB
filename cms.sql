@@ -511,7 +511,7 @@ INSERT INTO `MenuItem` VALUES (1,'Home','login',1);
 INSERT INTO `MenuItem` VALUES (2,'Logout','logout',100);
 INSERT INTO `MenuItem` VALUES (3,'Admissions','',2);
 INSERT INTO `MenuItem` VALUES (4,'Personal Information','login',4);
-INSERT INTO `MenuItem` VALUES (5,'Administration','',5);
+INSERT INTO `MenuItem` VALUES (5,'Admissions','',5);
 INSERT INTO `MenuItem` VALUES (6,'Record Managment','admin',6);
 INSERT INTO `MenuItem` VALUES (7,'Dev Tools','',7);
 /*!40000 ALTER TABLE `MenuItem` ENABLE KEYS */;
@@ -727,7 +727,7 @@ CREATE TABLE `ProspectInterview` (
   PRIMARY KEY (`ProspectID`),
   KEY `FK_ProspectInterview_Classroom` (`ClassID`),
   CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -737,6 +737,7 @@ CREATE TABLE `ProspectInterview` (
 LOCK TABLES `ProspectInterview` WRITE;
 /*!40000 ALTER TABLE `ProspectInterview` DISABLE KEYS */;
 INSERT INTO `ProspectInterview` VALUES (8,'Justin Field, Tamara Larsen','Billy Field, 5','2012-05-25 00:00:00','2012-05-25 00:00:00','2012-05-25 00:00:00','541-829-zxcv','tammeglarsen@gmail.com','yes','yes','medium','average','medium',1,0,0,0,0,1,0,0,'',0,'','Corvallis, Oregon','Corvallis','2012-05-25 00:00:00',2,1,1,'2012-05-25 00:00:00','2012-05-25 00:00:00');
+INSERT INTO `ProspectInterview` VALUES (9,'bob dole, billy dole','broke dole','2012-05-14 00:00:00','2012-05-14 00:00:00','2012-05-14 00:00:00','555-555-5555','asdf@asdf.com','555-555-5555','555-555-5555','high','high','high',0,0,0,1,1,0,0,0,'',0,'','Corvallis, Oregon','OSU','2012-05-14 00:00:00',2,1,1,'2012-05-14 00:00:00','2012-05-14 00:00:00');
 /*!40000 ALTER TABLE `ProspectInterview` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1046,7 +1047,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1066,6 +1067,8 @@ INSERT INTO `SubItem` VALUES (22,6,'User Accounts','admin/manageAccounts',1);
 INSERT INTO `SubItem` VALUES (23,6,'Students','admin/manageStudents',1);
 INSERT INTO `SubItem` VALUES (24,6,'Tuition','admin/manageTuition',1);
 INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','admin/manageVolunteerLogs',1);
+INSERT INTO `SubItem` VALUES (26,6,'Prospects','admin/prospectManagement',1);
+INSERT INTO `SubItem` VALUES (27,4,'Manage My Students','parents/ManageMyStudents',1);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1153,12 +1156,12 @@ CREATE TABLE `VolunteerLogEntry` (
   `UserID` int(11) NOT NULL,
   `Hours` double NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `SubmissionDTTM` datetime DEFAULT NULL,
+  `SubmissionDTTM` date DEFAULT NULL,
   `VolunteeredDTTM` date DEFAULT NULL,
   PRIMARY KEY (`EntryID`),
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
   CONSTRAINT `VolunteerLogEntry_ibfk_3` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1167,8 +1170,9 @@ CREATE TABLE `VolunteerLogEntry` (
 
 LOCK TABLES `VolunteerLogEntry` WRITE;
 /*!40000 ALTER TABLE `VolunteerLogEntry` DISABLE KEYS */;
-INSERT INTO `VolunteerLogEntry` VALUES (60,24,7,'swimming','2012-05-28 01:05:06','2012-05-02');
-INSERT INTO `VolunteerLogEntry` VALUES (61,24,7,'played with puppies','2012-05-28 01:07:12','2012-05-17');
+INSERT INTO `VolunteerLogEntry` VALUES (60,24,7,'swimming','2012-05-28','2012-05-02');
+INSERT INTO `VolunteerLogEntry` VALUES (61,24,7,'played with puppies','2012-05-28','2012-05-17');
+INSERT INTO `VolunteerLogEntry` VALUES (62,24,1,'test','2012-05-28','2012-05-28');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1440,7 +1444,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('25d8cb51cb6b2a8df2c95033c66edc59','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338193174,'');
+INSERT INTO `ci_sessions` VALUES ('6c43ec8a4074bb3cfc325c9f270bffcd','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338231543,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"24\";s:8:\"username\";s:12:\"justin.field\";s:5:\"email\";s:21:\"fieldju@gmailsdsd.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 11:31:30\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1501,8 +1505,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 01:09:11','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 01:18:57','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 11:32:23','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 11:37:21','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 21:43:42','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
@@ -1525,4 +1529,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-28  3:14:01
+-- Dump completed on 2012-05-28 12:04:35

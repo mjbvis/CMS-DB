@@ -63,7 +63,7 @@ CREATE TABLE `AcademicLevel` (
 
 LOCK TABLES `AcademicLevel` WRITE;
 /*!40000 ALTER TABLE `AcademicLevel` DISABLE KEYS */;
-INSERT INTO `AcademicLevel` VALUES (1,'Toddler House','children 18 months to 3 years',1,'2012-04-18 11:14:56');
+INSERT INTO `AcademicLevel` VALUES (1,'Toddler','children 18 months to 3 years',1,'2012-04-18 11:14:56');
 INSERT INTO `AcademicLevel` VALUES (2,'Primary','children 3 years to 6 years',1,'2012-04-18 11:14:56');
 INSERT INTO `AcademicLevel` VALUES (3,'Elementary','children 6 years to 12 years',1,'2012-04-18 11:14:56');
 /*!40000 ALTER TABLE `AcademicLevel` ENABLE KEYS */;
@@ -213,7 +213,7 @@ CREATE TABLE `Classroom` (
   PRIMARY KEY (`ClassID`),
   KEY `FK_Classroom_AcademicLevel` (`AcademicLevelID`),
   CONSTRAINT `FK_Classroom_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,10 +222,11 @@ CREATE TABLE `Classroom` (
 
 LOCK TABLES `Classroom` WRITE;
 /*!40000 ALTER TABLE `Classroom` DISABLE KEYS */;
-INSERT INTO `Classroom` VALUES (1,'Toddler House',2,1);
-INSERT INTO `Classroom` VALUES (2,'Primary',3,1);
-INSERT INTO `Classroom` VALUES (3,'Elementary',3,1);
-INSERT INTO `Classroom` VALUES (4,'Test Class Disabled',1,0);
+INSERT INTO `Classroom` VALUES (1,'Toddler House',1,1);
+INSERT INTO `Classroom` VALUES (2,'Bamboo',2,1);
+INSERT INTO `Classroom` VALUES (3,'Maple',2,1);
+INSERT INTO `Classroom` VALUES (4,'Willow',2,1);
+INSERT INTO `Classroom` VALUES (5,'Ginkgo',3,1);
 /*!40000 ALTER TABLE `Classroom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -631,14 +632,12 @@ DROP TABLE IF EXISTS `Program`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Program` (
   `ProgramID` int(11) NOT NULL AUTO_INCREMENT,
-  `ProgramGroupID` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
   `Days` varchar(255) NOT NULL,
   `StartTime` varchar(255) NOT NULL,
   `EndTime` varchar(255) NOT NULL,
   `Enabled` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ProgramID`),
-  KEY `FK_Program_ProgramGroup` (`ProgramGroupID`),
-  CONSTRAINT `FK_Program_ProgramGroup` FOREIGN KEY (`ProgramGroupID`) REFERENCES `ProgramGroup` (`ProgramGroupID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`ProgramID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -648,40 +647,11 @@ CREATE TABLE `Program` (
 
 LOCK TABLES `Program` WRITE;
 /*!40000 ALTER TABLE `Program` DISABLE KEYS */;
-INSERT INTO `Program` VALUES (1,1,'3 day (Monday - Wednesday)','8:30 AM','11:30 AM',0);
-INSERT INTO `Program` VALUES (2,1,'5 day (Monday - Friday)','8:30 AM','11:30 AM',1);
-INSERT INTO `Program` VALUES (3,2,'3 day (Monday - Wednesday)','8:30 AM','2:30 PM',0);
-INSERT INTO `Program` VALUES (4,2,'5 day (Monday - Friday)','8:30 AM','3:00 PM',1);
+INSERT INTO `Program` VALUES (1,'Mornings','3 day (Monday - Wednesday)','8:30 AM','11:30 AM',0);
+INSERT INTO `Program` VALUES (2,'Mornings','5 day (Monday - Friday)','8:30 AM','11:30 AM',1);
+INSERT INTO `Program` VALUES (3,'Full-Day','3 day (Monday - Wednesday)','8:30 AM','2:30 PM',0);
+INSERT INTO `Program` VALUES (4,'Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',1);
 /*!40000 ALTER TABLE `Program` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ProgramGroup`
---
-
-DROP TABLE IF EXISTS `ProgramGroup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ProgramGroup` (
-  `ProgramGroupID` int(11) NOT NULL AUTO_INCREMENT,
-  `GroupTitle` varchar(255) NOT NULL,
-  `Enabled` int(1) NOT NULL,
-  `RankOrder` int(11) NOT NULL,
-  PRIMARY KEY (`ProgramGroupID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ProgramGroup`
---
-
-LOCK TABLES `ProgramGroup` WRITE;
-/*!40000 ALTER TABLE `ProgramGroup` DISABLE KEYS */;
-INSERT INTO `ProgramGroup` VALUES (1,'Primary Mornings',1,1);
-INSERT INTO `ProgramGroup` VALUES (2,'Full-Day Primary',1,5);
-INSERT INTO `ProgramGroup` VALUES (3,'Extended Day',0,15);
-INSERT INTO `ProgramGroup` VALUES (4,'Elementary',1,10);
-/*!40000 ALTER TABLE `ProgramGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -727,7 +697,7 @@ CREATE TABLE `ProspectInterview` (
   PRIMARY KEY (`ProspectID`),
   KEY `FK_ProspectInterview_Classroom` (`ClassID`),
   CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -736,8 +706,7 @@ CREATE TABLE `ProspectInterview` (
 
 LOCK TABLES `ProspectInterview` WRITE;
 /*!40000 ALTER TABLE `ProspectInterview` DISABLE KEYS */;
-INSERT INTO `ProspectInterview` VALUES (8,'Justin Field, Tamara Larsen','Billy Field, 5','2012-05-25 00:00:00','2012-05-25 00:00:00','2012-05-25 00:00:00','541-829-zxcv','tammeglarsen@gmail.com','yes','yes','medium','average','medium',1,0,0,0,0,1,0,0,'',0,'','Corvallis, Oregon','Corvallis','2012-05-25 00:00:00',2,1,1,'2012-05-25 00:00:00','2012-05-25 00:00:00');
-INSERT INTO `ProspectInterview` VALUES (9,'bob dole, billy dole','broke dole','2012-05-14 00:00:00','2012-05-14 00:00:00','2012-05-14 00:00:00','555-555-5555','asdf@asdf.com','555-555-5555','555-555-5555','high','high','high',0,0,0,1,1,0,0,0,'',0,'','Corvallis, Oregon','OSU','2012-05-14 00:00:00',2,1,1,'2012-05-14 00:00:00','2012-05-14 00:00:00');
+INSERT INTO `ProspectInterview` VALUES (10,'Justin Field, Tamara Field','Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5','2012-05-26 00:00:00','2012-05-01 00:00:00','2012-05-26 00:00:00','541-829-0052','fieldju@gmail.com','Ugily','Lame','medium','average','medium',1,0,0,0,0,1,0,0,NULL,0,NULL,NULL,NULL,'2012-05-26 00:00:00',3,1,1,'2012-05-26 00:00:00','2012-05-27 00:00:00');
 /*!40000 ALTER TABLE `ProspectInterview` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -928,8 +897,8 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (16,63,1,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-28 00:37:15');
-INSERT INTO `Student` VALUES (17,62,3,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,1,10,'2012-05-27 10:10:07');
+INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-28 19:54:16');
+INSERT INTO `Student` VALUES (17,62,NULL,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,0,10,'2012-05-28 19:54:21');
 INSERT INTO `Student` VALUES (18,62,NULL,4,'Roy','Lee','Trueman','M','111 NW 26th St Apt 1','Corvallis, OR','1989-10-14',NULL,'541-979-0245',112,113,114,0,12,'2012-05-25 00:48:13');
 INSERT INTO `Student` VALUES (19,62,NULL,4,'Walter','','Troglodyte','M','cave','cave','2001-01-01',NULL,'555-555-5555',115,116,117,0,16,'2012-05-25 02:58:37');
 INSERT INTO `Student` VALUES (20,64,NULL,1,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-26 00:09:41');
@@ -1447,8 +1416,10 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('2e703c6803f6a155550dde17c8c3c770','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338235118,'');
-INSERT INTO `ci_sessions` VALUES ('e6f2f1ca364099000e27aadbaf7887a1','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338241958,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 14:51:34\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('4ef2d5cf65f721637a4537b15b5c5b69','128.193.37.77','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22',1338260911,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 19:32:18\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('5b7f43f651575f439d2b8c2a59c83c72','24.21.104.139','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0',1338265305,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 19:50:06\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('c6369a76643c100b80bd98a527496a9f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338266772,'');
+INSERT INTO `ci_sessions` VALUES ('d838204e1d65ddf36443ac7a5ea14f87','128.193.37.74','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1338263820,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1509,10 +1480,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 14:52:44','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 14:51:50','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 21:23:52','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 19:32:53','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-28 12:58:02','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-28 21:23:53','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (66,'Justin.Field.3','fasdfieldju@gmail.com','537149dc5846e0bf7e33dd720a6982ab8ee83aae1d106bda335d25682a8076d0','100','','',NULL,'0000-00-00 00:00:00',1,0);
 INSERT INTO `users` VALUES (67,'Justin.Field.2','fiel234234234dju@gmail.com','ff20f1c7a942955094a611487bcb26a4fc867b6b8e7583bf3ff69825c58bb335','100','','',NULL,'0000-00-00 00:00:00',1,0);
@@ -1533,4 +1504,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-28 14:54:14
+-- Dump completed on 2012-05-29  3:14:01

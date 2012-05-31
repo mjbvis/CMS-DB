@@ -27,7 +27,7 @@ CREATE TABLE `AMICertification` (
   `CertifiedFrom` varchar(255) NOT NULL,
   `CertificationDTTM` datetime NOT NULL,
   PRIMARY KEY (`StaffID`),
-  CONSTRAINT `FK_AMICertification_Staff` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `AMICertification_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,7 +52,6 @@ CREATE TABLE `AcademicLevel` (
   `AcademicLevelName` varchar(255) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
   `Enabled` int(1) NOT NULL,
-  `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`AcademicLevelID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,9 +62,9 @@ CREATE TABLE `AcademicLevel` (
 
 LOCK TABLES `AcademicLevel` WRITE;
 /*!40000 ALTER TABLE `AcademicLevel` DISABLE KEYS */;
-INSERT INTO `AcademicLevel` VALUES (1,'Toddler','children 18 months to 3 years',1,'2012-04-18 11:14:56');
-INSERT INTO `AcademicLevel` VALUES (2,'Primary','children 3 years to 6 years',1,'2012-04-18 11:14:56');
-INSERT INTO `AcademicLevel` VALUES (3,'Elementary','children 6 years to 12 years',1,'2012-04-18 11:14:56');
+INSERT INTO `AcademicLevel` VALUES (1,'Toddler','children 18 months to 3 years',1);
+INSERT INTO `AcademicLevel` VALUES (2,'Primary','children 3 years to 6 years',1);
+INSERT INTO `AcademicLevel` VALUES (3,'Elementary','children 6 years to 12 years',1);
 /*!40000 ALTER TABLE `AcademicLevel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,9 +96,9 @@ CREATE TABLE `Accident` (
   KEY `FK_Accident_Student` (`StudentID`),
   KEY `FK_Accident_Parent` (`AckParentID`),
   KEY `FK_Accident_Staff` (`AckAdminID`),
+  CONSTRAINT `Accident_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_Accident_Parent` FOREIGN KEY (`AckParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Accident_Staff` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Accident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Accident_Staff` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,7 +134,7 @@ CREATE TABLE `AdmissionsForm` (
   `ReferredBy` varchar(255) NOT NULL,
   `notes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
-  CONSTRAINT `FK_AdmissionsQuestionaire_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `AdmissionsForm_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,10 +145,8 @@ CREATE TABLE `AdmissionsForm` (
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
 INSERT INTO `AdmissionsForm` VALUES (16,'nope. this would be like his kindergarten','just the neighbor kids','hugs','yep. he&#39;s ready for all that','sometimes if he&#39;s cranky','in the summer time','Tucan : Fred','bugs!','George','6','Other','aliens','nope. he&#39;s a good kid');
-INSERT INTO `AdmissionsForm` VALUES (17,'yes','some','hugs','yes','no','sure','Albatross : James','James the albatross','bob','3','Parent','Mark Bowser','not really');
-INSERT INTO `AdmissionsForm` VALUES (18,'yes','yes','yes','yes','yes','yes',NULL,'yes','bob','7','Parent','crazy!','no');
-INSERT INTO `AdmissionsForm` VALUES (19,'nope','hunting and gathering','cottage cheese','poopin','yes. nocturnal','not in the sunlight.','Tucan : Brutus','taxedermy','blah','400','Other','hi','He&#39;s a troglodyte');
 INSERT INTO `AdmissionsForm` VALUES (20,'lkj','lkj','lk','lk','lk','lkj',NULL,';lkj','lkj','2','Internet','','klj');
+INSERT INTO `AdmissionsForm` VALUES (22,'no','no','no','no','no','no',NULL,'smashingfasdf','non','4','Poster','','<p>he\'s a cave man asdf</p>');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,10 +179,9 @@ CREATE TABLE `Alumni` (
   `IsDonor` int(1) DEFAULT NULL,
   `DonorID` int(11) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
-  KEY `FK_Alumni_Student` (`StudentID`),
   KEY `FK_Alumni_AcademicLevel` (`AcademicLevelID`),
-  CONSTRAINT `FK_Alumni_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Alumni_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `Alumni_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Alumni_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,6 +192,35 @@ CREATE TABLE `Alumni` (
 LOCK TABLES `Alumni` WRITE;
 /*!40000 ALTER TABLE `Alumni` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Alumni` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `BinaryLookup`
+--
+
+DROP TABLE IF EXISTS `BinaryLookup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BinaryLookup` (
+  `ID` int(11) NOT NULL,
+  `TrueFalse` varchar(255) NOT NULL,
+  `YesNo` varchar(255) NOT NULL,
+  `ActiveInactive` varchar(255) NOT NULL,
+  `EnabledDisabled` varchar(255) NOT NULL,
+  `EnrolledPreenrolled` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `BinaryLookup`
+--
+
+LOCK TABLES `BinaryLookup` WRITE;
+/*!40000 ALTER TABLE `BinaryLookup` DISABLE KEYS */;
+INSERT INTO `BinaryLookup` VALUES (0,'False','No','Inactive','Disabled','Pre-enrolled');
+INSERT INTO `BinaryLookup` VALUES (1,'True','Yes','Active','Enabled','Enrolled');
+/*!40000 ALTER TABLE `BinaryLookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -242,8 +267,8 @@ CREATE TABLE `ClassroomAssistant` (
   `StaffID` int(11) NOT NULL,
   PRIMARY KEY (`ClassID`,`StaffID`),
   KEY `FK_ClassroomAssistant_Staff` (`StaffID`),
-  CONSTRAINT `FK_ClassroomAssistant_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ClassroomAssistant_Staff` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ClassroomAssistant_ibfk_4` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `ClassroomAssistant_ibfk_3` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -268,8 +293,8 @@ CREATE TABLE `ClassroomTeacher` (
   `StaffID` int(11) NOT NULL,
   PRIMARY KEY (`ClassID`,`StaffID`),
   KEY `FK_ClassroomStaff_Staff` (`StaffID`),
-  CONSTRAINT `FK_ClassroomStaff_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ClassroomStaff_Staff` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ClassroomTeacher_ibfk_4` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `ClassroomTeacher_ibfk_3` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -291,7 +316,7 @@ DROP TABLE IF EXISTS `Donation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Donation` (
   `DonationID` int(11) NOT NULL AUTO_INCREMENT,
-  `DonorID` int(11) NOT NULL,
+  `DonorID` int(11) DEFAULT NULL,
   `DonationTypeID` int(11) NOT NULL,
   `Amount` int(11) DEFAULT NULL,
   `Allocation` varchar(255) DEFAULT NULL,
@@ -301,8 +326,8 @@ CREATE TABLE `Donation` (
   PRIMARY KEY (`DonationID`),
   KEY `FK_Donation_DonationTypeLookup` (`DonationTypeID`),
   KEY `FK_Donation_Donor` (`DonorID`),
-  CONSTRAINT `FK_Donation_DonationTypeLookup` FOREIGN KEY (`DonationTypeID`) REFERENCES `DonationTypeLookup` (`DonationTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Donation_Donor` FOREIGN KEY (`DonorID`) REFERENCES `Donor` (`DonorID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `Donation_ibfk_1` FOREIGN KEY (`DonorID`) REFERENCES `Donor` (`DonorID`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Donation_DonationTypeLookup` FOREIGN KEY (`DonationTypeID`) REFERENCES `DonationTypeLookup` (`DonationTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -362,7 +387,7 @@ CREATE TABLE `Donor` (
   `Email` int(11) NOT NULL,
   PRIMARY KEY (`DonorID`),
   KEY `FK_Donor_UserTable` (`UserID`),
-  CONSTRAINT `FK_Donor_UserTable` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `Donor_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -388,7 +413,7 @@ CREATE TABLE `EmergencyContact` (
   `ECPhone` varchar(255) NOT NULL,
   `ECRelationship` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -412,6 +437,12 @@ INSERT INTO `EmergencyContact` VALUES (117,'other','555-555-5555','other');
 INSERT INTO `EmergencyContact` VALUES (118,'Abe Lincoln','555-555-5555','Uncle');
 INSERT INTO `EmergencyContact` VALUES (119,'Ralph Nader','555-555-5555','Father');
 INSERT INTO `EmergencyContact` VALUES (120,'Yoda','555-555-5555','mentor');
+INSERT INTO `EmergencyContact` VALUES (121,'ads','asdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (122,'asd','asdf','asdf');
+INSERT INTO `EmergencyContact` VALUES (123,'asdfadf','sdf','sdf');
+INSERT INTO `EmergencyContact` VALUES (124,'bob','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (125,'sue','555-555-5555','Aunt');
+INSERT INTO `EmergencyContact` VALUES (126,'bernie','555-555-5555','relative');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -427,8 +458,8 @@ CREATE TABLE `GroupMenuItem` (
   `MenuItemID` int(11) NOT NULL,
   PRIMARY KEY (`GroupID`,`MenuItemID`),
   KEY `FK_GroupMenuItem_MenuItem` (`MenuItemID`),
-  CONSTRAINT `FK_GroupMenuItem_groups` FOREIGN KEY (`GroupID`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_GroupMenuItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `GroupMenuItem_ibfk_4` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `GroupMenuItem_ibfk_3` FOREIGN KEY (`GroupID`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -440,13 +471,10 @@ LOCK TABLES `GroupMenuItem` WRITE;
 /*!40000 ALTER TABLE `GroupMenuItem` DISABLE KEYS */;
 INSERT INTO `GroupMenuItem` VALUES (1,1);
 INSERT INTO `GroupMenuItem` VALUES (100,1);
-INSERT INTO `GroupMenuItem` VALUES (200,1);
 INSERT INTO `GroupMenuItem` VALUES (1,2);
 INSERT INTO `GroupMenuItem` VALUES (100,2);
-INSERT INTO `GroupMenuItem` VALUES (200,2);
 INSERT INTO `GroupMenuItem` VALUES (100,3);
 INSERT INTO `GroupMenuItem` VALUES (100,4);
-INSERT INTO `GroupMenuItem` VALUES (200,4);
 INSERT INTO `GroupMenuItem` VALUES (1,5);
 INSERT INTO `GroupMenuItem` VALUES (1,6);
 INSERT INTO `GroupMenuItem` VALUES (1,7);
@@ -472,8 +500,8 @@ CREATE TABLE `Incident` (
   PRIMARY KEY (`IncidentID`),
   KEY `FK_Incident_Parent` (`AckParentID`),
   KEY `FK_Incident_Staff` (`AckAdminID`),
-  CONSTRAINT `FK_Incident_Parent` FOREIGN KEY (`AckParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Incident_Staff` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `Incident_ibfk_4` FOREIGN KEY (`AckAdminID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Incident_ibfk_3` FOREIGN KEY (`AckParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -568,9 +596,9 @@ CREATE TABLE `Parent` (
   PRIMARY KEY (`ParentID`),
   KEY `FK_Parent_users` (`UserID`),
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
-  CONSTRAINT `FK_Parent_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Parent_VolunteerSkillSheet` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+  CONSTRAINT `Parent_ibfk_2` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `Parent_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -579,15 +607,8 @@ CREATE TABLE `Parent` (
 
 LOCK TABLES `Parent` WRITE;
 /*!40000 ALTER TABLE `Parent` DISABLE KEYS */;
-INSERT INTO `Parent` VALUES (41,62,'Mark',NULL,'Bowser','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-05-18 08:53:18');
-INSERT INTO `Parent` VALUES (42,63,'Mark',NULL,'Bowser','markbowser9@hotmail.com',NULL,NULL,0,NULL,'2012-05-18 09:14:11');
 INSERT INTO `Parent` VALUES (43,64,'Mark',NULL,'Bowser','adsfadafd@asdafdsafsfds.com',NULL,NULL,0,NULL,'2012-05-18 09:44:01');
-INSERT INTO `Parent` VALUES (44,66,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:27:20');
-INSERT INTO `Parent` VALUES (45,67,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:29:26');
-INSERT INTO `Parent` VALUES (46,68,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:31:18');
-INSERT INTO `Parent` VALUES (47,69,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 15:39:20');
-INSERT INTO `Parent` VALUES (48,71,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-05-25 16:45:37');
-INSERT INTO `Parent` VALUES (49,72,'BoB',NULL,'DoLe','DoLe@DoLe.com',NULL,NULL,0,NULL,'2012-05-26 10:14:08');
+INSERT INTO `Parent` VALUES (50,73,'Mark',NULL,'Bowser','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-05-30 23:02:26');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -610,7 +631,7 @@ CREATE TABLE `ParentContactInfo` (
   `WorkPhone` varchar(255) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ParentID`),
-  CONSTRAINT `FK_ParentContactInfo_Parent` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ParentContactInfo_ibfk_1` FOREIGN KEY (`ParentID`) REFERENCES `Parent` (`ParentID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -632,13 +653,20 @@ DROP TABLE IF EXISTS `Program`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Program` (
   `ProgramID` int(11) NOT NULL AUTO_INCREMENT,
+  `AcademicYear` int(11) NOT NULL,
+  `AcademicLevelID` int(11) NOT NULL,
   `Title` varchar(255) NOT NULL,
   `Days` varchar(255) NOT NULL,
   `StartTime` varchar(255) NOT NULL,
   `EndTime` varchar(255) NOT NULL,
+  `Tuition` int(11) NOT NULL,
   `Enabled` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ProgramID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ProgramID`),
+  KEY `FK_Program_AcademicLevel` (`AcademicLevelID`),
+  KEY `FK_Program_SchoolInformation` (`AcademicYear`),
+  CONSTRAINT `Program_ibfk_1` FOREIGN KEY (`AcademicYear`) REFERENCES `SchoolInformation` (`AcademicYear`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `Program_ibfk_2` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -647,10 +675,13 @@ CREATE TABLE `Program` (
 
 LOCK TABLES `Program` WRITE;
 /*!40000 ALTER TABLE `Program` DISABLE KEYS */;
-INSERT INTO `Program` VALUES (1,'Mornings','3 day (Monday - Wednesday)','8:30 AM','11:30 AM',0);
-INSERT INTO `Program` VALUES (2,'Mornings','5 day (Monday - Friday)','8:30 AM','11:30 AM',1);
-INSERT INTO `Program` VALUES (3,'Full-Day','3 day (Monday - Wednesday)','8:30 AM','2:30 PM',0);
-INSERT INTO `Program` VALUES (4,'Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',1);
+INSERT INTO `Program` VALUES (1,2012,2,'Primary Mornings','3 day (Monday - Wednesday)','8:30 AM','11:30 AM',5250,0);
+INSERT INTO `Program` VALUES (2,2012,2,'Primary Mornings','5 day (Monday - Friday)','8:30 AM','11:30 AM',5250,1);
+INSERT INTO `Program` VALUES (3,2012,2,'Primary Full-Day','3 day (Monday - Wednesday)','8:30 AM','2:30 PM',7450,0);
+INSERT INTO `Program` VALUES (4,2012,2,'Primary Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',7450,1);
+INSERT INTO `Program` VALUES (5,2012,3,'Elementary Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',7950,1);
+INSERT INTO `Program` VALUES (6,2012,1,'Toddler Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',3250,1);
+INSERT INTO `Program` VALUES (7,2013,1,'Toddler Full-Day','5 day (Monday - Friday)','8:30 AM','3:00 PM',3500,1);
 /*!40000 ALTER TABLE `Program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -665,9 +696,9 @@ CREATE TABLE `ProspectInterview` (
   `ProspectID` int(11) NOT NULL AUTO_INCREMENT,
   `ParentNames` varchar(255) NOT NULL,
   `ChildrenNamesAges` varchar(255) NOT NULL,
-  `FirstContactedDTTM` datetime NOT NULL,
-  `visitDTTM` datetime NOT NULL,
-  `InterviewDTTM` datetime NOT NULL,
+  `FirstContactedDTTM` date NOT NULL,
+  `VisitDTTM` date NOT NULL,
+  `InterviewDTTM` date NOT NULL,
   `PhoneNumber` varchar(255) NOT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `MontessoriImpressions` varchar(255) NOT NULL,
@@ -688,16 +719,16 @@ CREATE TABLE `ProspectInterview` (
   `OtherRefNote` varchar(255) DEFAULT NULL,
   `NewCityState` varchar(255) DEFAULT NULL,
   `NewSchool` varchar(255) DEFAULT NULL,
-  `ObservationDTTM` datetime DEFAULT NULL,
+  `ObservationDTTM` date DEFAULT NULL,
   `ClassID` int(11) DEFAULT NULL,
   `AttendedObservation` int(1) DEFAULT NULL,
   `OnTimeToObservation` int(1) DEFAULT NULL,
-  `AppReceivedDTTM` datetime DEFAULT NULL,
-  `FeeReceivedDTTM` datetime DEFAULT NULL,
+  `AppReceivedDTTM` date DEFAULT NULL,
+  `FeeReceivedDTTM` date DEFAULT NULL,
   PRIMARY KEY (`ProspectID`),
   KEY `FK_ProspectInterview_Classroom` (`ClassID`),
   CONSTRAINT `FK_ProspectInterview_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -706,7 +737,7 @@ CREATE TABLE `ProspectInterview` (
 
 LOCK TABLES `ProspectInterview` WRITE;
 /*!40000 ALTER TABLE `ProspectInterview` DISABLE KEYS */;
-INSERT INTO `ProspectInterview` VALUES (10,'Justin Field, Tamara Field','Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5,Billy Field 8, Sherrel Field 4, Lilly Field 5','2012-05-26 00:00:00','2012-05-01 00:00:00','2012-05-26 00:00:00','541-829-0052','fieldju@gmail.com','Ugily','Lame','medium','average','medium',1,0,0,0,0,1,0,0,NULL,0,NULL,NULL,NULL,'2012-05-26 00:00:00',3,1,1,'2012-05-26 00:00:00','2012-05-27 00:00:00');
+INSERT INTO `ProspectInterview` VALUES (10,'<ol>\n<li>Jusitn Field</li>\n<li>Tamara Field</li>\n</ol>','<p><span style=\"font-size: medium;\">Bob Field</span></p>\n<p><span style=\"font-size: medium;\">Sarah Field</span></p>','2012-05-26','2012-05-01','2012-05-26','541-829-0052','fieldju@gmail.com','<p>Ugily</p>','<p>Lame</p>','Low','Little','Low',1,0,0,0,0,1,0,0,NULL,0,NULL,NULL,NULL,'2012-05-26',2,1,1,'2012-05-26','2012-05-27');
 /*!40000 ALTER TABLE `ProspectInterview` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -722,6 +753,7 @@ CREATE TABLE `SchoolInformation` (
   `ContractRenewalDeadline` datetime NOT NULL,
   `RequiredHours` int(11) NOT NULL,
   `FeePerHour` double NOT NULL,
+  `CurrentYear` int(1) NOT NULL,
   PRIMARY KEY (`AcademicYear`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -732,8 +764,8 @@ CREATE TABLE `SchoolInformation` (
 
 LOCK TABLES `SchoolInformation` WRITE;
 /*!40000 ALTER TABLE `SchoolInformation` DISABLE KEYS */;
-INSERT INTO `SchoolInformation` VALUES (2012,'2011-08-19 00:00:00',20,10);
-INSERT INTO `SchoolInformation` VALUES (2013,'2012-08-15 00:00:00',30,12);
+INSERT INTO `SchoolInformation` VALUES (2012,'2011-08-19 00:00:00',20,10,1);
+INSERT INTO `SchoolInformation` VALUES (2013,'2012-08-15 00:00:00',30,12,0);
 /*!40000 ALTER TABLE `SchoolInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -776,11 +808,11 @@ CREATE TABLE `Staff` (
   KEY `FK_Staff_EmergencyContact1` (`EmergencyContactID1`),
   KEY `FK_Staff_EmergencyContact2` (`EmergencyContactID2`),
   KEY `FK_Staff_EmergencyContact3` (`EmergencyContactID3`),
+  CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Staff_EmergencyContact3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_StaffTypeLookup` FOREIGN KEY (`StaffTypeID`) REFERENCES `StaffTypeLookup` (`StaffTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Staff_UserTable` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_Staff_StaffTypeLookup` FOREIGN KEY (`StaffTypeID`) REFERENCES `StaffTypeLookup` (`StaffTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -809,7 +841,7 @@ CREATE TABLE `StaffEduBackground` (
   `GraduationDate` date DEFAULT NULL,
   PRIMARY KEY (`BackgroundID`),
   KEY `FK_StaffEduBackground_Staff` (`StaffID`),
-  CONSTRAINT `FK_StaffEduBackground_Staff` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `StaffEduBackground_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -871,7 +903,7 @@ CREATE TABLE `Student` (
   `EmergencyContactID2` int(11) NOT NULL,
   `EmergencyContactID3` int(11) NOT NULL,
   `IsEnrolled` int(1) NOT NULL DEFAULT '0',
-  `QuestionaireID` int(11) NOT NULL,
+  `QuestionaireID` int(11) DEFAULT NULL,
   `UDTTM` datetime NOT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `FK_Student_Classroom` (`ClassID`),
@@ -881,14 +913,14 @@ CREATE TABLE `Student` (
   KEY `FK_Student_WaitlistQuestionaire` (`QuestionaireID`),
   KEY `FK_Student_Program` (`ProgramID`),
   KEY `FK_Student_users` (`UserID`),
+  CONSTRAINT `FK_Student_WaitlistForm` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_Classroom` FOREIGN KEY (`ClassID`) REFERENCES `Classroom` (`ClassID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Student_WaitlistQuestionaire` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`EmergencyContactID1`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_2` FOREIGN KEY (`EmergencyContactID2`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+  CONSTRAINT `Student_ibfk_3` FOREIGN KEY (`EmergencyContactID3`) REFERENCES `EmergencyContact` (`ContactID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `Student_ibfk_4` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -897,11 +929,9 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (16,63,NULL,2,'Gary',NULL,'Graham-Cracker','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2003-01-05',NULL,'541-259-4620',106,107,108,0,13,'2012-05-28 19:54:16');
-INSERT INTO `Student` VALUES (17,62,NULL,2,'Billy',NULL,'Banana','M','184 S 7th St, Lebanon, OR, 97355','Salem, OR, 97355','2001-01-01',NULL,'541-259-4620',109,110,111,0,10,'2012-05-28 19:54:21');
-INSERT INTO `Student` VALUES (18,62,NULL,4,'Roy','Lee','Trueman','M','111 NW 26th St Apt 1','Corvallis, OR','1989-10-14',NULL,'541-979-0245',112,113,114,0,12,'2012-05-25 00:48:13');
-INSERT INTO `Student` VALUES (19,62,NULL,4,'Walter','','Troglodyte','M','cave','cave','2001-01-01',NULL,'555-555-5555',115,116,117,0,16,'2012-05-25 02:58:37');
+INSERT INTO `Student` VALUES (16,24,5,5,'Steven','Lee','Field','M','837 SW 15th ST #104, Corvallis, OR 97333','Lebanon, OR','2003-01-05','2012-05-14 00:00:00','541-259-4620',106,107,108,1,NULL,'2012-05-31 01:23:15');
 INSERT INTO `Student` VALUES (20,64,NULL,1,'Sean','Onifer','Stalley','M','184 S 7th St, Lebanon, OR, 97355','here','2002-03-02',NULL,'555-555-5555',118,119,120,0,15,'2012-05-26 00:09:41');
+INSERT INTO `Student` VALUES (22,73,NULL,2,'Walter','','Troglodyte','M','in a cave','in another cave','2001-01-01',NULL,'555-867-5309',124,125,126,0,18,'2012-05-30 23:17:24');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -923,7 +953,7 @@ CREATE TABLE `StudentEduBackground` (
   `EndDate` date NOT NULL,
   PRIMARY KEY (`BackgroundID`),
   KEY `FK_StudentEduBackground_Student` (`StudentID`),
-  CONSTRAINT `FK_StudentEduBackground_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `StudentEduBackground_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -949,8 +979,8 @@ CREATE TABLE `StudentIncident` (
   PRIMARY KEY (`IncidentID`,`StudentID`),
   KEY `FK_StudentIncident_Incident` (`IncidentID`),
   KEY `FK_StudentIncident_Student` (`StudentID`),
-  CONSTRAINT `FK_StudentIncident_Incident` FOREIGN KEY (`IncidentID`) REFERENCES `Incident` (`IncidentID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_StudentIncident_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `StudentIncident_ibfk_2` FOREIGN KEY (`IncidentID`) REFERENCES `Incident` (`IncidentID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `StudentIncident_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -984,7 +1014,7 @@ CREATE TABLE `StudentMedicalInformation` (
   `CertificateNumber` varchar(255) DEFAULT NULL,
   `Employer` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
-  CONSTRAINT `FK_MedicalInformation_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `StudentMedicalInformation_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -994,9 +1024,7 @@ CREATE TABLE `StudentMedicalInformation` (
 
 LOCK TABLES `StudentMedicalInformation` WRITE;
 /*!40000 ALTER TABLE `StudentMedicalInformation` DISABLE KEYS */;
-INSERT INTO `StudentMedicalInformation` VALUES (17,'Corvallis Hospital','555-555-5555','David','555-555-5555','Sally','555-555-5555','','','none','none','none');
-INSERT INTO `StudentMedicalInformation` VALUES (18,'Corvallis Hospital','555-555-5555','David','555-555-5555','Bob','555-555-5555','no!','no!','blah','234dfs','');
-INSERT INTO `StudentMedicalInformation` VALUES (19,'time','555-555-5555','mom','555-555-5555','dad','555-555-5555','mad cow desease','sunlight','none','none','none');
+INSERT INTO `StudentMedicalInformation` VALUES (22,'none','555-555-5555','man','555-555-5555','ren','555-555-5555',NULL,NULL,'blah','blah','blah');
 /*!40000 ALTER TABLE `StudentMedicalInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1016,7 +1044,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1032,48 +1060,18 @@ INSERT INTO `SubItem` VALUES (4,3,'Step 2: Wait for Available Spot','admissions/
 INSERT INTO `SubItem` VALUES (18,7,'Add Sub-Menu Item','admin/addSubItem',5);
 INSERT INTO `SubItem` VALUES (19,5,'Waitlist Managment','admin/waitlist',1);
 INSERT INTO `SubItem` VALUES (20,3,'Step 3: Registration Forms','admissions/registerStudentSelector',3);
-INSERT INTO `SubItem` VALUES (22,6,'User Accounts','admin/manageAccounts',1);
-INSERT INTO `SubItem` VALUES (23,6,'Students','admin/manageStudents',1);
-INSERT INTO `SubItem` VALUES (24,6,'Tuition','admin/manageTuition',1);
-INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','admin/manageVolunteerLogs',1);
-INSERT INTO `SubItem` VALUES (26,6,'Prospects','admin/prospectManagement',1);
+INSERT INTO `SubItem` VALUES (22,6,'User Accounts','record_management/manageAccounts',1);
+INSERT INTO `SubItem` VALUES (23,6,'Students','record_management/manageStudents',1);
+INSERT INTO `SubItem` VALUES (24,6,'Programs','record_management/managePrograms',1);
+INSERT INTO `SubItem` VALUES (25,6,'Volunteer Logs','record_management/manageVolunteerLogs',1);
+INSERT INTO `SubItem` VALUES (26,6,'Prospects','record_management/manageProspects',1);
 INSERT INTO `SubItem` VALUES (27,4,'My Students','parents/manageMyStudents',1);
 INSERT INTO `SubItem` VALUES (28,3,'Step 4: Medical Forms','admissions/studentMedicalSelector',4);
 INSERT INTO `SubItem` VALUES (29,3,'Step 5: Admin Approval','admissions/adminApproval',6);
 INSERT INTO `SubItem` VALUES (30,4,'Volunteer Activity','parents/manageMyVolunteerActivity',2);
+INSERT INTO `SubItem` VALUES (31,7,'Fancy Box Test','record_management/fancyBoxTest',1);
+INSERT INTO `SubItem` VALUES (32,6,'Classrooms','record_management/manageClasses',1);
 /*!40000 ALTER TABLE `SubItem` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Tuition`
---
-
-DROP TABLE IF EXISTS `Tuition`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Tuition` (
-  `AcademicYear` int(11) NOT NULL,
-  `AcademicLevelID` int(11) NOT NULL,
-  `ProgramID` int(11) NOT NULL,
-  `HalfdayFee` int(11) NOT NULL,
-  `FullDayFee` int(11) NOT NULL,
-  PRIMARY KEY (`AcademicYear`,`AcademicLevelID`,`ProgramID`),
-  KEY `FK_SchoolInformation_Tuition_SchoolInformation` (`AcademicYear`),
-  KEY `FK_SchoolInformation_Tuition_AcademicLevel` (`AcademicLevelID`),
-  KEY `FK_SchoolInformation_Tuition_Program` (`ProgramID`),
-  CONSTRAINT `FK_SchoolInformation_Tuition_AcademicLevel` FOREIGN KEY (`AcademicLevelID`) REFERENCES `AcademicLevel` (`AcademicLevelID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_SchoolInformation_Tuition_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SchoolInformation_Tuition_SchoolInformation` FOREIGN KEY (`AcademicYear`) REFERENCES `SchoolInformation` (`AcademicYear`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Tuition`
---
-
-LOCK TABLES `Tuition` WRITE;
-/*!40000 ALTER TABLE `Tuition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Tuition` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1090,8 +1088,8 @@ CREATE TABLE `UserNotifications` (
   `UrlParam` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`UserID`,`NotificationID`,`UrlParam`),
   KEY `FK_UserNotifications_Notifications` (`NotificationID`),
-  CONSTRAINT `FK_UserNotifications_Notifications` FOREIGN KEY (`NotificationID`) REFERENCES `Notifications` (`NotificationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_UserNotifications_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `UserNotifications_ibfk_4` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `UserNotifications_ibfk_3` FOREIGN KEY (`NotificationID`) REFERENCES `Notifications` (`NotificationID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1101,18 +1099,9 @@ CREATE TABLE `UserNotifications` (
 
 LOCK TABLES `UserNotifications` WRITE;
 /*!40000 ALTER TABLE `UserNotifications` DISABLE KEYS */;
-INSERT INTO `UserNotifications` VALUES (8,62,' ','');
-INSERT INTO `UserNotifications` VALUES (8,62,'Roy Trueman','18');
-INSERT INTO `UserNotifications` VALUES (8,62,'Walter Troglodyte','19');
-INSERT INTO `UserNotifications` VALUES (6,63,'George Graham-Cracker','14');
-INSERT INTO `UserNotifications` VALUES (7,63,'Gary Graham-Cracker','16');
+INSERT INTO `UserNotifications` VALUES (8,1,'Walter Troglodyte','22');
 INSERT INTO `UserNotifications` VALUES (7,64,'Sean Stalley','20');
-INSERT INTO `UserNotifications` VALUES (1,66,'','');
-INSERT INTO `UserNotifications` VALUES (1,67,'','');
-INSERT INTO `UserNotifications` VALUES (1,68,'','');
-INSERT INTO `UserNotifications` VALUES (1,69,'','');
-INSERT INTO `UserNotifications` VALUES (1,71,'','');
-INSERT INTO `UserNotifications` VALUES (1,72,'','');
+INSERT INTO `UserNotifications` VALUES (6,73,'asdf asdfa','19');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1132,7 +1121,7 @@ CREATE TABLE `VolunteerLogEntry` (
   `VolunteeredDTTM` date DEFAULT NULL,
   PRIMARY KEY (`EntryID`),
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
-  CONSTRAINT `VolunteerLogEntry_ibfk_3` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`)
+  CONSTRAINT `VolunteerLogEntry_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1191,9 +1180,9 @@ CREATE TABLE `WaitlistForm` (
   PRIMARY KEY (`FormID`),
   KEY `FK_WaitlistForm_Program` (`ExpectedProgramID`),
   KEY `FK_WaitlistForm_users` (`UserID`),
-  CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_WaitlistForm_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  CONSTRAINT `WaitlistForm_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1202,13 +1191,10 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
-INSERT INTO `WaitlistForm` VALUES (10,2,62,'Billy','','Banana',1,0,0,'2012-05-18 08:55:33');
-INSERT INTO `WaitlistForm` VALUES (11,2,62,'Jill','','Trueman',2,0,1,'2012-05-18 08:58:18');
-INSERT INTO `WaitlistForm` VALUES (12,4,62,'Roy','Lee','Trueman',2,0,0,'2012-05-18 09:01:26');
-INSERT INTO `WaitlistForm` VALUES (13,2,63,'Gary','','Graham-Cracker',1,0,0,'2012-05-18 09:16:43');
-INSERT INTO `WaitlistForm` VALUES (14,4,63,'George','','Graham-Cracker',3,1,0,'2012-05-18 09:19:57');
 INSERT INTO `WaitlistForm` VALUES (15,4,64,'Sean','Onifer','Stalley',1,1,0,'2012-05-18 10:27:02');
-INSERT INTO `WaitlistForm` VALUES (16,4,62,'Walter','','Troglodyte',2,0,0,'2012-05-25 02:11:17');
+INSERT INTO `WaitlistForm` VALUES (18,6,73,'Walter','','Troglodyte',3,0,0,'2012-05-30 23:11:35');
+INSERT INTO `WaitlistForm` VALUES (19,2,73,'asdf','sdf','asdfa',3,1,0,'2012-05-30 23:40:04');
+INSERT INTO `WaitlistForm` VALUES (20,2,24,'ads','fasdf','asdf',2,0,1,'2012-05-31 03:04:19');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1226,8 +1212,8 @@ CREATE TABLE `WaitlistFormQuestion` (
   PRIMARY KEY (`FormID`,`QuestionID`),
   KEY `FK_WaitlistFormQuestion_WaitlistForm` (`FormID`),
   KEY `FK_WaitlistFormQuestion_WaitlistQuestion` (`QuestionID`),
-  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistForm` FOREIGN KEY (`FormID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_WaitlistFormQuestion_WaitlistQuestion` FOREIGN KEY (`QuestionID`) REFERENCES `WaitlistQuestion` (`QuestionID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `WaitlistFormQuestion_ibfk_4` FOREIGN KEY (`QuestionID`) REFERENCES `WaitlistQuestion` (`QuestionID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `WaitlistFormQuestion_ibfk_3` FOREIGN KEY (`FormID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1237,86 +1223,6 @@ CREATE TABLE `WaitlistFormQuestion` (
 
 LOCK TABLES `WaitlistFormQuestion` WRITE;
 /*!40000 ALTER TABLE `WaitlistFormQuestion` DISABLE KEYS */;
-INSERT INTO `WaitlistFormQuestion` VALUES (10,1,'mostly');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,2,'ya. for sure');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,3,'being read to.');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,4,'not a lot. outdoors family');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,5,'yes. no just english');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,6,'full sentances');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,7,'yep');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,8,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,9,'walks well');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,10,'4');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,11,'He can');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,12,'all of the above');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,13,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,14,'diapers');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,15,'cry');
-INSERT INTO `WaitlistFormQuestion` VALUES (10,16,'time out');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,1,'indeed');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,2,'indeed');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,3,'blocks. building stuff with legos');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,4,'none at all.');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,5,'Yes. A little spanish');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,6,'she&#39;s a talker');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,7,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,8,'she can be rebellious, but she&#39;ll listen');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,9,'run');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,10,'2');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,11,'if you make her');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,12,'ya, whatever we give her');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,13,'yes');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,14,'normal underwear');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,15,'cry');
-INSERT INTO `WaitlistFormQuestion` VALUES (11,16,'time out');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,1,'YES');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,2,'YES, sir');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,3,'camping');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,4,'none, we don&#39;t have TV');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,5,'English only');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,6,'shorter phrases');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,7,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,8,'most of the time');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,9,'walks');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,10,'as many as possible. 5?');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,11,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,12,'bottle');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,13,'yes');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,14,'yes, normal underwear');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,15,'gets mom or dad');
-INSERT INTO `WaitlistFormQuestion` VALUES (12,16,'spankings');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,1,'he can');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,2,'He can even tie his shoes!');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,3,'video games');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,4,'he only plays when his dad does');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,5,'Just english');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,6,'He uses full sentences');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,7,'almost all the time');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,8,'He can. Don&#39;t let him fool you.');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,9,'He can walk and run');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,10,'a couple');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,11,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,12,'sippy-cup');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,13,'ya');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,14,'ya, cloth underwear');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,15,'asks us');
-INSERT INTO `WaitlistFormQuestion` VALUES (13,16,'spakings');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,1,'of course!');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,2,'both');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,3,'legos!');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,4,'we don&#39;t let him play the video games');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,5,'English only');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,6,'he doesn&#39;t talk much');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,7,'not very well');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,8,'yes');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,9,'walks');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,10,'dinner every night');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,11,'yes');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,12,'he can drink from a glass, but we give him a sippy-cup');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,13,'yep');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,14,'he needs help sometimes');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,15,'asks me');
-INSERT INTO `WaitlistFormQuestion` VALUES (14,16,'depends on the day');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,1,'yes\nYES');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,2,'YES');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,3,'games');
@@ -1333,22 +1239,54 @@ INSERT INTO `WaitlistFormQuestion` VALUES (15,13,'l;kh');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,14,'lk;l');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,15,'k;lk;');
 INSERT INTO `WaitlistFormQuestion` VALUES (15,16,'lj;k');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,1,'He chooses not to');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,2,'Can you take your socks and shoes off independently?');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,3,'categorize river creatures');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,4,'none');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,5,'no. grunts');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,6,'it all kinda mushes together');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,7,'nooo');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,8,'he understands gestures');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,9,'runs');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,10,'12+');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,11,'no!');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,12,'cupped fists');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,13,'always');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,14,'naked');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,15,'he wails');
-INSERT INTO `WaitlistFormQuestion` VALUES (16,16,'psycological warfare');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,1,'no');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,2,'no');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,3,'smashing');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,4,'He&#39;s cave blind');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,5,'only in grunts');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,6,'he grunts');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,7,'no');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,8,'no');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,9,'jerky');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,10,'1');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,11,'no. his hands');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,12,'cupped fists');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,13,'stares into your soul');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,14,'outdoors');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,15,'grunts');
+INSERT INTO `WaitlistFormQuestion` VALUES (18,16,'smash');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,1,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,2,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,3,'kjl');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,4,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,5,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,6,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,7,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,8,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,9,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,10,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,11,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,12,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,13,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,14,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,15,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (19,16,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,1,'df');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,2,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,3,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,4,'dasf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,5,'fdas');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,6,'dfsa');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,7,'dfsa');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,8,'fadsasfd');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,9,'fasdasdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,10,'fdasdasfdfasadfs');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,11,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,12,'fasd');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,13,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,14,'fdsa');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,15,'asdf');
+INSERT INTO `WaitlistFormQuestion` VALUES (20,16,'fas');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1416,11 +1354,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('4ef2d5cf65f721637a4537b15b5c5b69','128.193.37.77','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22',1338260911,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 19:32:18\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('5b7f43f651575f439d2b8c2a59c83c72','24.21.104.139','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0',1338265305,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-28 19:50:06\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('9458c186b4b928626c25d03b425d652f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338337111,'');
-INSERT INTO `ci_sessions` VALUES ('c6369a76643c100b80bd98a527496a9f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338266772,'');
-INSERT INTO `ci_sessions` VALUES ('d838204e1d65ddf36443ac7a5ea14f87','128.193.37.74','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1338263820,'');
+INSERT INTO `ci_sessions` VALUES ('756f84cdd6db1b9fb593624253082d10','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338459090,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-31 01:34:05\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1445,9 +1379,8 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'admin','No restrictions. Cannot be re-routed by alerts.');
-INSERT INTO `groups` VALUES (100,'parent',NULL);
-INSERT INTO `groups` VALUES (200,'alert','This group is for parents that need to meet some requirements.');
+INSERT INTO `groups` VALUES (1,'Admin','No restrictions. Cannot be re-routed by alerts.');
+INSERT INTO `groups` VALUES (100,'Parent',NULL);
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1472,7 +1405,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1481,18 +1414,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-28 21:23:52','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-28 19:32:53','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (62,'mark.bowser','markbowser9@gmail.com','c4ce400bfbaf68957f62bd47a3d2f775e67d75a2eb970c7d34057de9454a9f14','100','','','2012-05-25 21:43:31','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (63,'Mark.Bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-28 21:23:53','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-31 03:04:28','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (24,'justin.field','fieldju@gmailsdsd.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-05-31 03:03:32','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (64,'Mark.Bowser.3','adsfadafd@asdafdsafsfds.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-25 03:11:54','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (66,'Justin.Field.3','fasdfieldju@gmail.com','537149dc5846e0bf7e33dd720a6982ab8ee83aae1d106bda335d25682a8076d0','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (67,'Justin.Field.2','fiel234234234dju@gmail.com','ff20f1c7a942955094a611487bcb26a4fc867b6b8e7583bf3ff69825c58bb335','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (68,'Justin.Field.4','fielasddju@gmail.com','97bd697f724abe2d58a49ce94c653c32956fd9acaa04cf7052eab07c3d2b6cac','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (69,'Justin.Field.5','fielsdafasdfdju@gmail.com','e14e484e5627b17561aa89cc0d3452602d50be50e7f35404276556fd8362588b','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (70,'Justin.Field.6','field,mhnju@gmail.com','b17aa0352fb489cb0a068453e75a9790db6b02f5b45d0d86241067155938b87d','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (71,'Justin.Field.7','fieldju@gmail.com','14e1fa097ef5b88220aff83a345f311744bbe929b9ee407c1279d127e27280a5','100','','',NULL,'0000-00-00 00:00:00',1,0);
-INSERT INTO `users` VALUES (72,'bob.dole','DoLe@DoLe.com','72b77bbcdcbdc8097cf5bdac9df38f59fd3206e7a49fc1117c3c8fd7e6c4b9a8','100','','',NULL,'0000-00-00 00:00:00',1,0);
+INSERT INTO `users` VALUES (73,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-30 23:43:17','0000-00-00 00:00:00',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1505,4 +1430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-30  3:14:01
+-- Dump completed on 2012-05-31  3:14:01

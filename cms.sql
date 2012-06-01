@@ -144,7 +144,9 @@ CREATE TABLE `AdmissionsForm` (
 
 LOCK TABLES `AdmissionsForm` WRITE;
 /*!40000 ALTER TABLE `AdmissionsForm` DISABLE KEYS */;
-INSERT INTO `AdmissionsForm` VALUES (24,'no','littl','smash','outside','no','yes','Tucan : Gilbert','smash','sam','4','Other','woot','no');
+INSERT INTO `AdmissionsForm` VALUES (24,'no','yes','yes','yes','no','yes','Tucan : Gilbert','smash','sam','4','Other','woot','<p>no/yes</p>');
+INSERT INTO `AdmissionsForm` VALUES (25,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ',NULL,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','','','Friend','','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ');
+INSERT INTO `AdmissionsForm` VALUES (26,'5418290052','5418290052','5418290052','5418290052','5418290052','5418290052',NULL,'5418290052','','','Friend','5418290052','5418290052');
 /*!40000 ALTER TABLE `AdmissionsForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,7 +416,7 @@ CREATE TABLE `EmergencyContact` (
   PRIMARY KEY (`ContactID`),
   KEY `FK_EmergencyContact_Student` (`StudentID`),
   CONSTRAINT `FK_EmergencyContact_Student` FOREIGN KEY (`StudentID`) REFERENCES `Student` (`StudentID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,6 +428,12 @@ LOCK TABLES `EmergencyContact` WRITE;
 INSERT INTO `EmergencyContact` VALUES (130,24,'Jack Bowser','555-555-5555','Uncle');
 INSERT INTO `EmergencyContact` VALUES (131,24,'Jerry Bowser','555-555-5555','Uncle');
 INSERT INTO `EmergencyContact` VALUES (132,24,'Janelle Bowser','555-555-5555','Aunt');
+INSERT INTO `EmergencyContact` VALUES (133,25,'Larry Jim','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (134,25,'Harry Jim','555-555-5555','Uncle');
+INSERT INTO `EmergencyContact` VALUES (135,25,'Mary Jim','555-555-5555','Aunt');
+INSERT INTO `EmergencyContact` VALUES (136,26,'Catlyn Stark','5418290052','Mother');
+INSERT INTO `EmergencyContact` VALUES (137,26,'John Snow','5418290052','Bastard Brother');
+INSERT INTO `EmergencyContact` VALUES (138,26,'Ned Stark','5418290052','Dead Father');
 /*!40000 ALTER TABLE `EmergencyContact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -581,7 +589,7 @@ CREATE TABLE `Parent` (
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
   CONSTRAINT `Parent_ibfk_2` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `Parent_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -591,6 +599,8 @@ CREATE TABLE `Parent` (
 LOCK TABLES `Parent` WRITE;
 /*!40000 ALTER TABLE `Parent` DISABLE KEYS */;
 INSERT INTO `Parent` VALUES (51,74,'Mark',NULL,'Bowser','markbowser9@gmail.com',NULL,NULL,0,NULL,'2012-05-31 21:47:01');
+INSERT INTO `Parent` VALUES (52,75,'Mark',NULL,'Bowser','markbowser9@hotmail.com',NULL,NULL,0,NULL,'2012-05-31 22:22:21');
+INSERT INTO `Parent` VALUES (53,76,'Justin',NULL,'Field','fieldju@gmail.com',NULL,NULL,0,NULL,'2012-06-01 01:24:42');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -884,7 +894,7 @@ CREATE TABLE `Student` (
   CONSTRAINT `FK_Student_Program` FOREIGN KEY (`ProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Student_WaitlistForm` FOREIGN KEY (`QuestionaireID`) REFERENCES `WaitlistForm` (`FormID`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `Student_ibfk_4` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -894,6 +904,8 @@ CREATE TABLE `Student` (
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
 INSERT INTO `Student` VALUES (24,74,NULL,6,'Walter','','Troglodyte','M','111 NW 26th St Apt 1','Lebanon, OR','2002-03-02',NULL,'555-555-5555',0,22,'2012-05-31 21:59:49');
+INSERT INTO `Student` VALUES (25,75,5,5,'Jim','Jim','Jim','M','184 S 7th St, Lebanon, OR, 97355','Corvallis, OR','2001-01-01',NULL,'541-259-4620',1,23,'2012-06-01 01:39:27');
+INSERT INTO `Student` VALUES (26,76,NULL,4,'Rob',NULL,'Stark','M','7400 SW Barnes Road #1162','Winterfell, Seven Kingdoms','1986-05-26',NULL,'5418290052',0,25,'2012-06-01 01:51:09');
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -986,6 +998,8 @@ CREATE TABLE `StudentMedicalInformation` (
 
 LOCK TABLES `StudentMedicalInformation` WRITE;
 /*!40000 ALTER TABLE `StudentMedicalInformation` DISABLE KEYS */;
+INSERT INTO `StudentMedicalInformation` VALUES (24,'asdfafd','555-555-5555','man','555-555-5555','blimp','555-555-5555',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `StudentMedicalInformation` VALUES (25,'Corvallis','555-555-5555','Bob Jones','555-555-5555','Yoda','555-555-5555','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ','Some place insurance land','987987987ds98a6s89dfa9d','Entek Int Mfg');
 /*!40000 ALTER TABLE `StudentMedicalInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1062,8 +1076,9 @@ CREATE TABLE `UserNotifications` (
 
 LOCK TABLES `UserNotifications` WRITE;
 /*!40000 ALTER TABLE `UserNotifications` DISABLE KEYS */;
-INSERT INTO `UserNotifications` VALUES (8,1,'Walter Troglodyte','22');
-INSERT INTO `UserNotifications` VALUES (7,74,'Walter Troglodyte','24');
+INSERT INTO `UserNotifications` VALUES (8,1,'Jim Jim','25');
+INSERT INTO `UserNotifications` VALUES (6,75,'asdf kjjk','24');
+INSERT INTO `UserNotifications` VALUES (7,76,'Rob Stark','26');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1084,7 +1099,7 @@ CREATE TABLE `VolunteerLogEntry` (
   PRIMARY KEY (`EntryID`),
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
   CONSTRAINT `VolunteerLogEntry_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1093,6 +1108,7 @@ CREATE TABLE `VolunteerLogEntry` (
 
 LOCK TABLES `VolunteerLogEntry` WRITE;
 /*!40000 ALTER TABLE `VolunteerLogEntry` DISABLE KEYS */;
+INSERT INTO `VolunteerLogEntry` VALUES (63,74,8,'I logged some hours!','2012-05-31','2012-05-30');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1141,7 +1157,7 @@ CREATE TABLE `WaitlistForm` (
   KEY `FK_WaitlistForm_users` (`UserID`),
   CONSTRAINT `WaitlistForm_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_WaitlistForm_Program` FOREIGN KEY (`ExpectedProgramID`) REFERENCES `Program` (`ProgramID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1150,7 +1166,10 @@ CREATE TABLE `WaitlistForm` (
 
 LOCK TABLES `WaitlistForm` WRITE;
 /*!40000 ALTER TABLE `WaitlistForm` DISABLE KEYS */;
-INSERT INTO `WaitlistForm` VALUES (22,6,74,'Walter','','Troglodyte',3,1,0,'2012-05-31 21:47:56');
+INSERT INTO `WaitlistForm` VALUES (22,6,74,'Walter','','Troglodyte',3,0,0,'2012-05-31 21:47:56');
+INSERT INTO `WaitlistForm` VALUES (23,2,75,'Jim','Jim','Jim',3,0,0,'2012-05-31 22:24:49');
+INSERT INTO `WaitlistForm` VALUES (24,5,75,'asdf','lkj;','kjjk',2,1,0,'2012-06-01 00:19:30');
+INSERT INTO `WaitlistForm` VALUES (25,4,76,'Rob','','Stark',1,1,0,'2012-06-01 01:29:59');
 /*!40000 ALTER TABLE `WaitlistForm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1195,6 +1214,54 @@ INSERT INTO `WaitlistFormQuestion` VALUES (22,13,'lkj');
 INSERT INTO `WaitlistFormQuestion` VALUES (22,14,'lkj');
 INSERT INTO `WaitlistFormQuestion` VALUES (22,15,'kjl');
 INSERT INTO `WaitlistFormQuestion` VALUES (22,16,'jk');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,1,'l;kj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,2,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,3,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,4,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,5,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,6,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,7,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,8,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,9,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,10,'kljlk');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,11,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,12,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,13,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,14,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,15,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (23,16,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,1,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,2,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,3,'kl');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,4,'kl');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,5,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,6,'klj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,7,'lkk');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,8,'ljklj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,9,'kjl');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,10,'lk');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,11,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,12,'kjllk');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,13,'lkj');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,14,'kjl');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,15,'k');
+INSERT INTO `WaitlistFormQuestion` VALUES (24,16,'kjl');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,1,'Yes, he is the lord of Winterfell and shall be called Lord Stark.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,2,'Yes, he is the lord of Winterfell and shall be called Lord Stark.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,3,'Slaying Lanester&#39;s with his dire wolf.\nSaying &quot;winter is coming&quot;.\nBreaking marriage packs.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,4,'None, he is too busy waging war as he is the king in the north and will take vengeance for his fathers death.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,5,'Of course the lord of the north speaks English.\nHe also speaks High Valerian.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,6,'as the lord of the north speaks English.\nHe also speaks High Valerian.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,7,'The lord of the north speaks English.\nHe also speaks High Valerian.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,8,'The lord of the north speaks English.\nHe also speaks High Valerian.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,9,'He rolls with his dire wolf.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,10,'None, too busy waging war.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,11,'The lord of the north is fed by his squire.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,12,'The lord of the north is fed by his squire.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,13,'The lord of the north is fed by his squire.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,14,'The lord of the north is fed by his squire.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,15,'The lord of the north is fed by his squire.');
+INSERT INTO `WaitlistFormQuestion` VALUES (25,16,'The lord of the north is fed by his squire.');
 /*!40000 ALTER TABLE `WaitlistFormQuestion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1262,9 +1329,10 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('0e40b7fc106fb4f39eacbcc4eb619c55','24.20.18.164','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338526628,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:2:\"74\";s:8:\"username\";s:11:\"mark.bowser\";s:5:\"email\";s:21:\"markbowser9@gmail.com\";s:8:\"group_id\";s:3:\"100\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-31 21:47:20\";s:12:\"CreationDTTM\";s:19:\"0000-00-00 00:00:00\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('2055c0b100ef4d39a350643d6fa04b83','24.20.18.164','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0',1338527070,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-31 21:48:01\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('ad7d89bafe9977214bbcab2125e144ae','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338524363,'');
+INSERT INTO `ci_sessions` VALUES ('a9473d92273fc4df9d2122c4676c3aba','209.237.86.141','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338538979,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-06-01 01:20:54\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('bb4d8feeaade95473694cc3695e2611d','24.20.18.164','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0',1338536223,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-05-31 21:48:01\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('f043d07e46666a98622cfb5286984b72','24.20.18.164','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338537111,'');
+INSERT INTO `ci_sessions` VALUES ('fc304e0f25fe12e61aba92be3075b670','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1338543558,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-06-01 01:30:11\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1315,7 +1383,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1324,8 +1392,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-05-31 22:04:52','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-05-31 21:48:15','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-01 01:33:16','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-01 00:25:43','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (75,'mark.bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-01 00:37:32','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (76,'justin.field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-06-01 01:30:50','0000-00-00 00:00:00',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1338,4 +1408,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-31 22:10:13
+-- Dump completed on 2012-06-01  3:14:01

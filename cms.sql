@@ -617,7 +617,7 @@ CREATE TABLE `Parent` (
   KEY `FK_Parent_SkillSheet` (`SkillSheetID`),
   CONSTRAINT `Parent_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Parent_ibfk_2` FOREIGN KEY (`SkillSheetID`) REFERENCES `VolunteerSkillSheet` (`SkillSheetID`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -632,6 +632,8 @@ INSERT INTO `Parent` VALUES (53,76,'Justin',NULL,'Field','fieldju@gmail.com',NUL
 INSERT INTO `Parent` VALUES (54,77,'Whosi ',NULL,'Whazit','info@corvallismontessori.org',NULL,NULL,0,NULL,'2012-06-01 12:20:49');
 INSERT INTO `Parent` VALUES (55,78,'mark',NULL,'bowser','asdlkfjasldkfjalsdfj@fgasdf.com',NULL,NULL,0,NULL,'2012-06-03 00:48:46');
 INSERT INTO `Parent` VALUES (56,79,'mark',NULL,'bowser','kaljsdflkajdflka@asdf.com',NULL,NULL,0,NULL,'2012-06-04 12:02:15');
+INSERT INTO `Parent` VALUES (57,80,'niddy',NULL,'lindsley','lindsleyn@gmail.com',NULL,NULL,0,NULL,'2012-06-08 10:19:14');
+INSERT INTO `Parent` VALUES (58,81,'Jason',NULL,'Prothero','asdfasdfasdfasdf@asmdf.com',NULL,NULL,0,NULL,'2012-06-08 11:34:57');
 /*!40000 ALTER TABLE `Parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -935,7 +937,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (24,74,3,2,'Walter',NULL,'Troglodyte','M','111 NW 26th St Apt 1','Lebanon, OR','2002-03-02',NULL,'555-555-5555',1,22,'2012-06-01 19:14:27');
+INSERT INTO `Student` VALUES (24,74,2,2,'Walter',NULL,'Troglodyte','M','111 NW 26th St Apt 1','Lebanon, OR','2002-03-02',NULL,'555-555-5555',0,22,'2012-06-08 18:08:17');
 INSERT INTO `Student` VALUES (25,75,5,5,'Jim','Jim','Jim','M','184 S 7th St, Lebanon, OR, 97355','Corvallis, OR','2012-07-28',NULL,'541-259-4620',1,23,'2012-06-01 18:46:46');
 INSERT INTO `Student` VALUES (26,76,NULL,4,'Rob',NULL,'Stark','M','7400 SW Barnes Road #1162','Winterfell, Seven Kingdoms','1986-05-26',NULL,'5418290052',0,25,'2012-06-01 01:51:09');
 INSERT INTO `Student` VALUES (27,75,NULL,5,'asdf','lkj;','kjjk','F','184 S 7th St, Lebanon, OR, 97355','Lebanon, OR','2002-03-02',NULL,'555-555-5555',0,24,'2012-06-01 10:02:59');
@@ -1132,6 +1134,8 @@ INSERT INTO `UserNotifications` VALUES (7,75,'Drew Conley','31');
 INSERT INTO `UserNotifications` VALUES (7,75,'Gilbert VonGilbert','32');
 INSERT INTO `UserNotifications` VALUES (7,76,'Rob Stark','26');
 INSERT INTO `UserNotifications` VALUES (6,78,'Micah DeVyldere','33');
+INSERT INTO `UserNotifications` VALUES (1,80,'','');
+INSERT INTO `UserNotifications` VALUES (1,81,'','');
 /*!40000 ALTER TABLE `UserNotifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1152,7 +1156,7 @@ CREATE TABLE `VolunteerLogEntry` (
   PRIMARY KEY (`EntryID`),
   KEY `FK_VolunteerLogEntry_user` (`UserID`),
   CONSTRAINT `VolunteerLogEntry_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1165,6 +1169,9 @@ INSERT INTO `VolunteerLogEntry` VALUES (63,74,8,'I logged some hours! and update
 INSERT INTO `VolunteerLogEntry` VALUES (74,76,4,'singing','2012-06-01','2012-06-04');
 INSERT INTO `VolunteerLogEntry` VALUES (75,75,7,'logged it','2012-06-01','2012-06-12');
 INSERT INTO `VolunteerLogEntry` VALUES (76,75,8,'test log modified','2012-06-01','2012-06-13');
+INSERT INTO `VolunteerLogEntry` VALUES (77,80,2,'Listening to Bamboo\'s children read','2012-06-08','2012-06-07');
+INSERT INTO `VolunteerLogEntry` VALUES (78,80,1,'Listening to Willow\'s children read','2012-06-08','2012-06-05');
+INSERT INTO `VolunteerLogEntry` VALUES (79,80,1.5,'Listening to Bamboo\'s Children read','2012-06-08','2012-05-31');
 /*!40000 ALTER TABLE `VolunteerLogEntry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1538,12 +1545,11 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('5d5a0f9446a99ca8f45f0a187deec3b0','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339066044,'');
-INSERT INTO `ci_sessions` VALUES ('b2ab71166446572779229b9bccac3de2','128.193.161.161','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.5 Safari/534.55.3',1339010089,'a:12:{s:9:\"user_data\";s:0:\"\";s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-06-06 12:10:12\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('c615928fdc3af1f5d3e5a393d9832ddb','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339021179,'');
-INSERT INTO `ci_sessions` VALUES ('de7c2e82f63852da9dbb011d6c3cc2a5','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339107568,'');
-INSERT INTO `ci_sessions` VALUES ('f9c33334876211ecbe97877a9d181db1','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339035945,'');
-INSERT INTO `ci_sessions` VALUES ('fcfa25fa2bbd3a1463c7be8de8f24764','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339147009,'');
+INSERT INTO `ci_sessions` VALUES ('31b275972e91590d9813d3c3026bed66','128.193.8.96','Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0',1339170486,'');
+INSERT INTO `ci_sessions` VALUES ('72f126ca4b6530458cf94832947a65e6','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339181857,'');
+INSERT INTO `ci_sessions` VALUES ('7c250baa841ca6ff25673c1a3cd7c213','180.76.6.20','Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',1339233296,'');
+INSERT INTO `ci_sessions` VALUES ('9d0a9c24f22c96433ab33b21a245de11','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339204381,'');
+INSERT INTO `ci_sessions` VALUES ('c7f51bc048740d82b7a3304007a1136d','24.20.226.169','Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339176194,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1594,7 +1600,7 @@ CREATE TABLE `users` (
   `HasChangedPassword` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1 PACK_KEYS=0;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1 PACK_KEYS=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1603,13 +1609,15 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-06 12:14:54','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-08 18:05:31','2012-02-02 01:01:01',1,1);
 INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-01 18:44:45','0000-00-00 00:00:00',1,1);
-INSERT INTO `users` VALUES (75,'mark.bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-03 00:41:22','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (75,'mark.bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-08 11:05:49','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (76,'justin.field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-06-06 12:14:30','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (77,'whosi .whazit','info@corvallismontessori.org','23856a3c626bdbc25ea5b126e54329c765691096ada36dfeb644998eacbeee19','100','','','2012-06-01 12:22:24','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (78,'mark.bowser.3','asdlkfjasldkfjalsdfj@fgasdf.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-03 00:54:24','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (79,'mark.bowser.4','kaljsdflkajdflka@asdf.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-04 12:04:23','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (80,'niddy.lindsley','lindsleyn@gmail.com','a02e171378affd5d0da25096a7e7004277e2476492a2f97012ae87328b59963e','100','','','2012-06-08 10:19:36','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (81,'jason.prothero','asdfasdfasdfasdf@asmdf.com','aa13c23c30a27d54241bce5fa44f95977128b00886d0205b73fc9725647e34ee','100','','',NULL,'0000-00-00 00:00:00',1,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1622,4 +1630,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-08  3:14:01
+-- Dump completed on 2012-06-09  3:14:01

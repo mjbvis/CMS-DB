@@ -1549,6 +1549,7 @@ INSERT INTO `ci_sessions` VALUES ('31b275972e91590d9813d3c3026bed66','128.193.8.
 INSERT INTO `ci_sessions` VALUES ('72f126ca4b6530458cf94832947a65e6','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339181857,'');
 INSERT INTO `ci_sessions` VALUES ('7c250baa841ca6ff25673c1a3cd7c213','180.76.6.20','Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',1339233296,'');
 INSERT INTO `ci_sessions` VALUES ('9d0a9c24f22c96433ab33b21a245de11','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339204381,'');
+INSERT INTO `ci_sessions` VALUES ('b652c51555e937457b9ae28d5884ce4f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339269230,'');
 INSERT INTO `ci_sessions` VALUES ('c7f51bc048740d82b7a3304007a1136d','24.20.226.169','Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339176194,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1609,8 +1610,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-08 18:05:31','2012-02-02 01:01:01',1,1);
-INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-01 18:44:45','0000-00-00 00:00:00',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-09 12:13:20','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-09 12:13:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (75,'mark.bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-08 11:05:49','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (76,'justin.field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-06-06 12:14:30','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (77,'whosi .whazit','info@corvallismontessori.org','23856a3c626bdbc25ea5b126e54329c765691096ada36dfeb644998eacbeee19','100','','','2012-06-01 12:22:24','0000-00-00 00:00:00',1,1);
@@ -1630,4 +1631,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-09  3:14:01
+-- Dump completed on 2012-06-10  3:14:01

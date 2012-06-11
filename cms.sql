@@ -1549,6 +1549,7 @@ INSERT INTO `ci_sessions` VALUES ('31b275972e91590d9813d3c3026bed66','128.193.8.
 INSERT INTO `ci_sessions` VALUES ('72f126ca4b6530458cf94832947a65e6','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339181857,'');
 INSERT INTO `ci_sessions` VALUES ('7c250baa841ca6ff25673c1a3cd7c213','180.76.6.20','Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',1339233296,'');
 INSERT INTO `ci_sessions` VALUES ('9d0a9c24f22c96433ab33b21a245de11','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339204381,'');
+INSERT INTO `ci_sessions` VALUES ('a6c2c5a9b7d1308b4c94312fee03c73b','24.20.226.169','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19',1339361381,'');
 INSERT INTO `ci_sessions` VALUES ('b652c51555e937457b9ae28d5884ce4f','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339269230,'');
 INSERT INTO `ci_sessions` VALUES ('c7f51bc048740d82b7a3304007a1136d','24.20.226.169','Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339176194,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
@@ -1631,4 +1632,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-10  3:14:01
+-- Dump completed on 2012-06-11  3:14:01

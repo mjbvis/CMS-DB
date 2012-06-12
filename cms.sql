@@ -546,7 +546,7 @@ CREATE TABLE `MenuItem` (
   `URL` varchar(255) NOT NULL,
   `RankOrder` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MenuItemID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1065,7 +1065,7 @@ CREATE TABLE `SubItem` (
   PRIMARY KEY (`SubItemID`),
   KEY `FK_SubItem_MenuItem` (`MenuItemID`),
   CONSTRAINT `FK_SubItem_MenuItem` FOREIGN KEY (`MenuItemID`) REFERENCES `MenuItem` (`MenuItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1546,7 +1546,9 @@ CREATE TABLE `ci_sessions` (
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
 INSERT INTO `ci_sessions` VALUES ('31b275972e91590d9813d3c3026bed66','128.193.8.96','Mozilla/5.0 (X11; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0',1339170486,'');
+INSERT INTO `ci_sessions` VALUES ('3516c9eef9adb28e1565dce4c6f9aeef','67.170.132.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5',1339480034,'a:11:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:15:\"admin@admin.com\";s:8:\"group_id\";s:1:\"1\";s:5:\"token\";s:0:\"\";s:10:\"identifier\";s:0:\"\";s:13:\"LastLoginDTTM\";s:19:\"2012-06-09 12:13:20\";s:12:\"CreationDTTM\";s:19:\"2012-02-02 01:01:01\";s:7:\"Enabled\";s:1:\"1\";s:18:\"HasChangedPassword\";s:1:\"1\";s:9:\"logged_in\";b:1;}');
 INSERT INTO `ci_sessions` VALUES ('72f126ca4b6530458cf94832947a65e6','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339181857,'');
+INSERT INTO `ci_sessions` VALUES ('7573396049212bec0ed5c3261cd16cd9','24.21.104.139','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339473432,'');
 INSERT INTO `ci_sessions` VALUES ('7c250baa841ca6ff25673c1a3cd7c213','180.76.6.20','Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',1339233296,'');
 INSERT INTO `ci_sessions` VALUES ('9d0a9c24f22c96433ab33b21a245de11','128.193.8.40','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5',1339204381,'');
 INSERT INTO `ci_sessions` VALUES ('a6c2c5a9b7d1308b4c94312fee03c73b','24.20.226.169','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19',1339361381,'');
@@ -1611,7 +1613,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-09 12:13:20','2012-02-02 01:01:01',1,1);
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com','6f7c155805e64f13b752a222bf8f6528e958ed890cc149a53f0ab01f6d5d108c','1','','','2012-06-11 22:47:21','2012-02-02 01:01:01',1,1);
 INSERT INTO `users` VALUES (74,'mark.bowser','markbowser9@gmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-09 12:13:31','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (75,'mark.bowser.2','markbowser9@hotmail.com','9c9265dbcc979d004a7752868d103663255eb8333613ed627189a109ab7d01c1','100','','','2012-06-08 11:05:49','0000-00-00 00:00:00',1,1);
 INSERT INTO `users` VALUES (76,'justin.field','fieldju@gmail.com','1ab9e422fac04df35066e6491d39b745550ae4a65a9ac9f81a5504682a25b71a','100','','','2012-06-06 12:14:30','0000-00-00 00:00:00',1,1);
@@ -1632,4 +1634,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-11  3:14:01
+-- Dump completed on 2012-06-12  3:14:02
